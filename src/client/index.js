@@ -2,6 +2,8 @@ import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+// import { store } from '../reducers/Store';
+
 import Root from './Root';
 
 const root = document.querySelector('#root');

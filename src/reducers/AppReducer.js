@@ -1,13 +1,11 @@
-export type App = {
+ const App = {
     author: Object,
     type: String,
     reivews: Object,
     url: String,
     rating: Number,
     img: String,
-    tags: Array<String>
-
-
+    tags: Array
 }
 
 // IF WE WNAT TO MAINTAIN PERSISTANT STATE THINGS FOR THIS IN THE DATABASE
@@ -16,7 +14,7 @@ export type App = {
 
 
 
-export default function appReducer(state = {}, action:any) {
+export default function appReducer(state = {}, action) {
     switch (action.type) {
         case 'SET_APP':
             return action.payload.app // APP object is APP state
@@ -30,7 +28,7 @@ export default function appReducer(state = {}, action:any) {
                 url: String,
                 rating: Number,
                 img: String,
-                tags: Array<String>()
+                tags: Array
             }
         case 'SET_APP_AUTHOR':
         

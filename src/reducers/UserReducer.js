@@ -1,7 +1,7 @@
 
 // User Reducer
-// @flow
-export type User = {
+// @fl
+const User = {
    _id: String,
    email: String,
    kerberos: Object,
@@ -22,7 +22,7 @@ export type User = {
                                                                                     //     for(token in state.currentUser.eventHistory) {
                                                                                     //         if(!state.currentUser.eventHistory.contains(token)) {
                                                                                     //     return state.currentUser.eventHistory s
-export default function userReducer(state = {}, action:any) {
+export default function userReducer(state = {}, action) {
         switch (action.type) {
             case 'SET_USER':
                 return action.payload.user // User object is user state
