@@ -59,6 +59,9 @@ const routes = (
 if (module.hot) {
   require('../components/Home'); // eslint-disable-line global-require
   require('../components/Tools'); // eslint-disable-line global-require
+  // require('../components/About'); // eslint-disable-line global-require
+  // require('../components/AppStore'); // eslint-disable-line global-require
+
 }
 
 export default routes;

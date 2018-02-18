@@ -1,4 +1,5 @@
  const App = {
+    name: String,
     author: Object,
     type: String,
     reivews: Object,
@@ -22,6 +23,7 @@ export default function appReducer(state = {}, action) {
         case 'INIT_APP':
         return {
                 ...state,
+                name: String,
                 author: Object,
                 type: String,
                 reivews: Object,
@@ -36,6 +38,12 @@ export default function appReducer(state = {}, action) {
                 ...state,
                 author: action.payload.author
             }
+        case 'SET_APP_NAME':
+    
+        return {
+            ...state,
+            name: action.payload.name
+        }
         case 'SET_APP_TYPE':
         return {
             ...state,

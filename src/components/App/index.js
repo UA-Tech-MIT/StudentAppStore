@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import styles from './styles.scss';
+import Carousel from "../Tools/carousel";
 
 function App({ children }) {
   return (
@@ -24,8 +25,10 @@ function App({ children }) {
         </li>
       </ul>
       <div className={styles.content}>
+        <Carousel/>
         {children}
       </div>
+      
     </div>
   );
 }
