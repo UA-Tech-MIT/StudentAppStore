@@ -1,0 +1,116 @@
+/* Variables */
+$vin-blue: #5bb7db;
+$vin-green: #60b044;
+$vin-red: #ff0000;
+
+/* Styles */
+body {
+  font: 14px "Roboto",UILanguageFont,Arial,sans-serif;
+  width: 100vw;
+  color: #4d4d4d;
+
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  font-weight: 300;
+}
+
+td {
+	padding: 12px;
+}
+
+h2 {
+	color: $vin-blue;
+}
+
+.online-user {
+  border-radius: 1%;
+  border: #4d4d4d;
+  padding: 5px;
+  background: #eeeeee;
+  margin: 10px;
+
+
+}
+.page-template {
+  padding: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+
+}
+
+
+.savings { color: $vin-green; }
+.loss { color: $vin-red; }
+input.small { width: 46px; }
+td.fuel-savings-label { width: 175px; }
+
+.slick-slider .slick-track {
+  display: flex;
+  align-items: center;
+}
+
+.app-page {
+  background-color: #eeeeee;
+  font-family: "Roboto",UILanguageFont,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.4;
+
+    .header {
+
+    }
+    .author {
+
+    }
+
+    .icon {
+      width: 15px;
+      height: 15px;
+    }
+}
+
+.navLink {
+  font-family: "Roboto",UILanguageFont,Arial,sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.4;
+    color: white;
+}
+
+.navbar-inverse {
+  height: 50px;
+  width: 100vw;
+  display: block;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+  margin-bottom: 0px;
+  border-bottom-width: 10px;
+}
+.navbar-inverse-hidden {
+  height: 50px;
+  width: 100vw;
+  display: block hidden;
+  padding: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin-bottom: 0px;
+  border-bottom-width: 10px;
+}
+
+.app-tile-container {
+  width: 250;
+  justify-content: center;
+  margin: auto;
+  display: inline-block;
+  vertical-align: middle;
+  .app-tile {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
