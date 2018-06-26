@@ -3,7 +3,7 @@ import Carousel from '../carousel';
 import PropTypes from 'prop-types';
 // import {bindActionCreators} from 'redux';
 import * as helperFuncs from '../../actions/AppPageActions'; // TODO
-import { Media } from 'react-bootstrap';
+import { Media, Jumbotron, Button, Row, Grid, Col} from 'react-bootstrap';
 import Rating from 'react-rating';
 import { ReviewList } from './ReviewList';
 
@@ -17,6 +17,13 @@ const testApp= {
   img: 'stellar.png',
   url: 'https://stellar.mit.edu',
   rating: 4,
+  description: `
+  Lorem ipsum dolor sit amet, mel facer sanctus ne, duo et cibo verterem,
+  ne doming appetere vim. Nostro iisque accumsan pro at, ex nam tota consulatu,
+  ne minim fuisset senserit nec. Meis elitr aliquip eos at, ex has debet accommodare,
+  id purto paulo vis. Ceteros nominati no eam. Per eu nonumy euripidis, mel et tantas melius.
+  Per autem dictas eligendi cu.
+  `,
   tags: ["school", "management", "software", "this sucks"],
   reviews: []
 };
@@ -43,6 +50,7 @@ export class AppPage extends React.Component {
       reivews: testApp.reivews,
       url: testApp.url,
       rating: testApp.rating,
+      description: testApp.description,
       img: testApp.img,
       tags: testApp.tags,
       saving: false,
@@ -60,8 +68,27 @@ export class AppPage extends React.Component {
   render() {
     // helperFuncs.toAppUrl("http://www.google.com")
     return (
-      <div className="app-page">
-      <h3>App Page:</h3>
+      <div>
+      <Jumbotron>
+        <h1>{this.state.name}</h1>
+        <p>
+          {this.state.description}
+        </p>
+
+          <Grid>
+            <Row>
+              <Col xs={12} md={8}>
+            <Button bsStyle="primary">Like</Button>
+            </Col>
+            <Col xs={6} md={4} >
+            <Button bsStyle="primary">Write a review</Button>
+            </Col>
+            </Row>
+          </Grid>
+
+      </Jumbotron>
+      <br/>
+      <div className='app-page'>
       <Media>
       <Media.Left>
        <img src={require(`../../public/${this.state.img}`)} className="tile" onClick={()=> window.location.replace(this.state.url)} alt="loading..." />
@@ -82,6 +109,7 @@ export class AppPage extends React.Component {
         <ReviewList/>
         </Media.List>
     </Media>
+    </div>
     </div>
 
       // <section className="app-page">

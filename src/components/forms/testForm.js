@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormGroup, ControlLabel, FormControl, Button, HelpBlock, Checkbox, Radio } from 'react-bootstrap';
+import ImageUploader from 'react-images-upload';
 
 
 // this is a FACTORY FUNCTION. It produces all the similar looking components by returning this chunk of JSX
@@ -20,6 +21,14 @@ function FieldGroup({ id, label, help, ...props }) {
 // make a sign up form (users)
 
 export default class TestForm extends React.Component {
+
+    onDrop(pictureFiles, pictureDataURLs) {// handles the image upload with these inputs
+        this.setState({
+            pictures: this.state.pictures.concat(pictureFiles),
+        });
+    }
+
+
     render() {
         return (
             <div>
@@ -106,7 +115,17 @@ export default class TestForm extends React.Component {
                 <ControlLabel>Static text</ControlLabel>
                 <FormControl.Static>You can also add static text and other info to the page. Get creative and make the css look nice!</FormControl.Static>
               </FormGroup>
-          
+                <br/>
+                <ControlLabel>Upload an Image</ControlLabel>
+                <br/>
+            <ImageUploader
+                withIcon={true}
+                buttonText='Choose images'
+                onChange={this.onDrop}
+                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                maxFileSize={5242880}
+                withPreview={true}
+            />
               <Button type="submit">Submit</Button>
             </form>
             </div>
