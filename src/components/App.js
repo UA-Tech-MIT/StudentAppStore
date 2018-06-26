@@ -11,6 +11,7 @@ import NotFoundPage from './NotFoundPage';
 import NavigationBar from './NavigationBar';
 import OnlineComponent from './onlineComponent.example';
 import TestForm from './forms/testForm';
+import ImageUploadComponent from './ImageUploader';
 
 // import { Navbar, NavItem, NavDropdown, MenuItem, Nav } from 'react';
 
@@ -25,9 +26,9 @@ class App extends React.Component {
         {/* <div className="container"> */}
         <NavigationBar/>
         {/* </div> */}
-        <div>
+        <div className="page-template">
 
-        </div>
+
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/fuel-savings" component={FuelSavingsPage} />
@@ -36,8 +37,10 @@ class App extends React.Component {
           <Route path="/app-page" component={AppPage} />
           <Route path="/online-component" component={OnlineComponent} />
           <Route path="/test-form" component={TestForm} />
+          <Route path="/image-upload" component={ImageUploadComponent} />
           <Route component={NotFoundPage} />
         </Switch>
+        </div>
       </div>
     );
   }

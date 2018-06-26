@@ -1,7 +1,9 @@
 import Sequelize from 'sequelize';
 import Faker from 'faker';
 
-const Conn = new Sequelize(
+let offlineMode = false;
+
+const onlineSql = new Sequelize(
     'yaatehr+UATech',
     'yaatehr',
     'sod54miy',
@@ -10,6 +12,21 @@ const Conn = new Sequelize(
         host: 'sql.mit.edu'
     }
 );
+
+const offlineSql = new Sequelize(
+    'UATechDB',
+    'postgres',
+    'password',
+    {
+        dialect: 'postgres',
+        host: 'localhost',
+        port: 9876
+    }
+);
+
+
+//tertiary assignment. varname = booleanExpression ? Assigned if true : assigned if false;
+const Conn = offlineMode === true ? offlineSql: onlineSql;
 
 
 //Schema
@@ -152,7 +169,7 @@ Conn
 
 //add a bunch of phony entitiies to the database
 Conn.sync({ force: true }).then(() => {
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 0].forEach( _ => {
+    [1, 2, 3, 4, 5, 6, 7].forEach( _ => {
         return User.create({
             firstName: Faker.name.firstName(),
             lastName: Faker.name.lastName(),

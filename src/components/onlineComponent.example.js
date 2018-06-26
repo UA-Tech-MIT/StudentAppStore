@@ -34,7 +34,7 @@ export class OnlineComponent extends React.Component {
               if (error) return <p>Error :(</p>;
         
               return (
-                  <div className="page-template">
+                  <div>
                       <h3>Online component example</h3>
                       <p> 
                         {message}

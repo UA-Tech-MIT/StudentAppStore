@@ -60,7 +60,7 @@ export class AppPage extends React.Component {
   render() {
     // helperFuncs.toAppUrl("http://www.google.com")
     return (
-      <section className="app-page">
+      <div className="app-page">
       <h3>App Page:</h3>
       <Media>
       <Media.Left>
@@ -82,8 +82,8 @@ export class AppPage extends React.Component {
         <ReviewList/>
         </Media.List>
     </Media>
+    </div>
 
-    </section>
       // <section className="app-page">
       //   <h1 className="header"> {this.state.name} </h1>
       //   <h3 className="author"> {this.state.author} </h3>

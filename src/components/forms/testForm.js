@@ -22,7 +22,7 @@ function FieldGroup({ id, label, help, ...props }) {
 export default class TestForm extends React.Component {
     render() {
         return (
-            <div className="page-template">
+            <div>
             <h3> Submit An App! </h3>
             <form>
               <FieldGroup
