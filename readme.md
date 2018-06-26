@@ -27,7 +27,7 @@ backend at http://localhost:8080/graphql
 
 2. **Libraries we're using** - [Popular and powerful libraries](#technologies) for  React.
 
-3. **Production build (not yet configured** - `npm run build` 
+3. **Production build (not yet configured)** - `npm run build` 
 
 # First Time Setup
 
@@ -140,7 +140,6 @@ Slingshot offers a rich development experience using the following technologies:
 | [Webpack](https://webpack.js.org) | Bundles npm packages and our JS into a single file. Includes hot reloading via [react-transform-hmr](https://www.npmjs.com/package/react-transform-hmr). | [Quick Webpack How-to](https://github.com/petehunt/webpack-howto) [Pluralsight Course](https://www.pluralsight.com/courses/webpack-fundamentals)|
 | [Browsersync](https://www.browsersync.io/) | Lightweight development HTTP server that supports synchronized testing and debugging on multiple devices. | [Intro vid](https://www.youtube.com/watch?time_continue=1&v=heNWfzc7ufQ)|
 | [Jest](https://facebook.github.io/jest/) | Automated tests with built-in expect assertions and [Enzyme](https://github.com/airbnb/enzyme) for DOM testing without a browser using Node. | [Pluralsight Course](https://www.pluralsight.com/courses/testing-javascript) |
-| [TrackJS](https://trackjs.com/) | JavaScript error tracking. | [Free trial](https://my.trackjs.com/signup)|  
 | [ESLint](http://eslint.org/)| Lint JS. Reports syntax and style issues. Using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) for additional React specific linting rules. | |
 | [SASS](http://sass-lang.com/) | Compiled CSS styles with variables, functions, and more. | [Pluralsight Course](https://www.pluralsight.com/courses/better-css)|
 | [PostCSS](https://github.com/postcss/postcss) | Transform styles with JS plugins. Used to autoprefix CSS |
@@ -148,9 +147,12 @@ Slingshot offers a rich development experience using the following technologies:
 | [npm Scripts](https://docs.npmjs.com/misc/scripts)| Glues all this together in a handy automated build. | [Pluralsight course](https://www.pluralsight.com/courses/npm-build-tool-introduction), [Why not Gulp?](https://medium.com/@housecor/why-i-left-gulp-and-grunt-for-npm-scripts-3d6853dd22b8#.vtaziro8n)  |
 | [Apollo](https://www.apollographql.com/docs/react/)| React Graphql Queries | [Queries](https://www.apollographql.com/docs/react/essentials/queries.html),  Also see the Online Component Example in src/components/onlinecomoponent.example.js|
 | [GraphQL & Graphiql](https://graphql.org/learn/)| About Graphql (dynamic query endpoint framework) | [Graphiql Usage](https://youtu.be/5RGEODLhjhY?t=2m16s)|
+| [React Bootstrap](https://react-bootstrap.github.io)| A library of component parts! | [Documentation](https://react-bootstrap.github.io/components/alerts/), See testForm.js|
 
 ---
 
-## Questions?
+Please fix typos by editing readme.md
+
+## For common questions and more general, starter kit, and congfig information...
 
 Check out the [FAQ](./docs/FAQ.md)
