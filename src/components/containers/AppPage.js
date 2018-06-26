@@ -3,7 +3,7 @@ import Carousel from '../carousel';
 import PropTypes from 'prop-types';
 // import {bindActionCreators} from 'redux';
 import * as helperFuncs from '../../actions/AppPageActions'; // TODO
-import { Media, Jumbotron, Button, Row, Grid, Col} from 'react-bootstrap';
+import { Media, Jumbotron, Button, Row, Grid, Col, Glyphicon} from 'react-bootstrap';
 import Rating from 'react-rating';
 import { ReviewList } from './ReviewList';
 
@@ -78,7 +78,7 @@ export class AppPage extends React.Component {
           <Grid>
             <Row>
               <Col xs={12} md={8}>
-            <Button bsStyle="primary">Like</Button>
+            <Button bsStyle="primary">Like <Glyphicon glyph="heart"/></Button>
             </Col>
             <Col xs={6} md={4} >
             <Button bsStyle="primary">Write a review</Button>
