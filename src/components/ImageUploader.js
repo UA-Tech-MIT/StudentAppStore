@@ -1,5 +1,7 @@
 import React from 'react';
 import ImageUploader from 'react-images-upload';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 
 //TODO establish a CDN or schema for storing references (paths) to images in the DB
@@ -7,19 +9,13 @@ import ImageUploader from 'react-images-upload';
 // that should be enough for simulation purposes
 
 
-export default class ImageUploadComponent extends React.Component {
+class ImageUploadComponent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { pictures: [] };
-        this.onDrop = this.onDrop.bind(this);
     }
 
-    onDrop(pictureFiles, pictureDataURLs) {
-        this.setState({
-            pictures: this.state.pictures.concat(pictureFiles),
-        });
-    }
+
 
     render() {
         return (
@@ -34,3 +30,24 @@ export default class ImageUploadComponent extends React.Component {
         );
     }
 }
+
+const onDrop = (pictureFiles, pictureDataURLs) => {
+    this.setState({
+        pictures: this.state.pictures.concat(pictureFiles),
+    });
+    return {
+        type: 'DEFAULT'
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ onDrop }, dispatch);
+}
+
+const mapStateToProps = () => {
+    return {
+        pictures: []
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageUploadComponent);

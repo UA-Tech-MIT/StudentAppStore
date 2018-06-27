@@ -21,10 +21,6 @@ export function filter(obj, predicate) {
         .reduce((res, key) => (res[key] = obj[key], res), {});
 }
 
-
-
-
-
 //https://stackoverflow.com/questions/14802481/get-element-of-js-object-with-an-index
 // NOTE: the javascript notations we're using here is essentially indexing an object. example code from stackoverflor
 // var myobj = {"A":["B"], "B":["C"]};
