@@ -65,6 +65,15 @@ install packages: `yarn` OR `npm install`
 install watchman (for file watching and live reloading): `brew install watchman`
     or go here... https://facebook.github.io/watchman/
     
+
+**Install Dev Tools!**
+Step 1) Learn how to use the Chrome Developer Console (use chrome or figure out how to set up other dev tools)
+>The Chrome Developer Console is a lifesaver. Use it or [Learn How](https://developers.google.com/web/tools/chrome-devtools/console/)!
+
+[React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi/related?hl=en)
+
+[Redux Developer Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
+
 **Having issues?** See [Having Issues?](#having-issues-try-these-things-first).
 
 ## Initial Machine Setup
