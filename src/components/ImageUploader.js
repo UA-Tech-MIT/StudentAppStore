@@ -15,8 +15,6 @@ class ImageUploadComponent extends React.Component {
         super(props);
     }
 
-
-
     render() {
         return (
             <ImageUploader
@@ -38,11 +36,11 @@ const onDrop = (pictureFiles, pictureDataURLs) => {
     return {
         type: 'DEFAULT'
     };
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ onDrop }, dispatch);
-}
+};
 
 const mapStateToProps = () => {
     return {

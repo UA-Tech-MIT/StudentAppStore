@@ -32,13 +32,13 @@ const dummyState = {
       url: 'https://planner.mit.edu',
     },
     {
-      name: 'Course Catalogue Searcher (Chrome)',
-      img: 'ccsearcher.png',
+      name: 'Course Catalogue Searcher',
+      img: 'course-catalogue-searcher.png',
       url: 'https://chrome.google.com/webstore/detail/mit-course-catalog-search/gnakgohnkbkolbefnekinmmkmdfcogfa'
     },
     {
       name: 'Course Picker',
-      img: 'picker.png',
+      img: 'course-picker.png',
       url: 'https://picker.mit.edu'
     },
     {

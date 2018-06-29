@@ -3,14 +3,17 @@
 </p>
 
 
+This app was built using the React-Slingshot Starter. Refer to it [Here](https://github.com/coryhouse/react-slingshot/) or check out the [FAQ](./docs/FAQ.md)
 
-This app was built using the React-Slingshot Start pack. Refer to it here: https://github.com/coryhouse/react-slingshot/
-
+Please add candidates for the App Store! Your data will be used for testing and eventually in the app :)
 
 ## UA Tech Documentation (Drive)
 * [Project Overview](https://docs.google.com/document/d/1kJfeBeUI7Y72LbAvIeLP_qGH9i5XkfwrC7KkWiDlR18/edit?usp=sharing)
 
 * [Athena Basics/ Backend Overview](https://docs.google.com/document/d/11MmvCYgbHwHia4OiB-7J1JdDet1n_yRlhpLnKDRhfJQ/edit?usp=sharing)
+
+* [Submit an App](https://docs.google.com/spreadsheets/d/1YrL39knRdZq_DqHL1wX1ndiEKW8aAK2bircn9CWxD-E/edit#gid=0)
+
 
 Look at the Issues tab for TODOs
 Comment on whatever ticket you want to take
@@ -162,6 +165,3 @@ Slingshot offers a rich development experience using the following technologies:
 
 Please fix typos by editing readme.md
 
-## For common questions and more general, starter kit, and congfig information...
-
-Check out the [FAQ](./docs/FAQ.md)

@@ -32,13 +32,13 @@ query GetAllApps {
     } 
 }
 `;
+
 //NOTE you must fill in what fields you want like the example above
 const GET_APP_BY_ID = `
     query GetAppsByID($ID:String!) {
         apps(appHash: $ID) 
     }
 `;
-
 
 const GET_ALL_USERS = `
     query GetAllUsers {
@@ -51,11 +51,13 @@ const GET_USER_BY_ID = `
         users(userHash: $ID ) 
     }
 `;
+
 const GET_ALL_REVIEWS = `
     query GetAllReviews {
         reviews 
     }
 `;
+
 const GET_REVIEW_BY_ID = `
     query GetReviewByID($ID:String!) {
         reviews(reviewHash: $ID) 
@@ -73,6 +75,7 @@ export const fetchApps = () => dispatch => {
                 type: ActionTypes.LOAD_APPS,
                 payload: res.data});
     });
+    // add error handling
 };
 
 // note 2 ways to do the same thing
@@ -82,7 +85,7 @@ export const fetchAppByID = (id) =>  {
         variables: { ID: id }
     })
         .then(res => console.log(res.data));
-}
+};
 
 
 export const postApp = postData => dispatch => { // find out how to post data to graphql?? or some other end point
