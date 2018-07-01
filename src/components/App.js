@@ -38,6 +38,8 @@ class App extends React.Component {
           <Route path="/online-component" component={OnlineComponent} />
           <Route path="/test-form" component={TestForm} />
           <Route path="/image-upload" component={ImageUploadComponent} />
+          {/* <Route path="*" render={() => (<Redirect to="/" />)} />           */}
+
           <Route component={NotFoundPage} />
         </Switch>
         </div>
