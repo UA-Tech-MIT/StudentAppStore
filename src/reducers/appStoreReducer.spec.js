@@ -1,6 +1,5 @@
-
 import { getFormattedDateTime } from '../utils/dates';
-import * as helperFuncs from '../actions/AppPageActions';
+import * as helperFuncs from '../utils/helperFunctions';
 import initialState from './initialState';
 import { getFormattedNumber } from '../utils/numberFormat';
 import reducer from './appStoreReducer';
@@ -27,7 +26,6 @@ describe('Reducers::AppStoreReducer', () => {
     const getInitialState = () => {
         return {
             apps: {},
-            lastModified: "default"
         };
     };
 
@@ -40,12 +38,12 @@ describe('Reducers::AppStoreReducer', () => {
 
     it('should load apps', () => {
         const action = {
-            type: ActionTypes.LOAD_APPS, payload: {
+            type: ActionTypes.TEST_LOAD_APPS, payload: {
                 apps: { 1: "testApp1" }
             }
         };
 
-        expect(reducer(undefined, action)).toEqual({ apps: { 1: "testApp1" } });
+        expect(reducer(undefined, action)).toEqual({ apps: { 1: "testApp1" }, lastUpdated: "testMode" });
     });
 
     it("should clear all loaded apps"), () => { // may not work work

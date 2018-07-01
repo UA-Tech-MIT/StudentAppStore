@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 import Faker from 'faker';
 
-let offlineMode = false;
+let offlineMode = true;
 
 const onlineSql = new Sequelize(
     'yaatehr+UATech',

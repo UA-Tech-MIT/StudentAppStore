@@ -1,6 +1,6 @@
 
 import {getFormattedDateTime} from '../utils/dates';
-import * as helperFuncs from '../actions/AppPageActions';
+import * as helperFuncs from '../utils/helperFunctions';
 import * as ActionTypes from '../constants/actionTypes';
 import initialState from './initialState';
 import { getFormattedNumber } from '../utils/numberFormat';
@@ -17,12 +17,18 @@ const testState = {
     lastUpdated: "default"
 };
 
+const getInitialState = () => {
+    return {
+        apps: {},
+    };
+};
+
 //TODO make real state
 //TODO fill out all crud endpoints (delete, add?)
 //TODO Make reducer tests
 
 
-export default function appStoreReducer(state = testState, action) {
+export default function appStoreReducer(state = getInitialState(), action) {
     const { type, payload } = action;
     const currentTime  = getFormattedDateTime();
     process.env.NODE_ENV === 'development' ? console.log(action) : null;
@@ -45,6 +51,12 @@ export default function appStoreReducer(state = testState, action) {
             return {
                 apps: helperFuncs.filter(state.apps, payload.predicate),
                 lastUpdated: currentTime
+            };
+        case ActionTypes.TEST_LOAD_APPS:
+            return {
+                ...state,
+                apps: payload.apps,
+                lastUpdated: "testMode"
             };
         
         default:

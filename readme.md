@@ -2,6 +2,16 @@
   <img src="./src/public/uatech.png"/>
 </p>
 
+- [First Time Setup](#first-time-setup)
+        - [Mac Users](#mac-users)
+        - [On Linux](#on-linux)
+        - [On Windows](#on-windows)
+    - [Install Modules and Packages](#install-modules-and-packages)
+        - [Install Dev Tools](#install-dev-tools)
+        - [Install VS Code Extensions](#install-vs-code-extensions)
+    - [Having Issues? Try these things first](#having-issues-try-these-things-first)
+    - [Technologies](#technologies)
+
 
 This app was built using the React-Slingshot Starter. Refer to it [Here](https://github.com/coryhouse/react-slingshot/) or check out the [FAQ](./docs/FAQ.md)
 
@@ -34,7 +44,6 @@ backend at http://localhost:8080/graphql
 
 # First Time Setup
 
-
 0. **Set Up Development Environment**
 >Note: I reccomend using VS Code since I will probably be able to give you better help. I also can't guarantee all other plugins play nicely with other text editors. Use other editors at your own risk.
 
@@ -42,7 +51,14 @@ backend at http://localhost:8080/graphql
 Install node (I'm on v 9.7, most version should work but install node 9 if you have problems)
 You can do this by going to their website or installing via brew (mac or linux)
 
-### Brew
+
+1. **Install [Git](https://git-scm.com/downloads)**.
+
+2. **[Disable safe write in your editor](https://webpack.js.org/guides/development/#adjusting-your-text-editor)** to assure hot reloading works properly. VSCode users Ignore this.
+
+3. **Install Package managers and yarn**
+### Mac Users
+**Brew**
 `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 `brew install node@9`
 `brew link node@9 -f`
@@ -53,8 +69,16 @@ next install yarn
 
 Add the Babel CLI (transpiles newer javascript -ES6- to older EMCA2015)
 
+4. On a Mac? You're all set. If you're on Linux or Windows, complete the steps for your OS below.
 
-### Windows Users
+### On Linux
+
+* Run this to [increase the limit](http://stackoverflow.com/questions/16748737/grunt-watch-error-waiting-fatal-error-watch-enospc) on the number of files Linux will watch. [Here's why](https://github.com/coryhouse/react-slingshot/issues/6).
+
+    `echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p`.
+
+### On Windows
+
 **Install [Node 4.0.0 or greater](https://nodejs.org)**
 
     (5.0 or greater is recommended for optimal build performance)
@@ -62,14 +86,26 @@ Add the Babel CLI (transpiles newer javascript -ES6- to older EMCA2015)
 
 install yarn `npm install -g yarn`
 
+* **Install [Python 2.7](https://www.python.org/downloads/)**. Some node modules may rely on node-gyp, which requires Python on Windows.
+* **Install C++ Compiler**. Browser-sync requires a C++ compiler on Windows.
 
-**Install Modules and Packages**
+    [Visual Studio Express](https://www.visualstudio.com/en-US/products/visual-studio-express-vs) comes bundled with a free C++ compiler.
+    
+    If you already have Visual Studio installed:
+    Open Visual Studio and go to File -> New -> Project -> Visual C++ -> Install Visual C++ Tools for Windows Desktop.
+    The C++ compiler is used to compile browser-sync (and perhaps other Node modules).
+
+---
+
+
+
+## Install Modules and Packages
 install packages: `yarn` OR `npm install`
 install watchman (for file watching and live reloading): `brew install watchman`
     or go here... https://facebook.github.io/watchman/
     
 
-**Install Dev Tools!**
+### Install Dev Tools
 Step 1) Learn how to use the Chrome Developer Console (use chrome or figure out how to set up other dev tools)
 >The Chrome Developer Console is a lifesaver. Use it or [Learn How](https://developers.google.com/web/tools/chrome-devtools/console/)!
 
@@ -77,33 +113,19 @@ Step 1) Learn how to use the Chrome Developer Console (use chrome or figure out 
 
 [Redux Developer Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
 
-**Having issues?** See [Having Issues?](#having-issues-try-these-things-first).
+### Install VS Code Extensions
+I use the following extensions in VS Code and highly recommmend you do too.
 
-## Initial Machine Setup
-1. **Install [Git](https://git-scm.com/downloads)**.
+[Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
+[React Snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
+[ESLINT - linting for JS](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+[GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+[Jest](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest)
 
-2. **[Disable safe write in your editor](https://webpack.js.org/guides/development/#adjusting-your-text-editor)** to assure hot reloading works properly. VSCode users Ignore this.
+You can see a brief overview of what they are and how to use VSCode [Here!](https://www.youtube.com/watch?v=u21W_tfPVrY)
 
-3. On a Mac? You're all set. If you're on Linux or Windows, complete the steps for your OS below.
 
-    ### On Linux
 
-    * Run this to [increase the limit](http://stackoverflow.com/questions/16748737/grunt-watch-error-waiting-fatal-error-watch-enospc) on the number of files Linux will watch. [Here's why](https://github.com/coryhouse/react-slingshot/issues/6).
-
-        `echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p`.
-
-    ### On Windows
-    
-    * **Install [Python 2.7](https://www.python.org/downloads/)**. Some node modules may rely on node-gyp, which requires Python on Windows.
-    * **Install C++ Compiler**. Browser-sync requires a C++ compiler on Windows.
-    
-      [Visual Studio Express](https://www.visualstudio.com/en-US/products/visual-studio-express-vs) comes bundled with a free C++ compiler.
-      
-      If you already have Visual Studio installed:
-      Open Visual Studio and go to File -> New -> Project -> Visual C++ -> Install Visual C++ Tools for Windows Desktop.
-      The C++ compiler is used to compile browser-sync (and perhaps other Node modules).
-
----
 
 ## Having Issues? Try these things first
 
@@ -130,7 +152,7 @@ Step 1) Learn how to use the Chrome Developer Console (use chrome or figure out 
     * If ESW found an error or warning in your project (e.g. console statement or a missing semi-colon), the lint thread will exit with `Exit status 1`. To fix:
 
       1. Change the `npm run lint` script to `"esw webpack.config.* src tools; exit 0"`
-      1. Change the `npm run lint:watch` script to `"esw webpack.config.* src tools --watch; exit 0"`
+      2. Change the `npm run lint:watch` script to `"esw webpack.config.* src tools --watch; exit 0"`
 
       > Note: Adding `exit 0` will allow the npm scripts to ignore the status 1 and allow ESW to print all warnings and errors.
     * Ensure the `eslint`/`esw` globally installed version matches the version used in the project. This will ensure the `esw` keyword is resolved.
