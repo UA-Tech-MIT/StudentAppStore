@@ -7,7 +7,7 @@ const FuelSavingsResults = ({savings}) => {
   const savingsClass = savingsExist ? 'savings' : 'loss';
   const resultLabel = savingsExist ? 'Savings' : 'Loss';
 
-  return (
+return (
     <table>
       <tbody>
         <tr>

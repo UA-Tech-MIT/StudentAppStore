@@ -3,7 +3,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import * as helperFuncs from '../actions/AppPageActions';
+import * as helperFuncs from '../utils/helperFunctions';
 
 // import AppTile from '../AppPage/AppTile.js';
 // import { connect, Provider, bindActionCreators } from 'react-redux';

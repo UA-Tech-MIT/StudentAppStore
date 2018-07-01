@@ -52,12 +52,11 @@ function configureStoreDev(initialState) {
   }
 
 
-  console.log("this is the store");
-  console.log(store.getState().appRepository);
-  store.dispatch(
-    {type: "DELETE_APP", payload: {predicate: (x) => x!= 1}});
+
+  // store.dispatch(
+  //   {type: "DELETE_APP", payload: {predicate: (x) => x!= 1}});
     
-    console.log(store.getState().appRepository);
+  //   console.log(store.getState().appRepository);
 
   return store;
 }

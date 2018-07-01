@@ -16,3 +16,5 @@ export const INIT_APP = "INIT_APP";
 export const SET_APP_AUTHOR = "SET_APP_AUTHOR";
 export const SET_APP_NAME = "SET_APP_NAME";
 export const SET_APP_TYPE = "SET_APP_NAME";
+
+export const TEST_LOAD_APPS = "TEST_LOAD_APPS";

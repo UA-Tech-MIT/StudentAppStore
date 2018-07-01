@@ -2,7 +2,7 @@ import React from 'react';
 import Carousel from '../carousel';
 import PropTypes from 'prop-types';
 // import {bindActionCreators} from 'redux';
-import * as helperFuncs from '../../actions/AppPageActions'; // TODO
+import * as helperFuncs from '../../utils/helperFunctions'; // TODO
 import { Media, Jumbotron, Button, Row, Grid, Col, Glyphicon} from 'react-bootstrap';
 import Rating from 'react-rating';
 import { ReviewList } from './ReviewList';
