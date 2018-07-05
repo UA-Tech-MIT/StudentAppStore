@@ -26,7 +26,7 @@ const offlineSql = new Sequelize(
 
 
 //tertiary assignment. varname = booleanExpression ? Assigned if true : assigned if false;
-const Conn = offlineMode === true ? offlineSql: onlineSql;
+const Conn = offlineMode === false ? offlineSql: onlineSql;
 
 
 //Schema
@@ -107,6 +107,7 @@ const App = Conn.define('app', {
     // },
     appNo: {
         type: Sequelize.INTEGER,
+        unique: true,
         autoIncrement: true,
         comment: 'For redux counters'
     }
@@ -114,8 +115,12 @@ const App = Conn.define('app', {
     name: {
         singular: 'app',
         plural: 'apps',
-      },// for relationships
-      
+      },
+    //   indexes: [
+    //     {
+    //       unique: true,
+    //       fields: ['appNo']
+    //     }],
 });
 
 
@@ -160,13 +165,19 @@ const Review = Conn.define('review', {
     reviewNo: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
+        unique: true,
         comment: 'For redux counters'
     }
 },  {
     name: {
         singular: 'review',
         plural: 'reviews',
-      }
+      },
+    //   indexes: [
+    //     {
+    //       unique: true,
+    //       fields: ['reviewNo']
+    //     }],
 } );
 
 
@@ -204,6 +215,7 @@ const User = Conn.define('user', {
     },
     userNo: {
         type: Sequelize.INTEGER,
+        unique: true,
         autoIncrement: true,
         comment: 'For redux counters'
     },
@@ -231,7 +243,12 @@ const User = Conn.define('user', {
     name: {
         singular: 'user',
         plural: 'users',
-      }
+      },
+    //   indexes: [
+    //     {
+    //       unique: true,
+    //       fields: ['userNo']
+    //     }],
 });
 
 
@@ -326,7 +343,9 @@ Conn
     });
 
 //add a bunch of phony entitiies to the database
-Conn.sync({ force: true }).then(() => {
+Conn.query('SET FOREIGN_KEY_CHECKS = 0', {raw: true})
+    .then((results) => {
+    Conn.sync({ force: true }).then(() => {
     let users = [];
     let userIDs = [];
     let apps = [];
@@ -389,6 +408,7 @@ Conn.sync({ force: true }).then(() => {
             app.addTag(TagIDs[Faker.random.number(10)]);
         }));
     }); 
+});
 });
 
     // [1, 2, 3, 4, 5, 6, 7, 8, 9, 0].forEach( _ => {
