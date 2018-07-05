@@ -1,4 +1,4 @@
-import { GraphQLInt, GraphQLObjectType, GraphQLString, GraphQLList, GraphQLID, GraphQLSchema, GraphQLFloat} from 'graphql';
+import { GraphQLInt, GraphQLObjectType, GraphQLString, GraphQLList, GraphQLID, GraphQLSchema, GraphQLFloat, GraphQLBoolean} from 'graphql';
 import Database from './database';
 
 
@@ -13,18 +13,9 @@ const User = new GraphQLObjectType({
     description: 'An App Store User',
     fields: () => {
         return {
-
-            // id: {
-            //     type: new GraphQLInt,
-            //     resolve(user) {
-            //         return user.id;
-            //     }
-            // },
-
             firstName: {
                 type: GraphQLString,
                 resolve(user) {
-                    console.log('resolving user first name');
                     return user.firstName;
                 }
             },
@@ -40,13 +31,30 @@ const User = new GraphQLObjectType({
                     return user.email;
                 }
             },
-            userHash: {
+            id: {
                 type: GraphQLID,
                 resolve(user) {
-                    return user.userHash;
+                    return user.id;
                 }
             },
-
+            userNo: {
+                type: GraphQLInt,
+                resolve(user) {
+                    return user.userNo;
+                }
+            },       
+            createdAt: {
+                type: GraphQLString,
+                resolve(user) {
+                    return user.createdAt;
+                }
+            },
+            updatedAt: {
+                type: GraphQLString,
+                resolve(user) {
+                    return user.updatedAt;
+                }
+            },
             // appHashes: {
             //     type: new GraphQLList(GraphQLID),
             //     resolve(user) {
@@ -69,55 +77,66 @@ const Review = new GraphQLObjectType({
     description: ' A review on an App',
     fields: () => {
         return {
-
-            // id: {
-            //     type: new GraphQLInt,
-            //     resolve(review) {
-            //         return review.id;
-            //     }
-            // },
-
             title: {
                 type: GraphQLString,
                 resolve(review) {
                     return review.title;
                 }
             },
-
             content: {
                 type: GraphQLString,
                 resolve(review) {
                     return review.content;
                 }
             },
-
-            authorName: {
-                type: GraphQLString,
-                resolve(review) {
-                    return review.authorName;
-                }
-            },
-
+            // authorName: {
+            //     type: GraphQLString,
+            //     resolve(review) {
+            //         return review.authorName;
+            //     }
+            // },
             rating: {
                 type: GraphQLFloat,
                 resolve(review) {
                     return review.rating;
                 }
             },
-
-            reviewHash: {
-                type: GraphQLID,
+            foundThisHelpful: {
+                type: GraphQLInt,
                 resolve(review) {
-                    return review.reviewHash;
+                    return review.foundThisHelpful;
                 }
             },
-
-            userHash: {
-                type: new GraphQLList(GraphQLID),
+            id: {
+                type: GraphQLID,
                 resolve(review) {
-                    return review.userHash;
+                    return review.id;
                 }
-            }
+            },
+            reviewNo: {
+                type: GraphQLInt,
+                resolve(review) {
+                    return review.reviewNo;
+                }
+            },
+            // userHash: {
+            //     type: GraphQLID,
+            //     resolve(review) {
+            //         return review.userHash;
+            //     }
+            // },
+            createdAt: {
+                type: GraphQLString,
+                resolve(review) {
+                    return review.createdAt;
+                }
+            },
+            updatedAt: {
+                type: GraphQLString,
+                resolve(review) {
+                    return review.updatedAt;
+                }
+            },
         };
     }
 });
@@ -127,55 +146,102 @@ const App = new GraphQLObjectType({
     description: ' An App entry',
     fields: () => {
         return {
-
-            // id: {
-            //     type: new GraphQLInt,
-            //     resolve(app) {
-            //         return app.id;
-            //     }
-            // },
-
-            name: {
-                type: GraphQLString,
-                resolve(app) {
-                    return app.name;
-                }
-            },
-
             author: {
                 type: GraphQLString,
                 resolve(app) {
                     return app.author;
                 }
             },
-
-            type: {
+            name: {
                 type: GraphQLString,
                 resolve(app) {
-                    return app.type;
+                    return app.name;
                 }
             },
-
+            isOfficialResource: {
+                type: GraphQLBoolean,
+                resolve(app) {
+                    return app.isOfficialResource;
+                }
+            },
+            genre: {
+                type: GraphQLString,
+                resolve(app) {
+                    return app.genre;
+                }
+            },
+            medium: {
+                type: GraphQLString,
+                resolve(app) {
+                    return app.medium;
+                }
+            },
+            image: {
+                type: GraphQLString,
+                resolve(app) {
+                    return app.image;
+                }
+            },
             email: {
                 type: GraphQLString,
                 resolve(app) {
                     return app.email;
                 }
             },
-
-            appHash: {
+            dateLaunched: {
+                type: GraphQLString,
+                resolve(app) {
+                    return app.dateLaunched;
+                }
+            },
+            description: {
+                type: GraphQLString,
+                resolve(app) {
+                    return app.description;
+                }
+            },
+            url: {
+                type: GraphQLString,
+                resolve(app) {
+                    return app.url;
+                }
+            },
+            ownerHomePage: {
+                type: GraphQLString,
+                resolve(app) {
+                    return app.ownerHomePage;
+                }
+            },
+            id: {
                 type: GraphQLID,
                 resolve(app) {
-                    return app.appHash;
+                    return app.id;
                 }
             },
-
-            reviewHashes: {
-                type: new GraphQLList(GraphQLID),
+            appNo: {
+                type: GraphQLInt,
                 resolve(app) {
-                    return app.reviewHashes;
+                    return app.appNo;
                 }
             },
+            createdAt: {
+                type: GraphQLString,
+                resolve(app) {
+                    return app.createdAt;
+                }
+            },
+            updatedAt: {
+                type: GraphQLString,
+                resolve(app) {
+                    return app.updatedAt;
+                }
+            },
+            // reviewHashes: {
+            //     type: new GraphQLList(GraphQLID),
+            //     resolve(app) {
+            //         return app.reviewHashes;
+            //     }
+            // },
         };
     }
 });

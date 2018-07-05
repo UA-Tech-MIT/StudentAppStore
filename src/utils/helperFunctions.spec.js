@@ -3,26 +3,26 @@ import * as helperFunctions from './helperFunctions';
 describe('Helper functions', () => {
 
     const apps = [{
-        appHash: 'this is a hash',
+        id: 'this is a hash',
         name: 'app 1',
     },
     {
-        appHash: 'this is another hash',
+        id: 'this is another hash',
         name: 'app 2'
     }, {
-        appHash: 'this is a third hash',
+        id: 'this is a third hash',
         name: 'app 3'
     }];
     const appObj = {
         0: {
-            appHash: 'this is a hash',
+            id: 'this is a hash',
             name: 'app 1',
         },
         1: {
-            appHash: 'this is another hash',
+            id: 'this is another hash',
             name: 'app 2'
         }, 2: {
-            appHash: 'this is a third hash',
+            id: 'this is a third hash',
             name: 'app 3'
         }
     };
@@ -35,11 +35,11 @@ describe('Helper functions', () => {
                     ['this is a hash', 'this is another hash'], apps))
                 .toEqual({
                     0: {
-                        appHash: 'this is a hash',
+                        id: 'this is a hash',
                         name: 'app 1',
                     },
                     1: {
-                        appHash: 'this is another hash',
+                        id: 'this is another hash',
                         name: 'app 2'
                     },
                 });
@@ -51,11 +51,11 @@ describe('Helper functions', () => {
                     ['this is a hash', 'this is another hash'], appObj))
                 .toEqual({
                     0: {
-                        appHash: 'this is a hash',
+                        id: 'this is a hash',
                         name: 'app 1',
                     },
                     1: {
-                        appHash: 'this is another hash',
+                        id: 'this is another hash',
                         name: 'app 2'
                     },
                 });

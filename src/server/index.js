@@ -54,20 +54,20 @@ app.listen(APP_PORT, () => {
   import gql from "graphql-tag";
   import client from "./apollo";
 
-  setTimeout(() => {
-    client
-    .query({
-      query: gql`
-        {
-          users{
-            firstName,
-            lastName,
-            email,
-            userHash
-          }
-        }
-      `
-    })
-    .then(result => console.log(result));
-  }, 10000);
+  // setTimeout(() => {
+  //   client
+  //   .query({
+  //     query: gql`
+  //       {
+  //         users{
+  //           firstName,
+  //           lastName,
+  //           email,
+  //           id
+  //         }
+  //       }
+  //     `
+  //   })
+  //   .then(result => console.log(result));
+  // }, 10000);
 
