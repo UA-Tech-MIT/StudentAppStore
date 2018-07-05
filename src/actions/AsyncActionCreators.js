@@ -1,6 +1,6 @@
 import * as ActionTypes from '../constants/actionTypes';
 import {getAppsById, filter} from '../utils/helperFunctions';
-//note: by using this syntax we are almost ompletely independent from the apollo stack
+// note: by using this syntax we are almost ompletely independent from the apollo stack
 // please do NOT USE THE Apollo Query element (its fine for bootstrapping components without redux in place)
 
 const createFetchConfig = (query) => {
@@ -23,18 +23,17 @@ query GetAllApps {
     apps {
       name
       author
-      type
+      genre
       email
-      appHash
+      id
     } 
 }
 `;
-
 //NOTE you must fill in what fields you want like the example above
 /* eslint-disable no-unused-vars*/
 const GET_APP_BY_ID = `
     query GetAppsByID($ID:String!) {
-        apps(appHash: $ID) 
+        apps(id: $ID) 
     }
 `;
 
@@ -46,7 +45,7 @@ const GET_ALL_USERS = `
 
 const GET_USER_BY_ID = `
     query GetUserByID($ID:String!) {
-        users(userHash: $ID ) 
+        users(id: $ID ) 
     }
 `;
 
@@ -58,7 +57,7 @@ const GET_ALL_REVIEWS = `
 
 const GET_REVIEW_BY_ID = `
     query GetReviewByID($ID:String!) {
-        reviews(reviewHash: $ID) 
+        reviews(id: $ID) 
     }
 `;
 
@@ -67,9 +66,7 @@ export const fetchApps = () => dispatch => {
         /* eslint-disable no-undef*/
         .then(res => res.json())
         .then(res => {
-            // console.log(res.data);
             const filteredApps = filter(res.data, (app) => {
-                // console.log(app)
                 return app.email === null; // all emails are null atm so it should return every app
             });
             console.log("filtered apps", filteredApps);

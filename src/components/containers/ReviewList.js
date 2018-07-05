@@ -86,7 +86,7 @@ export class ReviewList extends React.Component {
   }
 }
 
-function   reviewObjGenerator(object, i) {
+function reviewObjGenerator(object, i) {
   return (
     <Review key={i} {...object} />
   );
