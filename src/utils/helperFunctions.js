@@ -13,7 +13,7 @@ export function getAppsById(selectedIds, reducerArray) {
         throw new IllegalArgumentError(" inputs must be an array of ids, and a reducer object");
     } 
     return filter(reducerArray, (app) => {
-        return !selectedIds.includes(app.appHash);
+        return !selectedIds.includes(app.id);
     });
 }
 
