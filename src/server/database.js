@@ -343,8 +343,9 @@ Conn
     });
 
 //add a bunch of phony entitiies to the database
-Conn.query('SET FOREIGN_KEY_CHECKS = 0', {raw: true})
-    .then((results) => {
+if(!offlineMode) {
+    Conn.query('SET FOREIGN_KEY_CHECKS = 0', {raw: true})
+}
     Conn.sync({ force: true }).then(() => {
     let users = [];
     let userIDs = [];
@@ -357,11 +358,9 @@ Conn.query('SET FOREIGN_KEY_CHECKS = 0', {raw: true})
     Tag.create({
             name: Faker.random.word(),
         }).then((tag) => {
-            // console.log(tag)
             TagIDs.push(tag.get('id'));
         });
     });
-    // console.log(TagIDs[0])
 
     [1, 2, 3, 4, 5, 6, 7].forEach((_, i) => {
         const userID = Faker.random.uuid();
@@ -408,7 +407,6 @@ Conn.query('SET FOREIGN_KEY_CHECKS = 0', {raw: true})
             app.addTag(TagIDs[Faker.random.number(10)]);
         }));
     }); 
-});
 });
 
     // [1, 2, 3, 4, 5, 6, 7, 8, 9, 0].forEach( _ => {
