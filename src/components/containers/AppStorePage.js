@@ -1,5 +1,6 @@
 import React from 'react';
-import Carousel from '../carousel';
+import HomepageCarousel from '../homepageCarousel';
+import {Jumbotron, Button} from 'react-bootstrap';
 // import PropTypes from 'prop-types';
 // import {connect} from 'react-redux';
 // import {bindActionCreators} from 'redux';
@@ -7,13 +8,19 @@ import Carousel from '../carousel';
 // import { connect, Provider, bindActionCreators } from 'react-redux'
 // TODO Add react redux to stack
 
+const message = `to the MIT Student App Store, the one stop location for student made resources.\n
+to get started, browes the apps below or...`
 export class AppStorePage extends React.Component {
   render() {
     return (
-      <section>
-        <h1> AppStore </h1>
-        <Carousel />
-      </section>
+      <div>
+      <Jumbotron className="Title">
+        <h1> Welcome </h1>
+        <p>{message}</p>
+        <Button>Sign in with Kerberos!</Button>
+      </Jumbotron>
+      <HomepageCarousel />
+      </div>
     );
   }
 }

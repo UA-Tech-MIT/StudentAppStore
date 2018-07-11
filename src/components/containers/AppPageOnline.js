@@ -1,5 +1,5 @@
 import React from 'react';
-import Carousel from '../carousel';
+import HomepageCarousel from '../carousel';
 import PropTypes from 'prop-types';
 // import {bindActionCreators} from 'redux';
 import * as helperFuncs from '../../utils/helperFunctions'; // TODO

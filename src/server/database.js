@@ -356,7 +356,7 @@ if(!offlineMode) {
     let TagIDs = [];
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach((_) => {
     Tag.create({
-            name: Faker.random.word(),
+            name: Faker.random.word(['Essential', 'Social', 'Anonymous', 'Planning']),
         }).then((tag) => {
             TagIDs.push(tag.get('id'));
         });
@@ -394,9 +394,10 @@ if(!offlineMode) {
         apps.push(App.create({
             author: Faker.name.firstName() + " " + Faker.name.lastName(),
             name: Faker.company.companyName(),
-            genre: Faker.random.word(),
+            genre: Faker.random.word(['Course Planning', 'Time Management', 'Entertainment', 'Networking', 'Tutoring', 'Money Management']),
             medium: Faker.random.word(["Website", "Mobile App", "Chrome Extension"]),
             url: Faker.internet.url(),
+            image: Faker.internet.image(),
             email: Faker.internet.email(),
             id: appID
         }).then((app) => {

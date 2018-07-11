@@ -2,12 +2,15 @@
   <img src="./src/public/uatech.png"/>
 </p>
 
+- [UA Tech Documentation (Drive)](#ua-tech-documentation-drive)
 - [First Time Setup](#first-time-setup)
+    - [All Environments](#all-environments)
         - [Mac Users](#mac-users)
         - [On Linux](#on-linux)
         - [On Windows](#on-windows)
     - [Install Modules and Packages](#install-modules-and-packages)
-        - [Install Dev Tools](#install-dev-tools)
+    - [Chrome](#chrome)
+        - [Install Chrome extensions](#install-chrome-extensions)
         - [Install VS Code Extensions](#install-vs-code-extensions)
     - [Having Issues? Try these things first](#having-issues-try-these-things-first)
     - [Technologies](#technologies)
@@ -17,7 +20,7 @@ This app was built using the React-Slingshot Starter. Refer to it [Here](https:/
 
 Please add candidates for the App Store! Your data will be used for testing and eventually in the app :)
 
-## UA Tech Documentation (Drive)
+# UA Tech Documentation (Drive)
 * [Project Overview](https://docs.google.com/document/d/1kJfeBeUI7Y72LbAvIeLP_qGH9i5XkfwrC7KkWiDlR18/edit?usp=sharing)
 
 * [Athena Basics/ Backend Overview](https://docs.google.com/document/d/11MmvCYgbHwHia4OiB-7J1JdDet1n_yRlhpLnKDRhfJQ/edit?usp=sharing)
@@ -31,21 +34,25 @@ If you're bored, adventurous, or no tickets are open, search the project directo
 
 If you leave any loose ends or think of something to add, make sure you mark it in the codebase with a //TODO, and make an Issue for it in the repository (`issues > new issue > feature`)
 
-1. **Commands to get started** - 
+**Commands to get started** 
+
 `npm start` to start the frontend at http://localhost:3000
+
 `babel-node src/server`
 backend at http://localhost:8080/graphql
 
 > Note: in frontend development each time you hit save, changes hot reload and linting and automated tests run. Not yet set up on the backend // TODO
 
-2. **Libraries we're using** - [Popular and powerful libraries](#technologies) for  React.
+1. **Libraries we're using** - [Popular and powerful libraries](#technologies) for  React.
 
-3. **Production build (not yet configured)** - `npm run build` 
+2. **Production build (not yet configured)** - `npm run build` 
 
 # First Time Setup
 
+## All Environments
+
 0. **Set Up Development Environment**
->Note: I reccomend using VS Code since I will probably be able to give you better help. I also can't guarantee all other plugins play nicely with other text editors. Use other editors at your own risk.
+>Note: I reccomend using [VS Code](https://code.visualstudio.com/) since I will probably be able to give you better help. I also can't guarantee all other plugins play nicely with other text editors. Use other editors at your own risk.
 
 
 Install node (I'm on v 9.7, most version should work but install node 9 if you have problems)
@@ -54,22 +61,29 @@ You can do this by going to their website or installing via brew (mac or linux)
 
 1. **Install [Git](https://git-scm.com/downloads)**.
 
-2. **[Disable safe write in your editor](https://webpack.js.org/guides/development/#adjusting-your-text-editor)** to assure hot reloading works properly. VSCode users Ignore this.
+2. Not familiar with Git? Try [Gitkraken](https://www.gitkraken.com/)
 
-3. **Install Package managers and yarn**
+3. **[Disable safe write in your editor](https://webpack.js.org/guides/development/#adjusting-your-text-editor)** to assure hot reloading works properly. VSCode users Ignore this.
+
+4. **Install Package managers and yarn**
 ### Mac Users
-**Brew**
-`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-`brew install node@9`
-`brew link node@9 -f`
+**Using Brew**
 
-next install yarn
+Install brew by running the following in your terminal...
 
-`brew install yarn`
+install brew: `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-Add the Babel CLI (transpiles newer javascript -ES6- to older EMCA2015)
+install node: `brew install node`
 
-4. On a Mac? You're all set. If you're on Linux or Windows, complete the steps for your OS below.
+(if you have problems, try installing a different version of node and linking with): `brew link node -f`
+
+install yarn: `brew install yarn`
+
+install watchman for hot reloading: `brew install watchman`
+
+<!-- Add the Babel CLI (transpiles newer javascript -ES6- to older EMCA2015) -->
+
+If you're on Linux or Windows, complete the steps for your OS below.
 
 ### On Linux
 
@@ -82,7 +96,7 @@ Add the Babel CLI (transpiles newer javascript -ES6- to older EMCA2015)
 **Install [Node 4.0.0 or greater](https://nodejs.org)**
 
     (5.0 or greater is recommended for optimal build performance)
-    Need to run multiple versions of Node? Use [nvm](https://github.com/creationix/nvm).
+    Need to run multiple versions of Node? Try unlinking and linking with Brew or use [nvm](https://github.com/creationix/nvm).
 
 install yarn `npm install -g yarn`
 
@@ -97,17 +111,17 @@ install yarn `npm install -g yarn`
 
 ---
 
-
-
 ## Install Modules and Packages
-install packages: `yarn` OR `npm install`
-install watchman (for file watching and live reloading): `brew install watchman`
-    or go here... https://facebook.github.io/watchman/
-    
+install packages: `yarn` OR `npm install`   
 
-### Install Dev Tools
-Step 1) Learn how to use the Chrome Developer Console (use chrome or figure out how to set up other dev tools)
->The Chrome Developer Console is a lifesaver. Use it or [Learn How](https://developers.google.com/web/tools/chrome-devtools/console/)!
+`sudo npm install -g nodemon`
+
+> Other platforms install watchman [Here](https://facebook.github.io/watchman/)
+
+## Chrome
+Learn how to use the Chrome Developer Console [Here](https://developers.google.com/web/tools/chrome-devtools/console/)!
+
+### Install Chrome extensions
 
 [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi/related?hl=en)
 
@@ -117,9 +131,13 @@ Step 1) Learn how to use the Chrome Developer Console (use chrome or figure out 
 I use the following extensions in VS Code and highly recommmend you do too.
 
 [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
+
 [React Snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
+
 [ESLINT - linting for JS](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
 [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+
 [Jest](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest)
 
 You can see a brief overview of what they are and how to use VSCode [Here!](https://www.youtube.com/watch?v=u21W_tfPVrY)
