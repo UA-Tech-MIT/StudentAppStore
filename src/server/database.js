@@ -26,7 +26,7 @@ const offlineSql = new Sequelize(
 
 
 //tertiary assignment. varname = booleanExpression ? Assigned if true : assigned if false;
-const Conn = offlineMode === true ? offlineSql: onlineSql;
+const Conn = offlineMode === false ? offlineSql: onlineSql;
 
 
 //Schema
