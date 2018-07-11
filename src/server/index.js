@@ -1,5 +1,4 @@
 /* eslint-disable import/default */
-
 import Express from 'express';
 import GraphHTTP from 'express-graphql';
 import Schema from './schema';
@@ -32,7 +31,7 @@ app.use('/graphql', bodyParser.json(), GraphHTTP({
 
 
 app.listen(APP_PORT, () => {
-    console.log('DB Listening on port 8080 ');
+    console.log('DB Listening on port 8080\n');
 });
 
 

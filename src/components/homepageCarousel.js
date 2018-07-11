@@ -4,15 +4,7 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import * as helperFuncs from '../utils/helperFunctions';
-
-// import AppTile from '../AppPage/AppTile.js';
-// import { connect, Provider, bindActionCreators } from 'react-redux';
-
-// import PhoneAuthTest from './Components/phoneAuthTest'
-
-// mapDispatchToProps = dispatch => bindActionCreators({
-//     toAbout: () => push('/')
-//   }, dispatch)
+import {Carousel} from 'react-bootstrap';
 
 const dummyState = {
   tiles: [
@@ -49,21 +41,21 @@ const dummyState = {
   ],
 };
 // eslint won't like the require notation, but this is the only way to serve images dynamically
-function appTile(object, i) {
+function appTile(app, i) {
   const imageClick = () => {
-    helperFuncs(object.url);
+    helperFuncs(app.url);
   };
   return (
-    <div className="app-tile-container" key={i}> 
-      <img src={require(`../public/${object.img}`)} className="app-tile" onClick={imageClick} alt="loading..." />
-      <span>
-        {object.name}
-      </span>
-    </div>
+    <Carousel.Item className="homepage-tile-container" key={i}> 
+      <img src={require(`../public/${app.img}`)} className="homepage-tile" onClick={imageClick} alt="loading..." />
+      <Carousel.Caption>
+        <h3>{app.name}</h3>
+      </Carousel.Caption>
+    </Carousel.Item>
   );
 }
 
-class Carousel extends React.Component {
+class HomepageCarousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -72,27 +64,15 @@ class Carousel extends React.Component {
   }
 
   render() {
-    const settings = {
-      dots: true,
-      infinite: true,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 2000,
-      pauseOnHover: true,
-      centerMode: false,
-      arrows:true
-
-    };
+    const headerMessage = "Spotlight Apps";
 
     if (!this.state.tiles) {
       return (
         <div>
-          <h3> carousel: </h3>
-          <h2>Browse Student Apps</h2>
-          <Slider {...settings}>
-            <div className="tile-preview">Loading...</div>
-          </Slider>
+          <h2>{headerMessage}</h2>
+          <Carousel>
+            <Carousel.Caption className="tile-preview">Loading...</Carousel.Caption>
+          </Carousel>
         </div>
       );
     }
@@ -100,34 +80,22 @@ class Carousel extends React.Component {
     if (this.state.tiles.length === 0) {
       return (
         <div>
-          <h2>Browse Student Apps</h2>
-          <Slider {...settings}>
-            <div className="tile-preview">No articles are here... yet.</div>
-          </Slider>
+          <h2>{headerMessage}</h2>
+          <Carousel>
+            <Carousel.Caption className="tile-preview">No articles are here... yet.</Carousel.Caption>
+          </Carousel>
         </div>
       );
     }
     return (
       <div>
-        <h2>Browse Student Apps</h2>
-        <Slider {...settings}>
+        <h2>{headerMessage}</h2>
+        <Carousel>
           {this.state.tiles.map((tile, index) => appTile(tile, index))}
-        </Slider>
+        </Carousel>
       </div>
     );
   }
 }
 
-export default Carousel;
-
-//leave in (react-redux syntax)
-// export default connect(
-//     mapStateToProps,
-//     null
-//   )(carouselComponent);
-
-//   const mapStateToProps = state => ({
-//     ...state,
-//     tiles: state.tiles
-//     // profile: state.profile
-//   });
+export default HomepageCarousel;

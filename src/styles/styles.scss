@@ -81,6 +81,10 @@ td.fuel-savings-label { width: 175px; }
   align-items: center;
 }
 
+// .slick-slide {
+//   width: unset!important;
+// }
+
 .app-page {
   background-color: #eeeeee;
   font-family: "Roboto",UILanguageFont,Arial,sans-serif;
@@ -134,13 +138,38 @@ td.fuel-savings-label { width: 175px; }
 }
 
 .app-tile-container {
-  width: 250;
+  // width: 250;
+  max-width: 300px;
+  max-height: 300px;
+  padding: 25px;
+  margin:10px;
   justify-content: center;
   margin: auto;
   display: inline-block;
   vertical-align: middle;
   .app-tile {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 200px;
+    max-height: 200px;
   }
+}
+.homepage-tile-container {
+  // max-width: 800px;
+  padding: 25px;
+  margin: auto;
+  
+  // justify-content: center;
+  display: block;
+  .homepage-tile {
+    margin: auto;
+    display: block;
+    padding: 150px;
+    // max-width: 500px;
+    max-height: 500px;
+  }
+}
+
+.carousel {
+  // width: 900px;
+  height:500px;
+  margin: auto;
 }
