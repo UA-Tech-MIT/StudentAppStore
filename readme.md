@@ -9,7 +9,7 @@
         - [On Linux](#on-linux)
         - [On Windows](#on-windows)
     - [Install Modules and Packages](#install-modules-and-packages)
-    - [Chrome](#chrome)
+    - [Tools](#tools)
         - [Install Chrome extensions](#install-chrome-extensions)
         - [Install VS Code Extensions](#install-vs-code-extensions)
     - [Having Issues? Try these things first](#having-issues-try-these-things-first)
@@ -118,7 +118,7 @@ install packages: `yarn` OR `npm install`
 
 > Other platforms install watchman [Here](https://facebook.github.io/watchman/)
 
-## Chrome
+## Tools
 Learn how to use the Chrome Developer Console [Here](https://developers.google.com/web/tools/chrome-devtools/console/)!
 
 ### Install Chrome extensions

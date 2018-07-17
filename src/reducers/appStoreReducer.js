@@ -34,14 +34,14 @@ export default function appStoreReducer(state = getInitialState(), action) {
     process.env.NODE_ENV === 'development' ? console.log(action) : null;
 
     switch(type) {
-        case ActionTypes.CLEAR_APPS:
+        case ActionTypes.LOAD_APPS:
         console.log(payload);
         return {
             ...state,
             apps: payload.apps,
             lastUpdated: currentTime
         };
-        case ActionTypes.LOAD_APPS:
+        case ActionTypes.CLEAR_APPS:
         return {
             ...state,
             apps: {},
@@ -58,7 +58,15 @@ export default function appStoreReducer(state = getInitialState(), action) {
                 apps: payload.apps,
                 lastUpdated: "testMode"
             };
-        
+        case ActionTypes.UPDATE_APPS: // not pure but its ok
+        {
+            const newAppState = updateApps(state.apps, payload.updatedApps);
+            return {
+                ...state,
+                apps: newAppState,
+                lastUpdated: currentTime
+            };
+        }
         default:
             return state;
         // case "UPDATE_APP": 
@@ -70,4 +78,17 @@ export default function appStoreReducer(state = getInitialState(), action) {
         //         lastUpdated: currentTime
         //     }
         }
+
+
     }
+
+
+function updateApps(currentApps, updatedApps) {
+    const newAppState = currentApps.map(app => {
+        if(updateApps.keys().indexOf(app.id) != -1) {
+            return updateApps[app.id]; //return new app if its been updated
+        }
+        return app;
+    });
+    return newAppState;
+}

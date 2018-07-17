@@ -1,5 +1,4 @@
 import * as ActionTypes from '../constants/actionTypes';
-
 import MockDate from 'mockdate';
 import configureStore from './configureStore';
 

@@ -12,6 +12,7 @@ import NavigationBar from './NavigationBar';
 import OnlineComponent from './onlineComponent.example';
 import TestForm from './forms/testForm';
 import ImageUploadComponent from './ImageUploader';
+import FrontPageContainer from './containers/FrontPageContainer';
 
 // import { Navbar, NavItem, NavDropdown, MenuItem, Nav } from 'react';
 
@@ -38,6 +39,7 @@ class App extends React.Component {
           <Route path="/online-component" component={OnlineComponent} />
           <Route path="/test-form" component={TestForm} />
           <Route path="/image-upload" component={ImageUploadComponent} />
+          <Route path="/front-page-container" component={FrontPageContainer} />
           {/* <Route path="*" render={() => (<Redirect to="/" />)} />           */}
 
           <Route component={NotFoundPage} />

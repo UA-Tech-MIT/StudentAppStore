@@ -1,6 +1,5 @@
 import { GraphQLInt, GraphQLObjectType, GraphQLString, GraphQLList, GraphQLID, GraphQLSchema, GraphQLFloat, GraphQLBoolean} from 'graphql';
-import Database from './database';
-
+import models from './models';
 
 //graphQL Schema
 //TODO make an actual DB Schema and figure out the Relationship network for basic components (add teams if you're up to it)
@@ -246,57 +245,102 @@ const App = new GraphQLObjectType({
     }
 });
 
+const graphqlMappings = {
+    users: {
+        type: new GraphQLList(User),
+        args: {
+            id: {
+                type: GraphQLID
+            },
+            keyword: {
+                type: GraphQLString
+            },
+            email: {
+                type: GraphQLString
+            }
+        },
+        resolve(root, args) {
+            return models.user.findAll({where: args,         // Add order conditions here....
+                order: [
+                    ['id', 'DESC'],
+                    ['name', 'ASC'],
+                ],});
+        }
+    },
+    apps: {
+        type: new GraphQLList(App),
+        args: {
+            id: {
+                type: GraphQLID
+            },
+            keyword: {
+                type: GraphQLString
+            },
+            genre: {
+                type: GraphQLString
+            },
+            isOfficialResource: {
+                type: GraphQLBoolean
+            },
+            medium: {
+                type: GraphQLString
+            },
+            date: {
+                type: GraphQLString
+            }
+        },
+        resolve(root, args) {
+            return models.app.findAll({where: args,         // Add order conditions here....
+                order: [
+                    ['id', 'DESC'],
+                    ['name', 'ASC'],
+                ],});
+        }
+    },
+    reviews: {
+        type: new GraphQLList(Review),
+        args: {
+            id: {
+                type: GraphQLID
+            },
+            keyword: {
+                type: GraphQLString
+            }
+        },
+        resolve(root, args) {
+            return models.review.findAll({where: args,         // Add order conditions here....
+                order: [
+                    ['id', 'DESC'],
+                    ['name', 'ASC'],
+                ],});
+        }
+    }
+};
+
 
 const Query = new GraphQLObjectType({
     name: 'Query',
     description: 'This is a root query',
     fields: () => {
-        return {
-            users: {
-                type: new GraphQLList(User),
-                args: {
-                    id: {
-                        type: GraphQLInt
-                    },
-                    keyword: {
-                        type: GraphQLString
-                    }
-                },
-                resolve(root, args) {
-                    return Database.models.user.findAll({where: args});
-                }
-            },
-            apps: {
-                type: new GraphQLList(App),
-                args: {
-                    id: {
-                        type: GraphQLInt
-                    },
-                    keyword: {
-                        type: GraphQLString
-                    }
-                },
-                resolve(root, args) {
-                    return Database.models.app.findAll({where: args});
-                }
-            },
-            reviews: {
-                type: new GraphQLList(Review),
-                args: {
-                    id: {
-                        type: GraphQLInt
-                    },
-                    keyword: {
-                        type: GraphQLString
-                    }
-                },
-                resolve(root, args) {
-                    return Database.models.review.findAll({where: args});
-                }
-            }
-        };
+        return graphqlMappings;
     }
 });
+
+// const ElasticQuery = new GraphQLObjectType({
+//     name: 'ElasticQuery',
+//     fields: () => {
+//         return  {
+//             elastic50: elasticApiFieldConfig(
+//                 // you may provide existed Elastic Client instance
+//                 new elasticsearch.Client({
+//                     host: 'http://localhost:9875',
+//                     apiVersion: '6.3',
+//                     logs: 'trace'
+//                 })
+//             ),
+//         }
+//     }
+// });
 
 const Schema = new GraphQLSchema({
     query: Query

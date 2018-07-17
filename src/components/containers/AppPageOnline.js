@@ -10,7 +10,7 @@ import { ReviewList } from './ReviewList';
 // import { connect } from 'react-redux'
 // TODO Add react redux to stack
 
-const testApp= {
+const testApp = {
   author: "MIT",
   type: "App",
   name: 'Stellar',
@@ -39,7 +39,7 @@ export class AppPage extends React.Component {
     this.state = {
       name: testApp.name,
       author: testApp.author,
-      type:  testApp.type,
+      type: testApp.type,
       reivews: testApp.reivews,
       url: testApp.url,
       rating: testApp.rating,
@@ -52,7 +52,7 @@ export class AppPage extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({app: testApp});
+    this.setState({ app: testApp });
   }
 
 
@@ -61,29 +61,29 @@ export class AppPage extends React.Component {
     // helperFuncs.toAppUrl("http://www.google.com")
     return (
       <section className="app-page">
-      <h3>App Page:</h3>
-      <Media>
-      <Media.Left>
-       <img src={require(`../../public/${this.state.img}`)} className="tile" onClick={()=> window.location.replace(this.state.url)} alt="loading..." />
-      </Media.Left>
-      <Media.Body>
-        <Media.Heading>{this.state.name}</Media.Heading>
-        <p>
-          An app by {this.state.author}
-        </p>
-        <Rating
-  emptySymbol={<img src="../../public/star-empty.png" className="icon" />}
-  fullSymbol={<img src="../../public/star-full.png" className="icon" />}
-  onChange={(value) => console.log(value)}
-/>
-      </Media.Body>
-      <Media.List>
-      <h3>Review List Component:</h3>
-        <ReviewList/>
-        </Media.List>
-    </Media>
+        <h3>App Page:</h3>
+        <Media>
+          <Media.Left>
+            <img src={require(`../../public/${this.state.img}`)} className="tile" onClick={() => window.location.replace(this.state.url)} alt="loading..." />
+          </Media.Left>
+          <Media.Body>
+            <Media.Heading>{this.state.name}</Media.Heading>
+            <p>
+              An app by {this.state.author}
+            </p>
+            <Rating
+              emptySymbol={<img src="../../public/star-empty.png" className="icon" />}
+              fullSymbol={<img src="../../public/star-full.png" className="icon" />}
+              onChange={(value) => console.log(value)}
+            />
+          </Media.Body>
+          <Media.List>
+            <h3>Review List Component:</h3>
+            <ReviewList />
+          </Media.List>
+        </Media>
 
-    </section>
+      </section>
       // <section className="app-page">
       //   <h1 className="header"> {this.state.name} </h1>
       //   <h3 className="author"> {this.state.author} </h3>
@@ -119,15 +119,15 @@ AppPage.propTypes = {
 //     saving: false,
 //     isEditing: false
 //   }
-  // return {
-  //   name: state.name,
-  //   author: state.author,
-  //   type: state.type,
-  //   url: state.url,
-  //   rating: state.rating,
-  //   img: state.img,
-  //   tags: state.tags
-  // };
+// return {
+//   name: state.name,
+//   author: state.author,
+//   type: state.type,
+//   url: state.url,
+//   rating: state.rating,
+//   img: state.img,
+//   tags: state.tags
+// };
 // }
 
 // function mapDispatchToProps(dispatch) {

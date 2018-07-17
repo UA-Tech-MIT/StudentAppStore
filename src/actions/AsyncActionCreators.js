@@ -18,7 +18,7 @@ const createFetchConfig = (query) => {
 const queryUri = 'http://localhost:8080/graphql';
 
 
-const GET_ALL_APPS = `
+export const GET_ALL_APPS = `
 query GetAllApps {
     apps {
       name
@@ -31,31 +31,31 @@ query GetAllApps {
 `;
 //NOTE you must fill in what fields you want like the example above
 /* eslint-disable no-unused-vars*/
-const GET_APP_BY_ID = `
+export const GET_APP_BY_ID = `
     query GetAppsByID($ID:String!) {
         apps(id: $ID) 
     }
 `;
 
-const GET_ALL_USERS = `
+export const GET_ALL_USERS = `
     query GetAllUsers {
         users 
     }
 `;
 
-const GET_USER_BY_ID = `
+export const GET_USER_BY_ID = `
     query GetUserByID($ID:String!) {
         users(id: $ID ) 
     }
 `;
 
-const GET_ALL_REVIEWS = `
+export const GET_ALL_REVIEWS = `
     query GetAllReviews {
         reviews 
     }
 `;
 
-const GET_REVIEW_BY_ID = `
+export const GET_REVIEW_BY_ID = `
     query GetReviewByID($ID:String!) {
         reviews(id: $ID) 
     }
@@ -66,7 +66,7 @@ export const fetchApps = () => dispatch => {
         /* eslint-disable no-undef*/
         .then(res => res.json())
         .then(res => {
-            const filteredApps = filter(res.data, (app) => {
+            const filteredApps = filter(res.data, (app) => { // leaving this filtering example
                 return app.email === null; // all emails are null atm so it should return every app
             });
             console.log("filtered apps", filteredApps);
@@ -76,6 +76,18 @@ export const fetchApps = () => dispatch => {
     });
     // add error handling
 };
+
+export const customFetch = (query) => dispatch => {
+    fetch(queryUri, createFetchConfig(query))
+        /* eslint-disable no-undef*/
+        .then(res => res.json())
+        .then(res => {
+            dispatch({
+                type: ActionTypes.LOAD_APPS,
+                payload: res.data});
+    });
+};
+
 
 // note 2 ways to do the same thing
 export const fetchAppByID = (id) =>  {
