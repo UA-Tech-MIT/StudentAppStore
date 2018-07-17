@@ -9,8 +9,7 @@ type Query {
     searchApps(id: ID, 
         keyword: String, 
         genre: String, 
-        isOfficialResource: 
-        boolean, 
+        isOfficialResource: Boolean, 
         medium: String, 
         date: String): [App]!
 

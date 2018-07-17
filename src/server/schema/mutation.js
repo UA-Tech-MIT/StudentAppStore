@@ -31,5 +31,10 @@ type Mutation {
     createMessage(appId: ID!, text: String!): Boolean!
     editMessage(id: ID!, content: String!, rating: Float): Boolean!
 
+    #TEAM MUTATIONS 
+    
+    addUser(userId: ID!): Boolean!
+    removeUser(userID: ID!): Boolean!
+
 }
 `;

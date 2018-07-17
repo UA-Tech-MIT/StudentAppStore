@@ -5,9 +5,4 @@ export default `
         members: [User]!
     }
 
-    type Mutation {
-        addUser(userId: ID!): Boolean!
-        removeUser(userID: ID!): Boolean!
-    }
-
 `;

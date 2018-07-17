@@ -1,7 +1,7 @@
-import appResolvers from './app';
-import reviewResolvers from './review';
-import userResolvers from './user';
+import App from './app';
+import Review from './review';
+import User from './user';
 
 export default {
-    appResolvers, reviewResolvers, userResolvers
-}
+    App, Review, User
+};
