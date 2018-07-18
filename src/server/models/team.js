@@ -7,6 +7,9 @@ const Team = Conn.define('team', { // relate through model
         // defaultValue: () => {
         //     return this.get
         // }
+    },
+    teamCode: {
+        type: Sequelize.UUID,
     }
 
 });

@@ -9,6 +9,8 @@ export default `
     reviewNo: Int!
     userId: User!
     appId: App!
+    createdAt: String!
+    updatedAt: String!
   }
 
 `;

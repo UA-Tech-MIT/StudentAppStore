@@ -13,11 +13,7 @@ type Mutation {
         dateLaunched: String
         description: String!
         url:  String!
-        ownerHomePage: String
-        id: String!
-        appNo: Int!
-        createdAt: String!
-        updatedAt: String!): App!
+        ownerHomePage: String): App!
 
     #USER MUTATIONS
 

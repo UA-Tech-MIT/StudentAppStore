@@ -66,7 +66,7 @@ export class OnlineComponent extends React.Component {
 
               <br />
               <h4>Users</h4>
-              {data.users.map(({ firstName, lastName, email, id, }) => (
+              {data.allUsers.map(({ firstName, lastName, email, id, }) => (
                 <div key={id} className="online-user">
                   <p>{`Name: ${firstName}, ${lastName}`}</p>
                   <p>{`Email: ${email}`}</p>
@@ -75,7 +75,7 @@ export class OnlineComponent extends React.Component {
               ))}
               <br />
               <h4>Apps</h4>
-              {data.apps.map(({ id, name, appNo, createdAt, url, genre, isOfficialResource }) => {
+              {data.allApps.map(({ id, name, appNo, createdAt, url, genre, isOfficialResource }) => {
                 return (
                   <div key={id} className="online-user">
 

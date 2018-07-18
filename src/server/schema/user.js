@@ -8,7 +8,7 @@ export default `
     userNo: Int!
     createdAt: String!
     updatedAt: String!
-    teams: [Team!]!
+
   }
 
 `;

@@ -11,19 +11,20 @@ type Query {
         genre: String, 
         isOfficialResource: Boolean, 
         medium: String, 
-        date: String): [App]!
+        date: String): [App!]!
+    getTeamApps(id: ID!): [App!]!
 
     # USER QUERIES
 
     getUser(id: ID!): User!
     allUsers: [User!]!
-    getAppCreators(id: ID!): [App!]!
-    getTeamUsers(id: ID!): [Team!]!
+    getAppCreators(id: ID!): [User!]!
+    getTeamUsers(id: ID!): [User!]!
 
     #REVIEW QUERIES
 
     allReviews: [Review!]!
-    appReviews(appId: ID!): [Review!]!
+    getAppReviews(appId: ID!): [Review!]!
 
     #TEAM QUERIES
 

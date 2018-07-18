@@ -1,8 +1,10 @@
 export default `
 
     type Team {
-        owner: ID!
-        members: [User]!
+        owner: ID
+        teamCode: ID
+        createdAt: String!
+        updatedAt: String!
     }
     
 `;
