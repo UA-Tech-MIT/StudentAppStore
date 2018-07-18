@@ -8,7 +8,6 @@ export default `
     userNo: Int!
     createdAt: String!
     updatedAt: String!
-
   }
 
 `;

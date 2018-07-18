@@ -10,7 +10,7 @@ require('./favicon.ico'); // Tell webpack to load favicon.ico
 // import Conn from '../tools/database';
 
 import { ApolloProvider } from "react-apollo";
-import client from './server/apollo';
+import client from './apollo';
 // import gql from "graphql-tag";
 
 

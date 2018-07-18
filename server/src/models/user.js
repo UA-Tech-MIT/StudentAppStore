@@ -38,25 +38,7 @@ export default (Conn, Sequelize) => {
             comment: 'For redux counters'
         },
 
-        //relations
-
-        // appHashes: {
-        //     type: Sequelize.ARRAY({ type: Sequelize.UUID }),
-
-        //     references: {
-        //         model: App,
-        //         key:'id'
-        //     }
-        // },
-        // reviewHashes: {
-        //     type: Sequelize.ARRAY({ type: Sequelize.UUID }),
-
-        //     references: {
-        //         model: Review,
-        //         key:'id'
-        //     }
-        // }
-
+        //TODO add relation fields if necessary
     }, {
             name: {
                 singular: 'user',
@@ -66,8 +48,6 @@ export default (Conn, Sequelize) => {
 
     User.associate = (models) => {
         User.hasMany(models.Review);
-
-
         User.belongsToMany(models.App, { through: models.Team, as: 'creations' });
     };
     return User;

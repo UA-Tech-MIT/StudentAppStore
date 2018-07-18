@@ -18,7 +18,7 @@ export default (Conn, Sequelize) => {
             allowNull: false
         },
         medium: {// ^do we need both of these?
-            type: Sequelize.TEXT("tiny"), //will this work?
+            type: Sequelize.TEXT("tiny"),
             allowNull: false
         },
         image: {
@@ -28,7 +28,7 @@ export default (Conn, Sequelize) => {
         email: {
             type: Sequelize.STRING,
             allowNull: true,
-            // validate: {
+            // validate: {// throws errors. TODO look into this
             //     isEmail: true,
             // }
         },
@@ -63,14 +63,6 @@ export default (Conn, Sequelize) => {
             unique: true,
             allowNull: false
         },
-        // userHash: {
-        //     type: Sequelize.UUID,
-
-        //     references: {
-        //         model: User,
-        //         key: 'id'
-        //     }
-        // },
         appNo: {
             type: Sequelize.INTEGER,
             autoIncrement: true,

@@ -11,7 +11,7 @@ const Team = Conn.define('team', { // relate through model
     teamCode: {
         type: Sequelize.UUID,
     }
-
+    //TODO initialize these fields in DB and make mutator methods for teams
 });
     return Team;
 }

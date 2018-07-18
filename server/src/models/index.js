@@ -25,7 +25,7 @@ const offlineSql = new Sequelize(
 
 
 //tertiary assignment. varname = booleanExpression ? Assigned if true : assigned if false;
-const Conn = offlineMode === true ? offlineSql: onlineSql;
+const Conn = offlineMode === true ? offlineSql : onlineSql;
 
 
 const models = {
@@ -35,15 +35,15 @@ const models = {
     Team: Conn.import('./team'),
     Tag: Conn.import('./tag'),
     ItemTag: Conn.import('./itemTag'),
-  };
-  
-  Object.keys(models).forEach((modelName) => {
+};
+
+Object.keys(models).forEach((modelName) => {
     if ('associate' in models[modelName]) {
-      models[modelName].associate(models);
+        models[modelName].associate(models);
     }
-  });
+});
 
-  models.sequelize = Conn;
-  models.Sequelize = Sequelize;
+models.sequelize = Conn;
+models.Sequelize = Sequelize;
 
-  export default models;
+export default models;

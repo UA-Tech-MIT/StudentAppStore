@@ -73,19 +73,19 @@ export default {
         getTeamApps: async (parent, { id }, /*{ models } */) => {
             try {
                 return models.App.findAll({
-                include: [
-                    {
-                        models: models.Team,
-                        where: {
-                            id: id
+                    include: [
+                        {
+                            models: models.Team,
+                            where: {
+                                id: id
+                            }
                         }
-                    }
-                ]
-            });
-        } catch(err) {
-            console.log(err);
-            return false;
-        }
+                    ]
+                });
+            } catch (err) {
+                console.log(err);
+                return false;
+            }
         },
 
         //REVIEW QUERIES
@@ -98,19 +98,19 @@ export default {
             }
         },
         getAppReviews: async (parents, id, /*{ models } */) => {// TODO
-           try {
-            return models.Reviews.findAll({
-                include: [
-                    {
-                        model: models.App,
-                        where: { id: id }
-                    }
-                ]
-            });
-           } catch(err) {
-               console.log(err);
-               return false;
-           } 
+            try {
+                return models.Reviews.findAll({
+                    include: [
+                        {
+                            model: models.App,
+                            where: { id: id }
+                        }
+                    ]
+                });
+            } catch (err) {
+                console.log(err);
+                return false;
+            }
         }
     },
     Mutation: {
@@ -127,13 +127,13 @@ export default {
 
         //USER MUTATIONS
         createUser: (parent, args, /*{ models } */) => {
-           try {
+            try {
                 models.User.create(args);
-               return true;
-           } catch(err) {
-               console.log(err);
-               return false;
-           }
+                return true;
+            } catch (err) {
+                console.log(err);
+                return false;
+            }
         },
 
 

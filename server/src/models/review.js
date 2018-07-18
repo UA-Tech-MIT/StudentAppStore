@@ -30,14 +30,6 @@ export default (Conn, Sequelize) => {
             unique: true,
             allowNull: false
         },
-        // userHash: {
-        //     type: Sequelize.UUID,
-
-        //     references: {
-        //         model: User,
-        //         key: 'id'
-        //     }
-        // },
         reviewNo: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
