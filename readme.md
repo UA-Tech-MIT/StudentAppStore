@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./src/public/uatech.png"/>
+  <img src="./client/src/public/uatech.png"/>
 </p>
 
 - [UA Tech Documentation (Drive)](#ua-tech-documentation-drive)
@@ -36,10 +36,11 @@ If you leave any loose ends or think of something to add, make sure you mark it 
 
 **Commands to get started** 
 
-`npm start` to start the frontend at http://localhost:3000
+cd into client and run `yarn start` to start the frontend at http://localhost:3000
 
-`babel-node src/server`
-backend at http://localhost:8080/graphql
+cd into server and run `yarn start` to start the backend at http://localhost:8080
+
+graphiql is at http://localhost:8080/graphql
 
 > Note: in frontend development each time you hit save, changes hot reload and linting and automated tests run. Not yet set up on the backend // TODO
 
@@ -91,15 +92,17 @@ If you're on Linux or Windows, complete the steps for your OS below.
 
     `echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p`.
 
+install linuxbrew and follow the instructions for mac.
+
 ### On Windows
 
-working in powershell is a bit difficult because it doesn't have linux commands. Use at your own risk. Otherwise follow these instructions.
-
 Download [cygwin](http://www.cygwin.com/), you will be using this as your terminal
-In the installation you will see a big menu with a bunch of expandable dropdowns, these packages you can install to your cygwin environment.
-find python, hit the plus to expand the dropdown and click on python2 (make sure it doesn't say skip and that the bin box is checked) and pip (python2-pip...)
+In the installation you will see a menu with many expandable dropdowns, these are packages for your cygwin environment.
+Find python, expand the dropdown (hit the plus) and click on python2 and pip (python2-pip...). Make sure it doesn't say skip and that the bin box is checked.
 
 Then go to Devel and add mingw-gcc, mingw-g++ for your operating system (64 bit vs 32 bit). You should have added 4 packages total.
+
+Complete the cygwin installation.
 
 
 **Install [Node 4.0.0 or greater](https://nodejs.org)**
@@ -109,10 +112,10 @@ Then go to Devel and add mingw-gcc, mingw-g++ for your operating system (64 bit 
 
 **Once you have downloaded and installed cygwin, node, and git. restart your computer**
 
-cygwin dhouls have yarn installed, to check run `yarn help`, if that throws an error run the following
+Cygwin should have yarn installed, to check run `yarn help`, if that throws an error run the following
 to install yarn `npm install -g yarn`
 
-you shouldn't need to, but if you keep having problems try the next two steps
+If you keep having problems try the next two steps:
 
 * **Install [Python 2.7](https://www.python.org/downloads/)**. Some node modules may rely on node-gyp, which requires Python on Windows.
 * **Install C++ Compiler**. Browser-sync requires a C++ compiler on Windows.
@@ -126,9 +129,9 @@ you shouldn't need to, but if you keep having problems try the next two steps
 ---
 
 ## Install Modules and Packages
-install packages: `yarn` OR `npm install`   
+install packages: `yarn`
 
-`sudo npm install -g nodemon`
+`npm install -g nodemon`
 
 > Other platforms install watchman [Here](https://facebook.github.io/watchman/)
 
