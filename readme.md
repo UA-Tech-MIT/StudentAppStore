@@ -93,12 +93,26 @@ If you're on Linux or Windows, complete the steps for your OS below.
 
 ### On Windows
 
+working in powershell is a bit difficult because it doesn't have linux commands. Use at your own risk. Otherwise follow these instructions.
+
+Download [cygwin](http://www.cygwin.com/), you will be using this as your terminal
+In the installation you will see a big menu with a bunch of expandable dropdowns, these packages you can install to your cygwin environment.
+find python, hit the plus to expand the dropdown and click on python2 (make sure it doesn't say skip and that the bin box is checked) and pip (python2-pip...)
+
+Then go to Devel and add mingw-gcc, mingw-g++ for your operating system (64 bit vs 32 bit). You should have added 4 packages total.
+
+
 **Install [Node 4.0.0 or greater](https://nodejs.org)**
 
     (5.0 or greater is recommended for optimal build performance)
     Need to run multiple versions of Node? Try unlinking and linking with Brew or use [nvm](https://github.com/creationix/nvm).
 
-install yarn `npm install -g yarn`
+**Once you have downloaded and installed cygwin, node, and git. restart your computer**
+
+cygwin dhouls have yarn installed, to check run `yarn help`, if that throws an error run the following
+to install yarn `npm install -g yarn`
+
+you shouldn't need to, but if you keep having problems try the next two steps
 
 * **Install [Python 2.7](https://www.python.org/downloads/)**. Some node modules may rely on node-gyp, which requires Python on Windows.
 * **Install C++ Compiler**. Browser-sync requires a C++ compiler on Windows.

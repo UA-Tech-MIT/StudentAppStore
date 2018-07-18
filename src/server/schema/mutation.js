@@ -28,8 +28,8 @@ type Mutation {
 
     #REVIEW MUTATIONS
 
-    createMessage(appId: ID!, text: String!): Boolean!
-    editMessage(id: ID!, content: String!, rating: Float): Boolean!
+    createReview(appId: ID!, text: String!): Boolean!
+    editReview(id: ID!, content: String!, rating: Float): Boolean!
 
     #TEAM MUTATIONS 
     

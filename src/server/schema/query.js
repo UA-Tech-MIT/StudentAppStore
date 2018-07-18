@@ -17,8 +17,8 @@ type Query {
 
     getUser(id: ID!): User!
     allUsers: [User!]!
-    getAllUserApps(id: ID!): [App!]!
-    getUserTeams(id: ID!): [Team!]!
+    getAppCreators(id: ID!): [App!]!
+    getTeamUsers(id: ID!): [Team!]!
 
     #REVIEW QUERIES
 

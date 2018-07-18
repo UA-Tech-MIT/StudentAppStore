@@ -10,7 +10,7 @@ import models from './models';
 import {query, mutation, appSchema, reviewSchema , teamSchema, userSchema, itemTagSchema, tagSchema} from './schema/';
 import resolvers from './resolvers';
 
-console.log([appSchema, reviewSchema, teamSchema, userSchema, itemTagSchema, tagSchema]);
+console.log([query, mutation, appSchema, reviewSchema, teamSchema, userSchema, itemTagSchema, tagSchema]);
 console.log({...resolvers});
 // const schemaTypeDefs = [...schema];
 

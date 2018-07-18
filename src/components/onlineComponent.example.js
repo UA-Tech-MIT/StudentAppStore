@@ -7,6 +7,21 @@ import React from 'react';
 /**
  * to use this you will need o
  */
+// users {
+//   firstName,
+//   lastName,
+//   email,
+//   id,
+// },
+// apps {
+// id,
+// name,
+// appNo,
+// createdAt,
+// url,
+// genre,
+// isOfficialResource
+// }
 
 const message = `
  This example is querying the current model for users from the database.\n
@@ -20,13 +35,13 @@ export class OnlineComponent extends React.Component {
       <Query
         query={gql`
               {
-                users {
-                     firstName,
-                     lastName,
-                     email,
-                     id,
-                },
-                apps {
+                allUsers{
+                  firstName,
+                  lastName,
+                  email,
+                  id,
+                }
+                allApps {
                   id,
                   name,
                   appNo,
@@ -84,7 +99,7 @@ export class OnlineComponent extends React.Component {
 }
 //NOTE the object desctructuring in the map objects inside anonymous function parameter
 // (param) => {
-  // let x = param.x. // do stufff with x
+// let x = param.x. // do stufff with x
 // }
 // is the same as ({x}) => {//do stuff with x}
 // 
