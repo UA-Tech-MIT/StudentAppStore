@@ -5,9 +5,6 @@ import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 import fetch from 'isomorphic-fetch';
 
-
-console.log("lastLine here!");
-
 const client = new ApolloClient({
   link: ApolloLink.from([
     onError(({ graphQLErrors, networkError }) => {
@@ -28,7 +25,4 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-console.log('Apollo Client Created');
-
-
-  export default client;
+export default client;
