@@ -1,0 +1,112 @@
+{
+  "name": "app-store-server",
+  "version": "1.0.0",
+  "description": "Backend for UA App Store",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon --exec babel-node -- ./src/index",
+    "start": "npm run server",
+    "build": "babel src -d dist"
+  },
+  "author": "Yaateh Richardson",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "2.8.4",
+    "express": "^4.16.3",
+    "express-graphql": "0.6.12",
+    "graphql": "0.13.2",
+    "graphql-tag": "2.9.1",
+    "graphql-tools": "3.0.5",
+    "mysql": "2.15.0",
+    "mysql2": "1.5.3",
+    "sequelize": "4.38.0",
+    "pg": "7.4.3",
+    "pg-hstore": "2.3.2",
+    "apollo-boost": "0.1.4"
+  },
+  "devDependencies": {
+    "babel-cli": "6.24.1",
+    "babel-core": "6.25.0",
+    "babel-eslint": "7.2.3",
+    "babel-jest": "20.0.3",
+    "babel-loader": "7.1.1",
+    "babel-polyfill": "6.23.0",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-stage-1": "6.24.1",
+    "concurrently": "3.5.0",
+    "eslint": "4.2.0",
+    "eslint-watch": "3.1.2",
+    "faker": "4.1.0"
+  },
+  "babel": {
+    "env": {
+      "development": {
+        "presets": [
+          "env",
+          "stage-1"
+        ]
+      },
+      "production": {
+        "presets": [
+          [
+            "env",
+            {
+              "es2015": {
+                "modules": false
+              },
+              "targets": {
+                "ie": 9,
+                "uglify": true
+              }
+            }
+          ],
+          "stage-1"
+        ]
+      },
+      "test": {
+        "presets": [
+          "env",
+          "stage-1"
+        ]
+      }
+    }
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "eslint:recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:react/recommended"
+    ],
+    "plugins": [
+      "react"
+    ],
+    "parser": "babel-eslint",
+    "rules": {
+      "no-unused-vars": 1,
+      "no-console": 1,
+      "semi": [
+        1,
+        "always"
+      ]
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true,
+        "experimentalObjectRestSpread": true
+      }
+    },
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true,
+      "jquery": true,
+      "jest": true
+    },
+    "globals": {}
+  }
+}
