@@ -1,5 +1,5 @@
 import * as ActionTypes from '../constants/actionTypes';
-import {getAppsById, filter} from '../utils/helperFunctions';
+import {filter} from '../utils/helperFunctions';
 // note: by using this syntax we are almost ompletely independent from the apollo stack
 // please do NOT USE THE Apollo Query element (its fine for bootstrapping components without redux in place)
 

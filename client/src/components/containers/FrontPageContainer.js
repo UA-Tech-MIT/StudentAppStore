@@ -33,7 +33,7 @@ FrontPageContainer.propTypes = {
     fetchSpotlightApps: PropTypes.func,
     customFetch: PropTypes.func,
     spotlightApps: PropTypes.object,
-}
+};
 
 const mapStateToProps = (state, ownProps = {}) => {
     return {

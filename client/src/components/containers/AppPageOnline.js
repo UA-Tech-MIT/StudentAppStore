@@ -1,8 +1,4 @@
 import React from 'react';
-import HomepageCarousel from '../homepageCarousel';
-import PropTypes from 'prop-types';
-// import {bindActionCreators} from 'redux';
-import * as helperFuncs from '../../utils/helperFunctions'; // TODO
 import { Media } from 'react-bootstrap';
 import Rating from 'react-rating';
 import { ReviewList } from './ReviewList';
