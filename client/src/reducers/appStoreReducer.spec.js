@@ -3,7 +3,7 @@ import { getFormattedDateTime } from '../utils/dates';
 // import { getFormattedNumber } from '../utils/numberFormat';
 import reducer from './appStoreReducer';
 import * as ActionTypes from '../constants/actionTypes';
-import initialState from '../reducers/initialState';
+import initialState from './initialState';
 
 const testState = () => {
     return {

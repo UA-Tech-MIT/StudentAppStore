@@ -1,5 +1,5 @@
 import React from 'react';
-import HomepageCarousel from '../homepageCarousel';
+import HomepageCarousel from './homepageCarousel';
 import { Jumbotron, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Media } from 'react-bootstrap';
 import Rating from 'react-rating';
-import { ReviewList } from './ReviewList';
+import { ReviewList } from '../common/ReviewList';
 
 // import { connect } from 'react-redux'
 // TODO Add react redux to stack
