@@ -12,6 +12,7 @@
     - [Tools](#tools)
         - [Install Chrome extensions](#install-chrome-extensions)
         - [Install VS Code Extensions](#install-vs-code-extensions)
+        - [Postgres](#postgres)
     - [Having Issues? Try these things first](#having-issues-try-these-things-first)
     - [Technologies](#technologies)
 
@@ -126,6 +127,7 @@ If you keep having problems try the next two steps:
     Open Visual Studio and go to File -> New -> Project -> Visual C++ -> Install Visual C++ Tools for Windows Desktop.
     The C++ compiler is used to compile browser-sync (and perhaps other Node modules).
 
+
 ---
 
 ## Install Modules and Packages
@@ -134,6 +136,7 @@ install packages: `yarn`
 `npm install -g nodemon`
 
 > Other platforms install watchman [Here](https://facebook.github.io/watchman/)
+
 
 ## Tools
 Learn how to use the Chrome Developer Console [Here](https://developers.google.com/web/tools/chrome-devtools/console/)!
@@ -159,7 +162,13 @@ I use the following extensions in VS Code and highly recommmend you do too.
 
 You can see a brief overview of what they are and how to use VSCode [Here!](https://www.youtube.com/watch?v=u21W_tfPVrY)
 
+### Postgres
 
+If you want to use an offline DB (its faster iand i think the SIPB one only has a 100MB) download pgadmin 4 for postgres. Use the following as credentials so you don't have to change the config eevry time. 
+
+* DB Name: UATechDB
+* User Name: postgres
+* Password: password
 
 
 ## Having Issues? Try these things first

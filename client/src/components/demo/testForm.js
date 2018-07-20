@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, ControlLabel, FormControl, Button, HelpBlock, Checkbox, Radio } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, Button, HelpBlock, Radio } from 'react-bootstrap';
 import ImageUploader from 'react-images-upload';
 
 

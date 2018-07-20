@@ -3,7 +3,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import * as helperFuncs from '../utils/helperFunctions';
+import * as helperFuncs from '../../utils/helperFunctions';
 import {Carousel} from 'react-bootstrap';
 
 const dummyState = {
@@ -47,7 +47,7 @@ function appTile(app, i) {
   };
   return (
     <Carousel.Item className="homepage-tile-container" key={i}> 
-      <img src={require(`../public/${app.img}`)} className="homepage-tile" onClick={imageClick} alt="loading..." />
+      <img src={require(`../../public/${app.img}`)} className="homepage-tile" onClick={imageClick} alt="loading..." />
       <Carousel.Caption>
         <h3>{app.name}</h3>
       </Carousel.Caption>

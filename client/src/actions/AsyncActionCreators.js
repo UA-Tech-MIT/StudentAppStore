@@ -1,5 +1,5 @@
 import * as ActionTypes from '../constants/actionTypes';
-import {getAppsById, filter} from '../utils/helperFunctions';
+import {filter} from '../utils/helperFunctions';
 // note: by using this syntax we are almost ompletely independent from the apollo stack
 // please do NOT USE THE Apollo Query element (its fine for bootstrapping components without redux in place)
 
@@ -17,15 +17,17 @@ const createFetchConfig = (query) => {
 
 const queryUri = 'http://localhost:8080/graphql';
 
-
+// making a query arount the current query seems counter intuitive, but i don't
+// declare the fields in the original ones. Should i be extending or is this cool.
 export const GET_ALL_APPS = `
 query GetAllApps {
-    apps {
+    allApps {
       name
       author
       genre
       email
       id
+      appNo
     } 
 }
 `;
@@ -33,31 +35,50 @@ query GetAllApps {
 /* eslint-disable no-unused-vars*/
 export const GET_APP_BY_ID = `
     query GetAppsByID($ID:String!) {
-        apps(id: $ID) 
+        searchApps(id: $ID) {
+            name
+            author
+            genre
+            email
+            id
+            appNo
+        }
     }
 `;
 
+
 export const GET_ALL_USERS = `
     query GetAllUsers {
-        users 
+        allUsers {
+            firstName
+            lastName
+            email
+            id
+            userNo
+        } 
     }
 `;
 
 export const GET_USER_BY_ID = `
     query GetUserByID($ID:String!) {
-        users(id: $ID ) 
+        getUser(id: $ID ) 
     }
 `;
 
 export const GET_ALL_REVIEWS = `
     query GetAllReviews {
-        reviews 
+        allReviews {
+            content
+            title
+            userId
+            reviewNo
+        } 
     }
 `;
 
 export const GET_REVIEW_BY_ID = `
     query GetReviewByID($ID:String!) {
-        reviews(id: $ID) 
+        getReview(id: $ID) 
     }
 `;
 
@@ -66,6 +87,10 @@ export const fetchApps = () => dispatch => {
         /* eslint-disable no-undef*/
         .then(res => res.json())
         .then(res => {
+            if(res.errors) {
+                console.log(res.errors);
+                // return false;
+            }
             const filteredApps = filter(res.data, (app) => { // leaving this filtering example
                 return app.email === null; // all emails are null atm so it should return every app
             });

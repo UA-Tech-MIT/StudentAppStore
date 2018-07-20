@@ -1,18 +1,14 @@
 import React from 'react';
-import HomepageCarousel from '../homepageCarousel';
 import PropTypes from 'prop-types';
-// import {bindActionCreators} from 'redux';
 import * as helperFuncs from '../../utils/helperFunctions'; // TODO
-import { Media, Jumbotron, Button, Row, Grid, Col, Glyphicon} from 'react-bootstrap';
+import { Media, Jumbotron, Button, Row, Grid, Col, Glyphicon } from 'react-bootstrap';
 import Rating from 'react-rating';
-import { ReviewList } from './ReviewList';
-import {fetchApps, fetchAppByID} from '../../actions/AsyncActionCreators';
-
+import { ReviewList } from '../common/ReviewList';
+import { fetchApps, fetchAppByID } from '../../actions/AsyncActionCreators';
 import { connect } from 'react-redux';
-import {bindActionCreators} from 'redux';
-// TODO Add react redux to stack
+import { bindActionCreators } from 'redux';
 
-const testApp= {
+const testApp = {
   author: "MIT",
   type: "App",
   name: 'Stellar',
@@ -35,55 +31,53 @@ class AppPage extends React.Component {
     super(props, context);
   }
 
-
   render() {
     return (
       <div>
-      <Jumbotron>
-        <h1>{this.props.name}</h1>
-        <p>
-          {this.props.description}
-        </p>
+        <Jumbotron>
+          <h1>{this.props.name}</h1>
+          <p>
+            {this.props.description}
+          </p>
 
           <Grid>
             <Row>
               <Col xs={12} md={8}>
-            <Button bsStyle="primary">Like <Glyphicon glyph="heart"/></Button>
-            </Col>
-            <Col xs={6} md={4} >
-            <Button bsStyle="primary">Write a review</Button>
-            </Col>
+                <Button bsStyle="primary">Like <Glyphicon glyph="heart" /></Button>
+              </Col>
+              <Col xs={6} md={4} >
+                <Button bsStyle="primary">Write a review</Button>
+              </Col>
             </Row>
           </Grid>
 
-      </Jumbotron>
-      <br/>
-      <div className='app-page'>
-      <Media>
-      <Media.Left>
-       <img src={require(`../../public/${this.props.img}`)} className="tile" onClick={()=> window.location.replace(this.props.url)} alt="loading..." />
-      </Media.Left>
-      <Media.Body>
-        <Media.Heading>{this.props.name}</Media.Heading>
-        <p>
-          An app by {this.props.author}
-        </p>
-        <Rating
-  emptySymbol={<img src="../../public/star-empty.png" className="icon" />}
-  fullSymbol={<img src="../../public/star-full.png" className="icon" />}
-  onChange={(value) => console.log(value)}
-/>
-      </Media.Body>
-      <Media.List>
-      <h3>Review List Component:</h3>
-        <ReviewList/>
-        </Media.List>
-    </Media>
+        </Jumbotron>
+        <br />
+        <div className='app-page'>
+          <Media>
+            <Media.Left>
+              <img src={require(`../../public/${this.props.img}`)} className="tile" onClick={() => window.location.replace(this.props.url)} alt="loading..." />
+            </Media.Left>
+            <Media.Body>
+              <Media.Heading>{this.props.name}</Media.Heading>
+              <p>
+                An app by {this.props.author}
+              </p>
+              <Rating
+                emptySymbol={<img src="../../public/star-empty.png" className="icon" />}
+                fullSymbol={<img src="../../public/star-full.png" className="icon" />}
+                onChange={(value) => console.log(value)}
+              />
+            </Media.Body>
+            <Media.List>
+              <h3>Review List Component:</h3>
+              <ReviewList />
+            </Media.List>
+          </Media>
 
-    <Button bsStyle="primary" onClick={() => this.props.fetchApps()}>fetch apps (Check Redux Devtools)</Button>
-
-    </div>
-    </div>
+          <Button bsStyle="primary" onClick={() => this.props.fetchApps()}>fetch apps (Check Redux Devtools)</Button>
+        </div>
+      </div>
 
       // <section className="app-page">
       //   <h1 className="header"> {this.state.name} </h1>
@@ -115,7 +109,7 @@ const mapStateToProps = (state, ownProps = {}) => {
   return {
     name: testApp.name,
     author: testApp.author,
-    type:  testApp.type,
+    type: testApp.type,
     reivews: testApp.reivews,
     url: testApp.url,
     rating: testApp.rating,
@@ -134,4 +128,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(AppPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AppPage);

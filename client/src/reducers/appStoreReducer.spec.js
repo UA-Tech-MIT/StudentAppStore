@@ -1,9 +1,9 @@
 import { getFormattedDateTime } from '../utils/dates';
-import * as helperFuncs from '../utils/helperFunctions';
-import initialState from './initialState';
-import { getFormattedNumber } from '../utils/numberFormat';
+// import * as helperFuncs from '../utils/helperFunctions';
+// import { getFormattedNumber } from '../utils/numberFormat';
 import reducer from './appStoreReducer';
 import * as ActionTypes from '../constants/actionTypes';
+import initialState from './initialState';
 
 const testState = () => {
     return {
@@ -18,18 +18,12 @@ const testState = () => {
     };
 };
 
-//TODO make a workaround test for the date
 //TODO test all paths
-
 
 describe('Reducers::AppStoreReducer', () => {
     const getInitialState = () => {
-        return {
-            apps: {},
-        };
+        return initialState.appStore;
     };
-
-    const testDateTime = getFormattedDateTime();
 
     it('should initilaize with no apps and default time', () => {
         expect(reducer(undefined, "default")).toEqual(getInitialState())
