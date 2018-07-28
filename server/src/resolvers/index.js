@@ -2,6 +2,7 @@
 // import Review from './review';
 // import User from './user';
 import models from '../models';
+import Faker from 'faker';
 
 export default {
     Query: {
@@ -114,15 +115,20 @@ export default {
         }
     },
     Mutation: {
-        //APP MUTATIONS
+        //APP 
+        
+        //WORKING!
         createApp: async (parent, args, /*{ models } */) => {
-            try {
-                models.App.create(args);
-                return true;
-            } catch (err) {
-                console.log(err);
-                return false;
-            }
+            let id = Faker.random.uuid();
+            return models.App.create({ ...args, id })
+                .then((res) => {
+                    console.log("app created successfully with args", res);
+                    return true;
+                })
+                .catch((err) => {
+                    console.log(err);
+                    return false;
+                })
         },
 
         //USER MUTATIONS

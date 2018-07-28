@@ -38,7 +38,7 @@ class Router extends React.Component {
           <Route path="/app-store" component={AppStorePage} />
           <Route path="/app-page" component={AppPage} />
           <Route path="/online-component" component={OnlineComponent} />
-          <Route path="/test-form" component={TestForm} />
+          <Route path="/app-form" component={TestForm} />
           <Route path="/image-upload" component={ImageUploadComponent} />
           <Route path="/front-page-container" component={FrontPageContainer} />
           <Route path="/submit-app" component={CreateAppForm} />

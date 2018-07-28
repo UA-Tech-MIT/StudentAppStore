@@ -3,14 +3,17 @@ import {filter} from '../utils/helperFunctions';
 // note: by using this syntax we are almost ompletely independent from the apollo stack
 // please do NOT USE THE Apollo Query element (its fine for bootstrapping components without redux in place)
 
-const createFetchConfig = (query) => {
+const createFetchConfig = (query, vars) => {
     return {//NOTE: although this says POST, this is a query.
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
           },
           mode: 'cors',
-          body: JSON.stringify({query})
+          body: JSON.stringify({
+            query,
+            variables: vars,
+        }),
     };
 };
 
@@ -82,6 +85,28 @@ export const GET_REVIEW_BY_ID = `
     }
 `;
 
+export const CREATE_APP = (args) => {
+    let {author, name, genre, image, medium, description, url} = args;
+    if(!genre) genre = "None";
+    if(!image) image = "test.png";
+
+    return `
+        mutation CreateCustomApp($isofficialresource: Boolean!) {
+            createApp(
+                author: "${author}",
+                name: "${name}",
+                isOfficialResource: $isofficialresource,
+                genre: "${genre}",
+                medium: "${medium}",
+                image: "${image}",
+                email: "${author}@mit.edu",
+                dateLaunched: null,
+                description: "${description}",
+                url:  "${url}")
+    }
+`;
+};
+
 export const fetchApps = () => dispatch => {
     fetch(queryUri, createFetchConfig(GET_ALL_APPS))
         /* eslint-disable no-undef*/
@@ -134,4 +159,13 @@ export const postApp = postData => dispatch => { // find out how to post data to
     })
         .then(res => res.json())
         .then(data => console.log(data));
+};
+
+export const createApp = (args) => dispatch => {
+    let vars = {isofficialresource: JSON.parse(args.isofficialresource)};
+
+    //TODO(yaatehr) add varification?
+    fetch(queryUri, createFetchConfig(CREATE_APP(args), vars))
+    .then(res => res.json())
+    .then(data => console.log(data));
 };

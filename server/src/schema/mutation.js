@@ -13,11 +13,11 @@ type Mutation {
         dateLaunched: String
         description: String!
         url:  String!
-        ownerHomePage: String): App!
+        ownerHomePage: String): Boolean!
 
     #USER MUTATIONS
 
-    createUser(username: String!, email: String!): User!
+    createUser(username: String!, email: String!): Boolean!
     addApp(appId: ID!, teamId: ID): Boolean!
     removeApp(appId: ID!, teamID: ID): Boolean!
     joinTeam(teamID: ID!): Boolean!

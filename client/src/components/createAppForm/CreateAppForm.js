@@ -3,6 +3,8 @@ import { FormGroup, ControlLabel, FormControl, Button, HelpBlock, Radio } from '
 import ImageUploader from 'react-images-upload';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {createApp} from '../../actions/AsyncActionCreators';
 
 // import validator from 'validator';
 
@@ -25,27 +27,32 @@ function FieldGroup({ id, label, help, validationState, ...props }) {
     validationState: PropTypes.any,
 };
 
+const getDefaultState = () => {
+    return {
+        formIsOwner: { value: false, validationState: null },
+        formName: { value: '', validationState: null },
+        formUrl: { value: '', validationState: null },
+        formAuthor: { value: '', validationState: null },
+        formGenre: { value: '', validationState: null },
+        formTags: { value: '', validationState: null },
+        formDescription: { value: '', validationState: null },
+        formIsOfficialResource: { value: null, validationState: null },
+        formImage: { value: 'testimg.jpg', validationState: null },
+        images: null
+    };
+};
+
 
 class CreateAppForm extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            formIsOwner: { value: false, validationState: null },
-            formName: { value: '', validationState: null },
-            formUrl: { value: '', validationState: null },
-            formAuthor: { value: '', validationState: null },
-            formGenre: { value: '', validationState: null },
-            formTags: { value: '', validationState: null },
-            formDecription: { value: '', validationState: null },
-            formIsOfficialResource: {value: null, validationState: null},
-            formImage: { validationState: null},
-            images: null
-                    };
+        this.state = getDefaultState();
     
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onDrop = this.onDrop.bind(this);
+        this.resetForm = this.resetForm.bind(this);
       }
 
       onDrop(pictureFiles, pictureDataURLs) {
@@ -56,7 +63,12 @@ class CreateAppForm extends Component {
             state.images = pictureFiles.files[0];
             state.screenshots = pictureFiles.files.splice(1, pictureFiles.length -1);
         }
-	}
+        this.setState(state);
+    }
+    
+    resetForm() {
+        this.setState(getDefaultState());
+    }
     
       handleChange(event) {
 
@@ -70,7 +82,16 @@ class CreateAppForm extends Component {
     
       handleSubmit(event) {
         event.preventDefault();
-        this.formIsValid();
+        let validForm = this.formIsValid();
+
+        if(validForm) {
+            let args = {};
+            let state = this.state;
+            for(let key in state) {
+                args[key.substr(4).toLowerCase()] = state[key].value;
+            }
+            this.props.createApp(args);
+        }
         console.log(this.state);
       }
 
@@ -120,7 +141,7 @@ class CreateAppForm extends Component {
     
 
   render() {
-      let {formIsOwner, formName, formUrl, formAuthor, formGenre, formTags, formDecription, formIsOfficialResource, formImage} = this.state;
+      let {formIsOwner, formName, formUrl, formAuthor, formGenre, formTags, formDescription, formIsOfficialResource, formImage} = this.state;
     return (
         <div>
             <h1>Request An App (Create App in DB)</h1>
@@ -145,32 +166,29 @@ class CreateAppForm extends Component {
 
                 <FormGroup 
                 onChange={this.handleChange} 
-                value={formIsOwner.value}
+                // value={formIsOwner.value}
                 validationState={formIsOwner.validationState}>
                     <ControlLabel>Did you make this? (email must be provided)</ControlLabel>
                     <br/>
-                    <Radio value={true} id="formIsOwner" inline>
+                    <Radio value={true} name="ownerGroup" id="formIsOwner" inline>
                         Yes
                     </Radio>{' '}
-                    <Radio value={false} id="formIsOwner" inline>
+                    <Radio value={false} name="ownerGroup" id="formIsOwner" inline>
                         No
                     </Radio>{' '}
                 </FormGroup>
-                {
-                    () => {
-                        if(!formIsOwner.value) {
-                            return (
-                                <FieldGroup 
-                                    id="formAuthor" 
-                                    label="Author Kerberos" 
-                                    type="text" 
-                                    validationState={formAuthor.validationState} 
-                                    value={formAuthor.value}/>
-                            );
-                        }
 
-                    }
-                }
+
+                <FormGroup 
+                    controlId="formAuthor" 
+                    className={formIsOwner.value === 'false' ? '' : 'hidden'} 
+                    onChange={this.handleChange}
+                    validationState={formAuthor.validationState}
+                    value={formAuthor.value}>
+                    <ControlLabel>Author</ControlLabel>
+                    <FormControl type="text" placeholder="Author kerberos"  />
+                </FormGroup>
+
 
 
                 <FieldGroup 
@@ -187,10 +205,10 @@ class CreateAppForm extends Component {
                     value={formIsOfficialResource.value}>
                     <ControlLabel>What kind of resource is this?</ControlLabel>
                     <br/>
-                    <Radio id="formIsOfficialResource" value={false} inline>
+                    <Radio id="formIsOfficialResource" name="officialResourceGroup" value={false} inline>
                         Student Made
                     </Radio>{' '}
-                    <Radio id="formIsOfficialResource" value={true} inline>
+                    <Radio id="formIsOfficialResource" name="officialResourceGroup" value={true} inline>
                         School Resource
                     </Radio>{' '}
                 </FormGroup>
@@ -202,8 +220,8 @@ class CreateAppForm extends Component {
                 <FormGroup 
                     controlId="formDescription" 
                     onChange={this.handleChange}
-                    validationState={formDecription.validationState}
-                    value={formDecription.value}>
+                    validationState={formDescription.validationState}
+                    value={formDescription.value}>
                     <ControlLabel>Description</ControlLabel>
                     <FormControl componentClass="textarea" placeholder="describe your app here"  />
                 </FormGroup>
@@ -220,7 +238,7 @@ class CreateAppForm extends Component {
                 <br/>
                 <FormGroup controlId="formImage" validationState={formImage.validationState}>
                 <ControlLabel>Upload Images</ControlLabel>
-                <FormControl.Static> Your first image will be a thumbnail, and the rest screenshots</FormControl.Static>
+                <FormControl.Static> Your first image will be used as a thumbnail</FormControl.Static>
               </FormGroup>                    
                 <br/>
 
@@ -231,15 +249,21 @@ class CreateAppForm extends Component {
                     imgExtension={['.jpg', '.gif', '.png']}
                     maxFileSize={5242880}
                     withPreview={true}
+                    buttonType="button"
                 >
                 </ImageUploader>
 
-                <Button type="submit">Submit</Button>
+                <Button type="submit">Submit</Button>{'     '}
+                <Button type="reset" onClick={this.resetForm}>Clear</Button>
 
             </form>
         </div>
     );
   }
+}
+
+CreateAppForm.propTypes = {
+    createApp: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state, {ownProps}) =>  {
@@ -248,4 +272,11 @@ const mapStateToProps = (state, {ownProps}) =>  {
     }
 }
 
-export default connect(mapStateToProps)(CreateAppForm);
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+      createApp
+    }, dispatch);
+  };
+  
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateAppForm);
