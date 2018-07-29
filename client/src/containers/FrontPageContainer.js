@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from '../../../node_modules/redux';
-import * as ActionCreators from '../../actions/AsyncActionCreators';
-import AppStorePage from './AppStorePage';
+import { bindActionCreators } from 'redux';
+import * as ActionCreators from '../actions/AsyncActionCreators';
+import AppStorePage from '../components/welcomePage/AppStorePage';
+
 
 class FrontPageContainer extends Component {
 
@@ -33,7 +34,7 @@ FrontPageContainer.propTypes = {
     fetchSpotlightApps: PropTypes.func,
     customFetch: PropTypes.func,
     spotlightApps: PropTypes.object,
-}
+};
 
 const mapStateToProps = (state, ownProps = {}) => {
     return {

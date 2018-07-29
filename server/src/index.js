@@ -32,7 +32,7 @@ app.use(graphqlEndpoint, bodyParser.json(), GraphHTTP({
 
 setTimeout(() => {
   initDatabase();
-}, 10000);
+}, 4000);
 
 app.listen(APP_PORT, () => {
   console.log('DB Listening on port 8080\n');

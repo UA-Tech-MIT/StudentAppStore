@@ -2,17 +2,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
-import HomePage from './HomePage';
-import FuelSavingsPage from './containers/FuelSavingsPage';
-import AboutPage from './AboutPage';
-import AppStorePage from './containers/AppStorePage';
-import AppPage from './containers/AppPage';
-import NotFoundPage from './NotFoundPage';
-import NavigationBar from './NavigationBar';
-import OnlineComponent from './onlineComponent.example';
-import TestForm from './forms/testForm';
-import ImageUploadComponent from './ImageUploader';
-import FrontPageContainer from './containers/FrontPageContainer';
+import HomePage from './demo/HomePage';
+import FuelSavingsPage from './demo/FuelSavingsPage';
+import AboutPage from './aboutPage/AboutPage';
+import AppStorePage from './welcomePage/AppStorePage';
+import AppPage from './appViewPage/AppPage';
+import NotFoundPage from './demo/NotFoundPage';
+import NavigationBar from './navbar/NavigationBar';
+import OnlineComponent from './demo/onlineComponent.example';
+import TestForm from './demo/testForm';
+import ImageUploadComponent from './common/ImageUploader';
+import FrontPageContainer from '../containers/FrontPageContainer';
+import CreateAppForm from './createAppForm/CreateAppForm';
 
 // import { Navbar, NavItem, NavDropdown, MenuItem, Nav } from 'react';
 
@@ -20,7 +21,7 @@ import FrontPageContainer from './containers/FrontPageContainer';
 // version of hot reloading won't hot reload a stateless
 // component at the top-level.
 
-class App extends React.Component {
+class Router extends React.Component {
   render() {
     return (
       <div>
@@ -40,6 +41,7 @@ class App extends React.Component {
           <Route path="/test-form" component={TestForm} />
           <Route path="/image-upload" component={ImageUploadComponent} />
           <Route path="/front-page-container" component={FrontPageContainer} />
+          <Route path="/submit-app" component={CreateAppForm} />
           {/* <Route path="*" render={() => (<Redirect to="/" />)} />           */}
 
           <Route component={NotFoundPage} />
@@ -50,8 +52,8 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = {
+Router.propTypes = {
 children: PropTypes.element
 };
 
-export default App;
+export default Router;

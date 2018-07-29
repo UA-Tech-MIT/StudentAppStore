@@ -1,4 +1,3 @@
-import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import React from 'react';
 
@@ -20,6 +19,8 @@ export class NavigationBar extends React.Component {
                             <NavLink className="navLink" to="/app-store" activeStyle={activeStyle}>App Store</NavLink>
                             {' | '}
                             <NavLink className="navLink" to="/app-page" activeStyle={activeStyle}>App Page</NavLink>
+                            {' | '}
+                            <NavLink className="navLink" to="/submit-app" activeStyle={activeStyle}>Submit App</NavLink>
                             {' | '}
                             <NavLink className="navLink" to="/online-component" activeStyle={activeStyle}>Example Online Component</NavLink>
                             {' | '}

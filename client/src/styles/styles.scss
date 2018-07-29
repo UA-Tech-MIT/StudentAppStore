@@ -53,6 +53,10 @@ h2 {
 }
 
 
+.hidden {
+  display: none;
+}
+
 
 .online-user {
   border-radius: 1%;
@@ -87,13 +91,6 @@ td.fuel-savings-label { width: 175px; }
     font-size: 13px;
     font-weight: 300;
     line-height: 1.4;
-
-    .header {
-
-    }
-    .author {
-
-    }
 
     .icon {
       width: 15px;

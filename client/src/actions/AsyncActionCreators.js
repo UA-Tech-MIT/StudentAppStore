@@ -1,31 +1,34 @@
 import * as ActionTypes from '../constants/actionTypes';
-import {getAppsById, filter} from '../utils/helperFunctions';
+import {filter} from '../utils/helperFunctions';
 // note: by using this syntax we are almost ompletely independent from the apollo stack
 // please do NOT USE THE Apollo Query element (its fine for bootstrapping components without redux in place)
 
-const createFetchConfig = (query) => {
+const createFetchConfig = (query, vars) => {
     return {//NOTE: although this says POST, this is a query.
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
           },
           mode: 'cors',
-          body: JSON.stringify({query})
+          body: JSON.stringify({
+            query,
+            variables: vars,
+        }),
     };
 };
 
 
 const queryUri = 'http://localhost:8080/graphql';
 
-
 export const GET_ALL_APPS = `
 query GetAllApps {
-    apps {
+    allApps {
       name
       author
       genre
       email
       id
+      appNo
     } 
 }
 `;
@@ -33,39 +36,84 @@ query GetAllApps {
 /* eslint-disable no-unused-vars*/
 export const GET_APP_BY_ID = `
     query GetAppsByID($ID:String!) {
-        apps(id: $ID) 
+        searchApps(id: $ID) {
+            name
+            author
+            genre
+            email
+            id
+            appNo
+        }
     }
 `;
 
+
 export const GET_ALL_USERS = `
     query GetAllUsers {
-        users 
+        allUsers {
+            firstName
+            lastName
+            email
+            id
+            userNo
+        } 
     }
 `;
 
 export const GET_USER_BY_ID = `
     query GetUserByID($ID:String!) {
-        users(id: $ID ) 
+        getUser(id: $ID ) 
     }
 `;
 
 export const GET_ALL_REVIEWS = `
     query GetAllReviews {
-        reviews 
+        allReviews {
+            content
+            title
+            userId
+            reviewNo
+        } 
     }
 `;
 
 export const GET_REVIEW_BY_ID = `
     query GetReviewByID($ID:String!) {
-        reviews(id: $ID) 
+        getReview(id: $ID) 
     }
 `;
+
+export const CREATE_APP = (args) => {
+    let {author, name, genre, image, medium, description, url} = args;
+    if(!genre) genre = "None";
+    if(!image) image = "test.png";
+
+    return `
+        mutation CreateCustomApp($isofficialresource: Boolean!) {
+            createApp(
+                author: "${author}",
+                name: "${name}",
+                isOfficialResource: $isofficialresource,
+                genre: "${genre}",
+                medium: "${medium}",
+                image: "${image}",
+                email: "${author}@mit.edu",
+                dateLaunched: null,
+                description: "${description}",
+                url:  "${url}")
+    }
+`;
+};
 
 export const fetchApps = () => dispatch => {
     fetch(queryUri, createFetchConfig(GET_ALL_APPS))
         /* eslint-disable no-undef*/
         .then(res => res.json())
         .then(res => {
+            if(res.errors) {
+                console.log(res.errors);
+                // return false;
+            }
             const filteredApps = filter(res.data, (app) => { // leaving this filtering example
                 return app.email === null; // all emails are null atm so it should return every app
             });
@@ -109,4 +157,13 @@ export const postApp = postData => dispatch => { // find out how to post data to
     })
         .then(res => res.json())
         .then(data => console.log(data));
+};
+
+export const createApp = (args) => dispatch => {
+    let vars = {isofficialresource: JSON.parse(args.isofficialresource)};
+
+    //TODO(yaatehr) add varification?
+    fetch(queryUri, createFetchConfig(CREATE_APP(args), vars))
+    .then(res => res.json())
+    .then(data => console.log(data));
 };

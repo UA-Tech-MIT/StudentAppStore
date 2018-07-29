@@ -1,3 +1,6 @@
+import {getFormattedDateTime} from '../utils/dates';
+
+
 export default {
   fuelSavings: {
     newMpg: '',
@@ -17,6 +20,6 @@ export default {
   },
   appStore: {
     apps: {},
-    lastUpdated: null,
+    lastUpdated: getFormattedDateTime(),
   }
 };
