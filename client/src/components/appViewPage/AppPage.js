@@ -7,6 +7,8 @@ import { ReviewList } from '../common/ReviewList';
 import { fetchApps, fetchAppByID } from '../../actions/AsyncActionCreators';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import AppCarousel from '../common/AppCarousel';
+import {Container} from 'semantic-ui-react';
 
 const testApp = {
   author: "MIT",
@@ -81,6 +83,11 @@ class AppPage extends React.Component {
 
           <Button bsStyle="primary" onClick={() => this.props.fetchApps()}>fetch apps (Check Redux Devtools)</Button>
         </div>
+        <Container>
+          some text
+          <AppCarousel/>
+          </Container>
+
       </div>
 
       // <section className="app-page">
