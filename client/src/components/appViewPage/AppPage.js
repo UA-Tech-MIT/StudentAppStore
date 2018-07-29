@@ -56,7 +56,11 @@ class AppPage extends React.Component {
         <div className='app-page'>
           <Media>
             <Media.Left>
-              <img src={require(`../../public/${this.props.img}`)} className="tile" onClick={() => window.location.replace(this.props.url)} alt="loading..." />
+              <img 
+                src={require(`../../public/${this.props.img}`)} 
+                className="tile" 
+                onClick={() => window.location.replace(this.props.url)} 
+                alt="loading..." />
             </Media.Left>
             <Media.Body>
               <Media.Heading>{this.props.name}</Media.Heading>

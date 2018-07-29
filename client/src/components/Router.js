@@ -13,6 +13,7 @@ import OnlineComponent from './demo/onlineComponent.example';
 import TestForm from './demo/testForm';
 import ImageUploadComponent from './common/ImageUploader';
 import FrontPageContainer from '../containers/FrontPageContainer';
+import CreateAppForm from './createAppForm/CreateAppForm';
 
 // import { Navbar, NavItem, NavDropdown, MenuItem, Nav } from 'react';
 
@@ -40,6 +41,7 @@ class Router extends React.Component {
           <Route path="/test-form" component={TestForm} />
           <Route path="/image-upload" component={ImageUploadComponent} />
           <Route path="/front-page-container" component={FrontPageContainer} />
+          <Route path="/submit-app" component={CreateAppForm} />
           {/* <Route path="*" render={() => (<Redirect to="/" />)} />           */}
 
           <Route component={NotFoundPage} />

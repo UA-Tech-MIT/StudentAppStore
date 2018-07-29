@@ -20,6 +20,8 @@ export class NavigationBar extends React.Component {
                             {' | '}
                             <NavLink className="navLink" to="/app-page" activeStyle={activeStyle}>App Page</NavLink>
                             {' | '}
+                            <NavLink className="navLink" to="/submit-app" activeStyle={activeStyle}>Submit App</NavLink>
+                            {' | '}
                             <NavLink className="navLink" to="/online-component" activeStyle={activeStyle}>Example Online Component</NavLink>
                             {' | '}
                             <NavLink className="navLink" to="/test-form" activeStyle={activeStyle}>Example Form</NavLink>
