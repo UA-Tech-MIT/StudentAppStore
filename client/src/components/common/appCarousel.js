@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import * as helperFuncs from '../../utils/helperFunctions';
+import { Container, Card, Icon, Image } from 'semantic-ui-react';
 
 // import AppTile from '../AppPage/AppTile.js';
 // import { connect, Provider, bindActionCreators } from 'react-redux';
@@ -20,31 +21,41 @@ const dummyState = {
       name: 'Firehose',
       img: 'firehose.png',
       url: 'https://firehose.mit.edu',
+      genre: "Planning Tool",
     },
     {
       name: 'TurboVote',
       img: 'turbovote.jpeg',
       url: 'https://mit.turbovote.org',
+      genre: "Planning Tool",
+
     },
     {
       name: 'Planner',
       img: 'planner.png',
       url: 'https://planner.mit.edu',
+      genre: "Planning Tool",
+
     },
     {
       name: 'Course Catalogue Searcher',
       img: 'course-catalogue-searcher.png',
-      url: 'https://chrome.google.com/webstore/detail/mit-course-catalog-search/gnakgohnkbkolbefnekinmmkmdfcogfa'
+      url: 'https://chrome.google.com/webstore/detail/mit-course-catalog-search/gnakgohnkbkolbefnekinmmkmdfcogfa',
+      genre: "Planning Tool",
+
     },
     {
       name: 'Course Picker',
       img: 'course-picker.png',
-      url: 'https://picker.mit.edu'
+      url: 'https://picker.mit.edu',
+      genre: "Planning Tool",
+
     },
     {
       name: 'Stellar',
       img: 'stellar.png',
-      url: 'https://stellar.mit.edu'
+      url: 'https://stellar.mit.edu',
+      genre: "Planning Tool",
     }
   ],
 };
@@ -54,12 +65,22 @@ function appTile(app, i) {
     helperFuncs(app.url);
   };
   return (
-    <div className="app-tile-container" key={i}> 
-      <img src={require(`../public/${app.img}`)} className="app-tile" onClick={imageClick} alt="loading..." />
-      <span>
-        {app.name}
-      </span>
-    </div>
+    // <div className="app-tile-container" key={i}> 
+    //   <img src={require(`../../public/${app.img}`)} className="app-tile" onClick={imageClick} alt="loading..." />
+    //   <span>
+    //     {app.name}
+    //   </span>
+    // </div>
+    <Card key={i} className="app-tile">
+      <Image src={require(`../../public/${app.img}`)} onClick={imageClick} alt="loading..." centered/>
+      <Card.Content>
+        <Card.Header>{app.name}</Card.Header>
+        <Card.Meta>{app.genre}</Card.Meta>
+        <Card.Description>Detailed app description (probably won't stay but I want to see how it looks)</Card.Description>
+      </Card.Content>
+    </Card>
+
+
   );
 }
 
@@ -81,9 +102,11 @@ class AppCarousel extends React.Component {
       autoplaySpeed: 2000,
       pauseOnHover: true,
       centerMode: false,
-      arrows:true
+      arrows: true
 
     };
+
+
 
     if (!this.state.tiles) {
       return (
@@ -106,7 +129,7 @@ class AppCarousel extends React.Component {
     }
     return (
       <div>
-        <Slider {...settings}>
+        <Slider className="app-tile-container" {...settings}>
           {this.state.tiles.map((tile, index) => appTile(tile, index))}
         </Slider>
       </div>
