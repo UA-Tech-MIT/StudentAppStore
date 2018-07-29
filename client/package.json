@@ -175,7 +175,7 @@
     "parser": "babel-eslint",
     "rules": {
       "no-unused-vars": 1,
-      "no-console": 0,
+      "no-console": 1,
       "semi": [
         1,
         "always"

@@ -7,6 +7,7 @@ import {bindActionCreators} from 'redux';
 import {createApp} from '../../actions/AsyncActionCreators';
 
 // import validator from 'validator';
+//TODO add validation and success toast/Growl or some other sort of notification
 
 function FieldGroup({ id, label, help, validationState, ...props }) {
     

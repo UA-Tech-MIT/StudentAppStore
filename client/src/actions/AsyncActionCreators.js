@@ -20,8 +20,6 @@ const createFetchConfig = (query, vars) => {
 
 const queryUri = 'http://localhost:8080/graphql';
 
-// making a query arount the current query seems counter intuitive, but i don't
-// declare the fields in the original ones. Should i be extending or is this cool.
 export const GET_ALL_APPS = `
 query GetAllApps {
     allApps {
