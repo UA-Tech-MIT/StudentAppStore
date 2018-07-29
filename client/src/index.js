@@ -11,6 +11,8 @@ require('./favicon.ico'); // Tell webpack to load favicon.ico
 
 import { ApolloProvider } from "react-apollo";
 import client from './apollo';
+import 'semantic-ui-css/semantic.min.css';
+
 // import gql from "graphql-tag";
 
 

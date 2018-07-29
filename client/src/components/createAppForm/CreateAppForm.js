@@ -10,18 +10,18 @@ import {createApp} from '../../actions/AsyncActionCreators';
 //TODO add validation and success toast/Growl or some other sort of notification
 
 function FieldGroup({ id, label, help, validationState, ...props }) {
-    
-    return (
-      <FormGroup controlId={id} validationState={validationState}>
-        <ControlLabel>{label}</ControlLabel>
-        <FormControl {...props} />
-        {help && <HelpBlock>{help}</HelpBlock>}
-      </FormGroup>
-    );
-    
-  }
 
-  FieldGroup.propTypes = {
+    return (
+        <FormGroup controlId={id} validationState={validationState}>
+            <ControlLabel>{label}</ControlLabel>
+            <FormControl {...props} />
+            {help && <HelpBlock>{help}</HelpBlock>}
+        </FormGroup>
+    );
+
+}
+
+FieldGroup.propTypes = {
     id: PropTypes.string,
     label: PropTypes.string,
     help: PropTypes.string,
@@ -45,104 +45,92 @@ const getDefaultState = () => {
 
 
 class CreateAppForm extends Component {
-
     constructor(props) {
         super(props);
         this.state = getDefaultState();
-    
+
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onDrop = this.onDrop.bind(this);
         this.resetForm = this.resetForm.bind(this);
-      }
+    }
 
-      onDrop(pictureFiles, pictureDataURLs) {
+    onDrop(pictureFiles, pictureDataURLs) {
         let state = this.state;
-          if(pictureFiles.files === undefined)
+        if (pictureFiles.files === undefined)
             state.images = pictureFiles;
         else {
             state.images = pictureFiles.files[0];
-            state.screenshots = pictureFiles.files.splice(1, pictureFiles.length -1);
+            state.screenshots = pictureFiles.files.splice(1, pictureFiles.length - 1);
         }
         this.setState(state);
     }
-    
+
     resetForm() {
         this.setState(getDefaultState());
     }
-    
-      handleChange(event) {
+
+    handleChange(event) {
 
         var state = this.state;
         state[event.target.id].value = event.target.value;
         this.setState(state);
-      }
+    }
 
-
-
-    
-      handleSubmit(event) {
+    handleSubmit(event) {
         event.preventDefault();
         let validForm = this.formIsValid();
 
-        if(validForm) {
+        if (validForm) {
             let args = {};
             let state = this.state;
-            for(let key in state) {
+            for (let key in state) {
                 args[key.substr(4).toLowerCase()] = state[key].value;
             }
             this.props.createApp(args);
         }
         console.log(this.state);
-      }
+    }
 
 
-      formIsValid = () => {
+    formIsValid() {
         let state = this.state;
         let isValid = true;
-  
-        // if (!validator.isEmail(state.email.value)) {
-        //   state.email.isValid = false; //this will trigger the has-error class
-        //   state.email.message = 'Not a valid email address'; //will be displayed in the help-block for the email input
-  
-        //   this.setState(state);
-        //   return false;
-        // }
-        for(let key in state) {
-            if(key.indexOf("form") == -1)
+        for (let key in state) {
+            if (key.indexOf("form") == -1)
                 continue; // skip all non form values
-            let object = state[key];
 
-            switch(key) {
-                default : {
-                    
-                    if(!object.value || object.value === "") {
+            let object = state[key];
+            switch (key) {
+                default: {
+                    if (!object.value || object.value === "") {
                         state[key].validationState = 'error';
                         isValid = false;
                     }
-                    else state[key].validationState = null;
+                    else 
+                        state[key].validationState = null;
                     break;
                 }
-                case 'formImage' : {
-                    if(!this.state.images) {state[key].validationState = 'error'; 
-                    isValid = false;
-                }
-                    else state[key].validationState = null;
+                case 'formImage': {
+                    if (!this.state.images) {
+                        state[key].validationState = 'error';
+                        isValid = false;
+                    }
+                    else 
+                        state[key].validationState = null;
                     break;
                 }
+            }
         }
-
-      }
-      this.setState(state);
-  
-      //additional validation checks here...
-
-      return isValid;
+        this.setState(state);
+        //TODO additional validation checks
+        return isValid;
     }
-    
 
   render() {
-      let {formIsOwner, formName, formUrl, formAuthor, formGenre, formTags, formDescription, formIsOfficialResource, formImage} = this.state;
+      let {formIsOwner, formName, formUrl, formAuthor, formGenre,
+         formTags, formDescription, formIsOfficialResource, formImage} = this.state;
+
     return (
         <div>
             <h1>Request An App (Create App in DB)</h1>
@@ -270,8 +258,8 @@ CreateAppForm.propTypes = {
 const mapStateToProps = (state, {ownProps}) =>  {
     return {
         
-    }
-}
+    };
+};
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
