@@ -89,7 +89,6 @@ class CreateAppForm extends Component {
             }
             this.props.createApp(args);
         }
-        console.log(this.state);
     }
 
 
@@ -253,7 +252,7 @@ class CreateAppForm extends Component {
 
 CreateAppForm.propTypes = {
     createApp: PropTypes.func.isRequired
-}
+};
 
 const mapStateToProps = (state, {ownProps}) =>  {
     return {

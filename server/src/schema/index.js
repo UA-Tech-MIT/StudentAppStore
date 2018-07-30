@@ -6,8 +6,9 @@ import itemTagSchema from './itemTag';
 import tagSchema from './tag';
 import query from './query';
 import mutation from './mutation';
+import error from './error';
 
 
 export {
-    query, mutation, appSchema, reviewSchema , teamSchema, userSchema, itemTagSchema, tagSchema
+    query, mutation, appSchema, reviewSchema , teamSchema, userSchema, itemTagSchema, tagSchema, error
 };

@@ -124,21 +124,35 @@ export const CREATE_APP = (args) => {
 };
 
 
-
-export const SEARCH_APPS_QUERY = (params) => {
-    let queryStringBuilder = "";
-    const entryList = Object.entries(params);
-    for (let i = 0; i < entryList.legnth; i++) {
-        if (i != 0) {
-            queryStringBuilder += ", ";
-        }
-        const { key, value } = entryList[i];
-        queryStringBuilder += `${key}: ${value}`;
+export const REGISTER_USER = ({username, password, email, ...args}) => {
+    const query = buildQueryString(args);
+    //NOTE: all required fields must be passed. Other fields can be build with the helper func
+    // otherwise graphql won't recognize the mutation and you'll get a strange error
+    return `
+        mutation registerUser {
+            createUser(username: "${username}",
+                       password: "${password}",
+                       email: "${email}",
+                       ${query}) {
+                ok
+                user {${generalUserQuery}}
+                errors {
+                  path
+                  message
+                }
+            }
     }
+`;
+};
+
+
+
+export const SEARCH_APPS_QUERY = (args) => {
+    const query = buildQueryString(args);
 
     return `
         query SearchAppsQuery {
-            searchApps(${queryStringBuilder}) {
+            searchApps(${query}) {
                 ${generalAppQuery}
             }  
         }
@@ -146,4 +160,16 @@ export const SEARCH_APPS_QUERY = (params) => {
 };
 
 
-
+function buildQueryString(params) {
+    let queryStringBuilder = "";
+    const entryList = Object.entries(params);
+    for (let i = 0; i < entryList.length; i++) {
+        const [ key, value ] = entryList[i];
+        if( !value || typeof value !== 'string') 
+            continue; // skip null values so they aren't entered as strings
+        if (i !== 0)
+            queryStringBuilder += ", ";
+        queryStringBuilder += `${key}: "${value}"`;
+    }
+    return queryStringBuilder;
+}

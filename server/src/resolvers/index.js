@@ -3,6 +3,17 @@
 // import User from './user';
 import models from '../models';
 import Faker from 'faker';
+import bcrypt from 'bcrypt';
+import _ from 'lodash';
+
+const formatErrors = (e, models) => {
+    if (e instanceof models.sequelize.ValidationError) {
+      //  _.pick({a: 1, b: 2}, 'a') => {a: 1}
+      return e.errors.map(x => _.pick(x, ['path', 'message']));
+    }
+    return [{ path: 'name', message: 'something went wrong' }];
+  };
+
 
 export default {
     Query: {
@@ -132,14 +143,69 @@ export default {
         },
 
         //USER MUTATIONS
-        createUser: (parent, args, /*{ models } */) => {
-            try {
-                models.User.create(args);
-                return true;
-            } catch (err) {
-                console.log(err);
-                return false;
-            }
+        createUser: async (parent, args, /*{ models } */) => {
+            // MOSTLY FOR AN EXAMPLE, we will generally do client side validation for most of these cases
+                let {password, ...otherArgs} = args;
+                const hashedPassword = await bcrypt.hash(password, 12);
+                let id = Faker.random.uuid();
+
+                console.log("running createUser")
+                console.log(args)
+                let errors = [];
+
+                // if(!args['password'])
+                //     errors.push({path: 'password', message: 'Password is required!'});
+                // if(!args['username'])
+                //     errors.push({path: 'username', message: 'Username is required!'});
+                // if(!args['email'])
+                //     errors.push({path: 'email', message: 'Email is required!'});
+                // this was checking for required params. Shouldn't have to do this. Just make sure to specify them in queries
+
+                for(const key in args) {
+                    switch(key) {
+                        default: {
+                            if(args[key].length > 25)
+                                errors.push({path: key, message: `${key} must be shorter than 25 characters`})
+
+                        }
+                        case 'password': {
+                            if(!args[key])
+                                errors.push({path: key, message: 'Password is required!'})
+                        }
+                        case 'username': {
+                            if(!args[key])
+                                errors.push({path: key, message: 'Username is required!'})
+                        }
+                        
+                        case 'email': {
+                            if(!args[key])
+                                errors.push({path: key, message: 'Email is required!'})
+                        }
+                    }
+                }
+                console.log(errors);
+                if(errors.length) {
+                    return {
+                        ok: false,
+                        errors
+                    }
+                }
+
+                return models.User.create({...otherArgs, id, password: hashedPassword})
+                    .then((res) => {
+                        console.log("User created successfully with args", res);
+                        return {
+                            ok: true,
+                            user: res.User
+                        };
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        return {
+                            ok: false,
+                            errors: formatErrors(err, models),
+                          };
+                    });
         },
 
 
@@ -162,9 +228,5 @@ export default {
                 return false;
             }
         },
-
-
-
-
     },
 };
