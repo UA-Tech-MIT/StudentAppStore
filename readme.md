@@ -225,7 +225,8 @@ Slingshot offers a rich development experience using the following technologies:
 | [npm Scripts](https://docs.npmjs.com/misc/scripts)| Glues all this together in a handy automated build. | [Pluralsight course](https://www.pluralsight.com/courses/npm-build-tool-introduction), [Why not Gulp?](https://medium.com/@housecor/why-i-left-gulp-and-grunt-for-npm-scripts-3d6853dd22b8#.vtaziro8n)  |
 | [Apollo](https://www.apollographql.com/docs/react/)| React Graphql Queries | [Queries](https://www.apollographql.com/docs/react/essentials/queries.html),  Also see the Online Component Example in src/components/onlinecomoponent.example.js|
 | [GraphQL & Graphiql](https://graphql.org/learn/)| About Graphql (dynamic query endpoint framework) | [Graphiql Usage](https://youtu.be/5RGEODLhjhY?t=2m16s)|
-| [React Bootstrap](https://react-bootstrap.github.io)| A library of component parts! | [Documentation](https://react-bootstrap.github.io/components/alerts/), See testForm.js|
+| [React Bootstrap (DEPRECATED)](https://react-bootstrap.github.io)| WE NO LONGER USE THIS, but if you must... | [Documentation](https://react-bootstrap.github.io/components/alerts/): See testForm.js|
+| [Semantic UI React](https://react.semantic-ui.com/)| Current component library | [Semantic Usage](https://semantic-ui.com/elements/button.html): See RegisterForm.js|
 
 ---
 
