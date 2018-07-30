@@ -8,29 +8,39 @@ import {
     GET_ALL_REVIEWS,
     GET_REVIEW_BY_ID,
     CREATE_APP,
-    SEARCH_APPS_QUERY
+    SEARCH_APPS_QUERY,
+    REGISTER_USER
 } from './appQueries';
 // note: by using this syntax we are almost ompletely independent from the apollo stack
 // please do NOT USE THE Apollo Query element (its fine for bootstrapping components without redux in place)
 
 const createFetchConfig = (query, vars) => {
+    let body;
+    if(vars) {
+        body = JSON.stringify({
+            query,
+            variables: vars,
+        });
+    } else {
+        body = JSON.stringify({
+            query,
+        });
+    }
+
     return {//NOTE: although this says POST, this is a query.
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         mode: 'cors',
-        body: JSON.stringify({
-            query,
-            variables: vars,
-        }),
+        body,
     };
 };
 
 
 const queryUri = 'http://localhost:8080/graphql';
 
-
+// NOTE THESE ARE THUNKS
 export const fetchApps = () => dispatch => {
     fetch(queryUri, createFetchConfig(GET_ALL_APPS))
         /* eslint-disable no-undef*/
@@ -94,4 +104,12 @@ export const createApp = (args) => dispatch => {
     fetch(queryUri, createFetchConfig(CREATE_APP(args), vars))
         .then(res => res.json())
         .then(data => console.log(data));
+};
+
+export const createUser = (args) => dispatch =>  {
+
+    const query = REGISTER_USER(args);
+    return fetch(queryUri, createFetchConfig(query))
+        .then(res => res.json())
+        .then(data => data);
 };

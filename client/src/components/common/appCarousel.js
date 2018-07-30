@@ -76,7 +76,7 @@ function appTile(app, i) {
       <Card.Content>
         <Card.Header>{app.name}</Card.Header>
         <Card.Meta>{app.genre}</Card.Meta>
-        <Card.Description>Detailed app description (probably won't stay but I want to see how it looks)</Card.Description>
+        <Card.Description>Short app description?</Card.Description>
       </Card.Content>
     </Card>
 

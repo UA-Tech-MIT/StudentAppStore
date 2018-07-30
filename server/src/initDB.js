@@ -46,11 +46,16 @@ export default function initDB() {
                 foundThisHelpful: Faker.random.number(10),
                 id: reviewID
             }));
-
-            users.push(models.User.create({
-                firstName: Faker.name.firstName(),
-                lastName: Faker.name.lastName(),
+            const firstName =  Faker.name.firstName();
+            const lastName =  Faker.name.lastName();
+            console.log(Faker.internet.email())
+            users.push(models.User.create(
+                {
+                firstName: firstName,
+                lastName: lastName,
+                username: firstName + lastName,
                 email: Faker.internet.email(),
+                password: Faker.internet.password(12, true),
                 id: userID
             }).then((user) => {
                 user.addReview(reviewID);

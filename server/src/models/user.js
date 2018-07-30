@@ -4,18 +4,37 @@ export default (Conn, Sequelize) => {
     const User = Conn.define('user', {
         firstName: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true
         },
         lastName: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true
+        },
+        username: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            validate: {
+                isAlphanumeric: {
+                  args: true,
+                  msg: 'The username can only contain letters and numbers',
+                },
+                //TODO: actual kerberoses are 8 characters long. change validation
+                len: {
+                  args: [3, 25],
+                  msg: 'The username needs to be between 3 and 25 characters long',
+                },
+              },
         },
         email: {
             type: Sequelize.STRING,
             allowNull: false,
             // validate: {
-            //     isEmail: true,
-            // }
+            //     isEmail: {
+            //       args: true,
+            //       msg: 'Invalid email',
+            //     },
+            //   },
+            //TODO add validator to the resolver. This throws occasional errors???
         },
         // userConfig: { // this will have to be another class??
         //     type: Sequelize.JSONB,
@@ -36,6 +55,10 @@ export default (Conn, Sequelize) => {
             autoIncrement: true,
             unique: true,
             comment: 'For redux counters'
+        },
+        password: {
+            type: Sequelize.STRING,
+            allowNull: false,
         },
 
         //TODO add relation fields if necessary

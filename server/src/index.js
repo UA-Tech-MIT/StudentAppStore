@@ -3,13 +3,13 @@ import Express from 'express';
 import GraphHTTP from 'express-graphql';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import initDatabase from './database';
+import initDatabase from './initDB';
 import { makeExecutableSchema } from 'graphql-tools';
-import { query, mutation, appSchema, reviewSchema, teamSchema, userSchema, itemTagSchema, tagSchema } from './schema/';
+import { query, mutation, appSchema, reviewSchema, teamSchema, userSchema, itemTagSchema, tagSchema, error } from './schema/';
 import resolvers from './resolvers';
 
 const schema = makeExecutableSchema({
-  typeDefs: [query, mutation, appSchema, reviewSchema, teamSchema, userSchema, itemTagSchema, tagSchema],
+  typeDefs: [query, mutation, appSchema, reviewSchema, teamSchema, userSchema, itemTagSchema, tagSchema, error],
   resolvers: { ...resolvers },
 });
 
