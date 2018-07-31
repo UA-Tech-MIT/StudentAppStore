@@ -72,7 +72,7 @@ class CreateAppForm extends Component {
 
     handleChange(event) {
 
-        var state = this.state;
+        let state = this.state;
         state[event.target.id].value = event.target.value;
         this.setState(state);
     }

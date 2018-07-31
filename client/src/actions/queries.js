@@ -105,7 +105,6 @@ export const CREATE_APP = (args) => {
     let { author, name, genre, image, medium, description, url } = args;
     if (!genre) genre = "None";
     if (!image) image = "test.png";
-
     return `
         mutation CreateCustomApp($isofficialresource: Boolean!) {
             createApp(
@@ -129,18 +128,34 @@ export const REGISTER_USER = ({username, password, email, ...args}) => {
     //NOTE: all required fields must be passed. Other fields can be build with the helper func
     // otherwise graphql won't recognize the mutation and you'll get a strange error
     return `
-        mutation registerUser {
+     mutation registerUser {
             createUser(username: "${username}",
-                       password: "${password}",
-                       email: "${email}",
-                       ${query}) {
+                    password: "${password}",
+                    email: "${email}",
+                    ${query}) {
                 ok
                 user {${generalUserQuery}}
                 errors {
-                  path
-                  message
+                path
+                message
                 }
             }
+        }
+    `;
+};
+
+export const LOGIN_USER = ({username, password}) => {
+    return `
+        mutation loginUser {
+            login(username: "${username}", password: "${password}") {
+                ok
+                token
+                refreshToken
+                errors {
+                  path
+                  message
+            }
+        }
     }
 `;
 };

@@ -9,8 +9,9 @@ import {
     GET_REVIEW_BY_ID,
     CREATE_APP,
     SEARCH_APPS_QUERY,
-    REGISTER_USER
-} from './appQueries';
+    REGISTER_USER,
+    LOGIN_USER
+} from './queries';
 // note: by using this syntax we are almost ompletely independent from the apollo stack
 // please do NOT USE THE Apollo Query element (its fine for bootstrapping components without redux in place)
 
@@ -101,15 +102,23 @@ export const createApp = (args) => dispatch => {
     let vars = { isofficialresource: JSON.parse(args.isofficialresource) };
 
     //TODO(yaatehr) add varification?
-    fetch(queryUri, createFetchConfig(CREATE_APP(args), vars))
+    const query = CREATE_APP(args);
+    fetch(queryUri, createFetchConfig(query, vars))
         .then(res => res.json())
         .then(data => console.log(data));
 };
 
 export const createUser = (args) => dispatch =>  {
-
     const query = REGISTER_USER(args);
     return fetch(queryUri, createFetchConfig(query))
         .then(res => res.json())
         .then(data => data);
 };
+
+export const login = (args) => dispatch =>  {
+    const query = LOGIN_USER(args);
+    return fetch(queryUri, createFetchConfig(query))
+        .then(res => res.json())
+        .then(data => data);
+};
+

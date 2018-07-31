@@ -15,6 +15,7 @@ import ImageUploadComponent from './common/ImageUploader';
 import FrontPageContainer from '../containers/FrontPageContainer';
 import CreateAppForm from './createAppForm/CreateAppForm';
 import RegisterForm from './registerForm/RegisterForm';
+import LoginForm from './loginForm/loginForm';
 
 // import { Navbar, NavItem, NavDropdown, MenuItem, Nav } from 'react';
 
@@ -44,6 +45,7 @@ class Router extends React.Component {
           <Route path="/front-page-container" component={FrontPageContainer} />
           <Route path="/submit-app" component={CreateAppForm} />
           <Route path="/register-user" component={RegisterForm} />
+          <Route path="/login" component={LoginForm} />
           {/* <Route path="*" render={() => (<Redirect to="/" />)} />           */}
 
           <Route component={NotFoundPage} />

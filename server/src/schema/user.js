@@ -18,4 +18,10 @@ export default `
     errors: [Error!]
   }
 
+  type LoginResponse {
+    ok: Boolean!
+    token: String
+    refreshToken: String
+    errors: [Error!]
+  }
 `;

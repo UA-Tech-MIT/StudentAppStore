@@ -3,8 +3,9 @@
 // import User from './user';
 import models from '../models';
 import Faker from 'faker';
-import bcrypt from 'bcrypt';
 import _ from 'lodash';
+import {tryLogin} from '../auth';
+
 
 const formatErrors = (e, models) => {
     if (e instanceof models.sequelize.ValidationError) {
@@ -146,7 +147,7 @@ export default {
         createUser: async (parent, args, /*{ models } */) => {
             // MOSTLY FOR AN EXAMPLE, we will generally do client side validation for most of these cases
                 let {password, ...otherArgs} = args;
-                const hashedPassword = await bcrypt.hash(password, 12);
+                // const hashedPassword = await bcrypt.hash(password, 12);
                 let id = Faker.random.uuid();
 
                 console.log("running createUser")
@@ -191,7 +192,7 @@ export default {
                     }
                 }
 
-                return models.User.create({...otherArgs, id, password: hashedPassword})
+                return models.User.create({...otherArgs, id, password})
                     .then((res) => {
                         console.log("User created successfully with args", res);
                         return {
@@ -207,6 +208,10 @@ export default {
                           };
                     });
         },
+
+
+        login: (parent, { username, password }, { models, SECRET, SECRET2 }) =>
+            tryLogin(username, password, models, SECRET),
 
 
         //REVIEW MUTATIONS
