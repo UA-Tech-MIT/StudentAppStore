@@ -3,20 +3,17 @@ import { Form, Message, Button, Input, Container, Header } from 'semantic-ui-rea
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createUser } from '../../actions/AsyncActionCreators';
+import { login } from '../../actions/AsyncActionCreators';
 
 
 const getDefaultState = () => {
     return {
         username: {value: '', error: ''},
-        email: {value: '', error: ''},
         password: {value: '', error: ''},
-        firstName: {value: '', error: ''},
-        lastName: {value: '', error: ''},
     };
 };
 
-class RegisterForm extends React.Component {
+class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = getDefaultState();
@@ -42,21 +39,16 @@ class RegisterForm extends React.Component {
 
          //TODO(yaatehr) add client side varification
 
-        this.props.createUser(args).then((response) => {
-            const { ok, errors } = response.data.createUser;
+        this.props.login(args).then((response) => {
+            const { ok, token, refreshToken } = response.data.login;
 
             if (ok) {
-                //do something
+                localStorage.setItem('token', token);
+                localStorage.setItem('refreshToken', refreshToken);
                 //TODO add success indicator, reroute and login?
                 //TODO authentication
             } else {
-                let state = this.state;
-                errors.forEach(({ path, message }) => {
-                    // err['passwordError'] = 'too long..';
-                    state[`${path}`].error = message;
-                });
-    
-                this.setState(state);
+                console.log(response.data.login.errors);
             }
         });
 
@@ -77,21 +69,7 @@ class RegisterForm extends React.Component {
             switch (key) {
                 default: {
                     if (!object.value || object.value === '') {
-                        state[key].error = 'Required Value';
-                        isValid = false;
-                    }
-                    break;
-                }
-                case 'firstName': {
-                    if(object.value.length > 25) {
-                        state[key].error = "first name must be less than 25 characters";
-                        isValid = false;
-                    }
-                    break;
-                }
-                case 'lastName': {
-                    if(object.value.length > 25) {
-                        state[key].error = "first name must be less than 25 characters";
+                        state[key].error = `${key} Required!`;
                         isValid = false;
                     }
                     break;
@@ -110,9 +88,7 @@ class RegisterForm extends React.Component {
     };
 
     render() {
-        const {
-            username, email, password, firstName, lastName
-        } = this.state;
+        const { username, password } = this.state;
 
         const errorList = [];
         for(const key in this.state) {
@@ -124,7 +100,7 @@ class RegisterForm extends React.Component {
 
         return (
             <Container text>
-                <Header as="h2">Register</Header>
+                <Header as="h2">Login</Header>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Field error={!!username.error}>
                         <Input
@@ -136,9 +112,7 @@ class RegisterForm extends React.Component {
                             fluid
                         />
                     </Form.Field>
-                    <Form.Field error={!!email.error}>
-                        <Input name="email" onChange={this.handleChange} value={email.value} placeholder="Email" label="Email" fluid />
-                    </Form.Field>
+
                     <Form.Field error={!!password.error}>
                         <Input
                             name="password"
@@ -151,31 +125,7 @@ class RegisterForm extends React.Component {
                             fluid
                         />
                     </Form.Field>
-                    <Form.Group widths="equal">
-                        <Form.Field error={!!firstName.error}>
-                            <Input
-                                name="firstName"
-                                onChange={this.handleChange}
-                                value={firstName.value}
-                                placeholder="Optional"
-                                label="First Name"
-
-                                // inline="true"
-                            />
-                        </Form.Field>
-                        <Form.Field error={!!lastName.error}>
-                            <Input
-                                name="lastName"
-                                onChange={this.handleChange}
-                                value={lastName.value}
-                                placeholder="Optional"
-                                label="Last Name"
-                                // inline="true"
-                            />
-                        </Form.Field>
-                    </Form.Group>
-                    <Button  type="submit" primary>Submit</Button>
-                    <Button type="reset" secondary>Clear</Button>
+                    <Button  type="submit" primary fluid>Login</Button>
                 </Form>
                 {errorList.length ? (
                     <Message error header="There was some errors with your submission" list={errorList} />
@@ -185,8 +135,8 @@ class RegisterForm extends React.Component {
     }
 }
 
-RegisterForm.propTypes = {
-    createUser: PropTypes.func.isRequired
+LoginForm.propTypes = {
+    login: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, { ownProps }) => {
@@ -197,9 +147,9 @@ const mapStateToProps = (state, { ownProps }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        createUser
+        login
     }, dispatch);
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
