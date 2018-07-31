@@ -30,6 +30,20 @@ export default function initDB() {
         });
         // console.log(TagIDs[0])
 
+        const defaultUserId = Faker.random.uuid();
+
+        users.push(models.User.create({
+            username: "username",
+            password: "password",
+            email: "email",
+            firstName: "Default",
+            lastName: "User",
+            id: defaultUserId
+        }));
+        userIDs.push(defaultUserId);
+
+        //TODO find some other way to instantiate teams for apps (add a delay?)
+
         [1, 2, 3, 4, 5, 6, 7].forEach((_, i) => {
             const userID = Faker.random.uuid();
             const reviewID = Faker.random.uuid();
@@ -57,12 +71,14 @@ export default function initDB() {
                 email: Faker.internet.email(),
                 password: Faker.internet.password(12, true),
                 id: userID
-            }).then((user) => {
+            })
+            .then((user) => {
                 user.addReview(reviewID);
                 for (let index = 0; index < i; index++) {
                     user.addCreations(appIDs[index]);
                 }
-            }));
+            })
+        );
 
             apps.push(models.App.create({
                 author: Faker.name.firstName() + " " + Faker.name.lastName(),
@@ -76,7 +92,7 @@ export default function initDB() {
             }).then((app) => {
                 app.addReview(reviewID);
                 for (let index = 0; index < i; index++) {
-                    app.addCreators(userIDs[index]);
+                    // app.addCreators(userIDs[index]);
                 }
                 app.addTag(TagIDs[Faker.random.number(10)]);
             }));

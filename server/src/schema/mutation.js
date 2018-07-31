@@ -17,15 +17,15 @@ type Mutation {
 
     #USER MUTATIONS
 
+    login(username: String!, password: String!): LoginResponse!
+    addApp(appId: ID!, teamId: ID): Boolean!
+    removeApp(appId: ID!, teamID: ID): Boolean!
+    joinTeam(teamID: ID!): Boolean!
     createUser(username: String!
         email: String!
         password: String!
         firstName: String
         lastName: String): RegisterResponse!
-        
-    addApp(appId: ID!, teamId: ID): Boolean!
-    removeApp(appId: ID!, teamID: ID): Boolean!
-    joinTeam(teamID: ID!): Boolean!
 
     #REVIEW MUTATIONS
 
