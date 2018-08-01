@@ -60,6 +60,10 @@ app.use(graphqlEndpoint, bodyParser.json(), GraphHTTP( async (req, res) => ({
   },
 })));
 
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
+
 setTimeout(() => {
   initDatabase();
 }, 4000);
