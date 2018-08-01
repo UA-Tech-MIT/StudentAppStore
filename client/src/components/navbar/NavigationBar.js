@@ -26,7 +26,9 @@ export class NavigationBar extends React.Component {
                             {' | '}
                             <NavLink className="navLink" to="/test-form" activeStyle={activeStyle}>Example Form</NavLink>
                             {' | '}
-                            <NavLink className="navLink" to="/register-user" activeStyle={activeStyle}>Register Users</NavLink>
+                            <NavLink className="navLink" to="/register-user" activeStyle={activeStyle}>Register</NavLink>
+                            {' | '}
+                            <NavLink className="navLink" to="/login" activeStyle={activeStyle}>Login</NavLink>
                     </div>
             </div>
         );

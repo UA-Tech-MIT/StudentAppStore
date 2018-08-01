@@ -36,14 +36,14 @@ export function filter(input, predicate) { // Note: predicate must be a function
 
 //https://stackoverflow.com/questions/14802481/get-element-of-js-object-with-an-index
 // NOTE: the javascript notations we're using here is essentially indexing an object. example code from stackoverflor
-// var myobj = {"A":["B"], "B":["C"]};
+// let myobj = {"A":["B"], "B":["C"]};
 
-// var keysArray = Object.keys(myobj);
+// let keysArray = Object.keys(myobj);
 
-// var valuesArray = Object.keys(myobj).map(function(k) {
+// let valuesArray = Object.keys(myobj).map(function(k) {
 
 //    return String(myobj[k]);
 
 // });
 
-// var mydata = valuesArray[keysArray.indexOf("A")]; // B
+// let mydata = valuesArray[keysArray.indexOf("A")]; // B

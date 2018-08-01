@@ -1,3 +1,5 @@
+import bcrypt from 'bcrypt';
+
 export default (Conn, Sequelize) => {
 
 
@@ -59,14 +61,25 @@ export default (Conn, Sequelize) => {
         password: {
             type: Sequelize.STRING,
             allowNull: false,
+            validate: {
+                len: {
+                  args: [5, 100],
+                  msg: 'The password needs to be between 5 and 100 characters long',
+                },
+              },
         },
-
         //TODO add relation fields if necessary
     }, {
             name: {
                 singular: 'user',
                 plural: 'users',
-            }
+            },
+            hooks: {
+                afterValidate: async (user) => {
+                  const hashedPassword = await bcrypt.hash(user.password, 12);
+                  user.password = hashedPassword;
+                },
+              },
         });
 
     User.associate = (models) => {
