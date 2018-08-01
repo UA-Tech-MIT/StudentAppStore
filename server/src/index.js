@@ -21,7 +21,7 @@ const SECRET2 = 'a0y7986g786c4uetrytb705864durc';
 const addUser = async (req, res, next) => {
   const token = req.headers['x-token'];
   if (token) {
-    try {
+    try { 
       const { user } = jwt.verify(token, SECRET);
       req.user = user;
     } catch (err) {
