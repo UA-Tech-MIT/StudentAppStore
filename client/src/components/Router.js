@@ -1,14 +1,14 @@
 /* eslint-disable import/no-named-as-default */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, NavLink } from 'react-router-dom';
 import HomePage from './demo/HomePage';
 import FuelSavingsPage from './demo/FuelSavingsPage';
 import AboutPage from './aboutPage/AboutPage';
 import AppStorePage from './welcomePage/AppStorePage';
 import AppPage from './appViewPage/AppPage';
 import NotFoundPage from './demo/NotFoundPage';
-import NavigationBar from './navbar/NavigationBar';
+import Navbar from './navbar/NavBar';
 import OnlineComponent from './demo/onlineComponent.example';
 import TestForm from './demo/testForm';
 import ImageUploadComponent from './common/ImageUploader';
@@ -16,6 +16,7 @@ import FrontPageContainer from '../containers/FrontPageContainer';
 import CreateAppForm from './createAppForm/CreateAppForm';
 import RegisterForm from './registerForm/RegisterForm';
 import LoginForm from './loginForm/loginForm';
+import AutocompoleteSearch from './autocompleteSearch/AutocompleteSearch';
 
 // import { Navbar, NavItem, NavDropdown, MenuItem, Nav } from 'react';
 
@@ -23,12 +24,27 @@ import LoginForm from './loginForm/loginForm';
 // version of hot reloading won't hot reload a stateless
 // component at the top-level.
 
+const leftItems = [
+  { as: NavLink, exact: true, to: "/", content: "Home", key: "home" },
+  { as: NavLink, to: "/app-store", content: "App Store", key: "appStore" },
+  { as: NavLink, to: "/app-page", content: "App Page", key: "appPage" },
+  { as: NavLink, to: "/submit-app", content: "Create App", key: "submitApp" },
+  { as: NavLink, to: "/online-component", content: "DB Entries", key: "online" },
+  { as: NavLink, to: "/about", content: "About", key: "about" },
+];
+const rightItems = [
+  { as: AutocompoleteSearch, key: "search" },
+  { as: NavLink, to: "/login", content: "Login", key: "login" },
+  { as: NavLink, to: "/register-user", content: "Register", key: "register" }
+];
+
+
 class Router extends React.Component {
   render() {
     return (
       <div>
         {/* <div className="container"> */}
-        <NavigationBar/>
+        <Navbar leftItems={leftItems} rightItems={rightItems} />
         {/* </div> */}
         <div className="page-template">
 
