@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import Router from './Router';
+import Startup from './Startup';
 
 export default class Root extends Component {
   render() {
@@ -10,9 +11,11 @@ export default class Root extends Component {
     console.log(this.props);
     return (
       <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <Router />
-        </ConnectedRouter>
+        <Startup>
+          <ConnectedRouter history={history}>
+            <Router />
+          </ConnectedRouter>
+        </Startup>
       </Provider>
     );
   }

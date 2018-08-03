@@ -19,4 +19,10 @@ export default `
         updatedAt: String!
     }
 
+    type AppQueryResponse {
+        ok: Boolean!
+        apps: [App!]
+        errors: [Error!]
+      }
+
 `;

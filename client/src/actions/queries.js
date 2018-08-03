@@ -37,6 +37,12 @@ const searchAppQuery = `
     description,
 `;
 
+const basicAppQuery = `
+    name,
+    author,
+    url,
+`;
+
 const generalReviewQuery = `
     content,
     title,
@@ -55,7 +61,14 @@ const generalUserQuery = `
 export const GET_ALL_APPS = `
     query GetAllApps {
         allApps {
-            ${generalAppQuery}
+            ok
+            apps{
+                ${basicAppQuery}
+            }
+            errors{
+                path
+                message
+            }
         } 
     }
 `;

@@ -45,7 +45,7 @@ export default function initDB() {
 
         //TODO find some other way to instantiate teams for apps (add a delay?)
 
-        _.range(0,200).forEach((_, i) => {
+        _.range(0,25).forEach((_, i) => {
             const userID = Faker.random.uuid();
             const reviewID = Faker.random.uuid();
             const appID = Faker.random.uuid();

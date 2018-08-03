@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {fetchApps} from '../actions/AsyncActionCreators';
+import {allApps} from '../actions/AsyncActionCreators';
 import {loadApps} from '../actions/ActionCreators';
 class Startup extends Component {
     constructor(props) {
@@ -13,13 +13,13 @@ class Startup extends Component {
         };
     }
     componentDidMount() {
-      this.props.fetchApps().then((response) => {
-          const {ok, errors, apps} = response.data.fetchApps;
+      this.props.allApps().then((response) => {
+          const {ok, errors, apps} = response.data.allApps;
           if(ok) {
-              this.state.setState({isLoading: true});
-              this.loadApps(apps);
+              this.props.loadApps(apps);
+              this.setState({isLoading: true});
           } else {
-            this.state.setState({errors: errors});
+            this.setState({errors: errors});
           }
       });
     }
@@ -30,7 +30,7 @@ class Startup extends Component {
     }
   }
 Startup.propTypes = {
-    fetchApps: PropTypes.func.isRequired,
+    allApps: PropTypes.func.isRequired,
     loadApps: PropTypes.func.isRequired,
     children: PropTypes.any,
   };
@@ -44,7 +44,7 @@ Startup.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-      fetchApps,
+      allApps,
       loadApps,
     }, dispatch);
   };

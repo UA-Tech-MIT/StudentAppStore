@@ -20,20 +20,36 @@ export default {
     Query: {
         //APP QUERIES
         getApp: async (parent, { id }, /*/*{ models } */) => {
-            try {
-                return models.App.findOne({ where: { id } });
-            } catch (err) {
-                console.log(err); return false;
-            }
+            return models.App.findOne({ where: { id } })
+                .then((res) => {
+                    return {
+                        ok: true,
+                        app: res.App
+                    }
+                })
+                .catch((err) => {
+                    return {
+                        ok: false,
+                        errors: formatErrors(err, models)
+                    }
+                });
+          
         },
         allApps: async (parent, args, /*{ models } */) => {
-            try {
-                return models.App.findAll().then((response) => {
-                    return response;
+            return models.App.findAll()
+                .then((res) => {
+                    console.log(res);
+                    return {
+                        ok: true,
+                        apps: res
+                    }
+                })
+                .catch((err) => {
+                    return {
+                        ok: false,
+                        errors: formatErrors(err, models)
+                    }
                 });
-            } catch (err) {
-                console.log(err); return false;
-            }
         },
         searchApps: async (parent, args, /*{ models } */) => {
             try {

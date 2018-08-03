@@ -4,8 +4,8 @@ type Query {
 
     #APP QUERIES
 
-    getApp(id: ID!): App!
-    allApps: [App!]!
+    getApp(id: ID!): AppQueryResponse!
+    allApps: AppQueryResponse!
     searchApps(id: ID, 
         keyword: String, 
         genre: String, 

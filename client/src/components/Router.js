@@ -32,6 +32,7 @@ const leftItems = [
   { as: NavLink, to: "/submit-app", content: "Create App", key: "submitApp" },
   { as: NavLink, to: "/online-component", content: "DB Entries", key: "online" },
   { as: NavLink, to: "/about", content: "About", key: "about" },
+  { as: NavLink, to: "/search", content: "Search Results", key: "search" },
 ];
 const rightItems = [
   { as: AutocompoleteSearch, key: "search" },
@@ -63,7 +64,7 @@ class Router extends React.Component {
           <Route path="/submit-app" component={CreateAppForm} />
           <Route path="/register-user" component={RegisterForm} />
           <Route path="/login" component={LoginForm} />
-          <Route path="/search-results" component={SearchResults} />
+          <Route path="/search" component={SearchResults} />
           {/* <Route path="*" render={() => (<Redirect to="/" />)} />           */}
 
           <Route component={NotFoundPage} />

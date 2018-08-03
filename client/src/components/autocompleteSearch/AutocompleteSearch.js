@@ -2,63 +2,62 @@ import _ from 'lodash';
 import faker from 'faker';
 import React, { Component } from 'react';
 import { Search, Grid, Header, Segment } from 'semantic-ui-react';
-import {searchApps} from '../../actions/AsyncActionCreators';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+// import {searchApps} from '../../actions/AsyncActionCreators';
 
-const getResults = () =>
-  _.times(5, () => ({
-    title: faker.company.companyName(),
-    description: faker.company.catchPhrase(),
-    image: faker.internet.avatar(),
-    price: faker.finance.amount(0, 100, 2, '$'),
-  }));
 
-const source = _.range(0, 3).reduce((memo) => {
-  const name = faker.hacker.noun();
+const isMatch = (entry, searchString) =>  {
+  const re = new RegExp(_.escapeRegExp(searchString), 'i');
+  let matching = false;
+  for(let key in entry) {
+    matching = re.test(entry[key]);
+    if(matching)
+     break;
+  }
+  return matching;
+};
 
-  // eslint-disable-next-line no-param-reassign
-  memo[name] = {
-    name,
-    results: getResults(),
-  };
+class AutocompleteSearch extends Component {
 
-  return memo;
-}, {});
+  constructor(props) {
+    super(props);
+    // this.state = { disabled: !!this.props.apps, isLoading: false, results: [], value: '' };
+    this.handleResultSelect = this.handleResultSelect.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
+    // this.resetComponent = this.resetComponent.bind(this);
+  }
 
-export default class AutocompleteSearch extends Component {
   componentWillMount() {
     this.resetComponent();
   }
 
-  resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
+  resetComponent = () => this.setState({disabled: !!this.props.apps, isLoading: false, results: [], value: '' })
 
-  handleResultSelect = (e, { result }) => this.setState({ value: result.title })
+  handleResultSelect = (e, { result }) => this.setState({ value: result.name })
 
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value });
 
     setTimeout(() => {
-      // this.props.searchApps({name: value}).then((response) => {
         if (this.state.value.length < 1) return this.resetComponent();
 
-        const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
-        const isMatch = result => re.test(result.title);
-  
-        const filteredResults = _.reduce(
-          source,
-          (memo, data, name) => {
-            const results = _.filter(data.results, isMatch);
-            if (results.length) memo[name] = { name, results }; // eslint-disable-line no-param-reassign
-  
-            return memo;
-          },
-          {},
-        );
-  
+        const filteredResults = this.props.apps.filter(app => {
+          app.title = app.name; // quick fix for search results
+          return isMatch(app, this.state.value);
+        });
+        debugger;
+
         this.setState({
           isLoading: false,
-          results: filteredResults,
+          results: {
+            app: {
+              name: "App",
+              results: filteredResults,
+            }
+          }
         });
-      // })
 
     }, 300);
   }
@@ -76,7 +75,6 @@ export default class AutocompleteSearch extends Component {
             onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
             results={results}
             value={value}
-            {...this.props}
           />
         /* </Grid.Column>
         <Grid.Column width={8}>
@@ -91,3 +89,25 @@ export default class AutocompleteSearch extends Component {
     );
   }
 }
+
+AutocompleteSearch.propTypes =  {
+  apps: PropTypes.array
+};
+
+const mapStateToProps = (state, {ownProps}) =>  {
+  return {
+      apps: state.appRepository.apps,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+
+  }, dispatch);
+};
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AutocompleteSearch);
