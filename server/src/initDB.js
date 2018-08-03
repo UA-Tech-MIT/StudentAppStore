@@ -86,9 +86,11 @@ export default function initDB() {
                 name: Faker.company.companyName(),
                 genre: Faker.random.word(['Course Planning', 'Time Management', 'Entertainment', 'Networking', 'Tutoring', 'Money Management']),
                 medium: Faker.random.word(["Website", "Mobile App", "Chrome Extension"]),
+                description: "ius in dicant maluisset euripidis.\n Ne eum vitae eirmod aliquid, duo an mazim semper suscipiantur.",
                 url: Faker.internet.url(),
                 image: Faker.random.image(),
                 email: Faker.internet.email(),
+                rating: Faker.random.number(50) / 10,
                 id: appID
             }).then((app) => {
                 app.addReview(reviewID);

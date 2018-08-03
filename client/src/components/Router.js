@@ -17,6 +17,7 @@ import CreateAppForm from './createAppForm/CreateAppForm';
 import RegisterForm from './registerForm/RegisterForm';
 import LoginForm from './loginForm/loginForm';
 import AutocompoleteSearch from './autocompleteSearch/AutocompleteSearch';
+import SearchResults from './searchResults/SearchResults';
 
 // import { Navbar, NavItem, NavDropdown, MenuItem, Nav } from 'react';
 
@@ -62,6 +63,7 @@ class Router extends React.Component {
           <Route path="/submit-app" component={CreateAppForm} />
           <Route path="/register-user" component={RegisterForm} />
           <Route path="/login" component={LoginForm} />
+          <Route path="/search-results" component={SearchResults} />
           {/* <Route path="*" render={() => (<Redirect to="/" />)} />           */}
 
           <Route component={NotFoundPage} />
