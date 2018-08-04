@@ -32,3 +32,6 @@ build
 # OS-specific temporary files
 Thumbs.db
 .DS_Store
+
+# Webstorm files
+.idea
