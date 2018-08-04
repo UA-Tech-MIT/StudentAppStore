@@ -4,7 +4,7 @@ import * as helperFuncs from '../../utils/helperFunctions'; // TODO
 import { Media, Jumbotron, Button, Row, Grid, Col, Glyphicon } from 'react-bootstrap';
 import Rating from 'react-rating';
 import { ReviewList } from '../common/ReviewList';
-import { fetchApps, fetchAppByID } from '../../actions/AsyncActionCreators';
+import { allApps, fetchAppByID } from '../../actions/AsyncActionCreators';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AppCarousel from '../common/AppCarousel';
@@ -81,7 +81,7 @@ class AppPage extends React.Component {
             </Media.List>
           </Media>
 
-          <Button bsStyle="primary" onClick={() => this.props.fetchApps()}>fetch apps (Check Redux Devtools)</Button>
+          <Button bsStyle="primary" onClick={() => this.props.allApps()}>fetch apps (Check Redux Devtools)</Button>
         </div>
         <Container>
           some text
@@ -113,7 +113,7 @@ AppPage.propTypes = {
   rating: PropTypes.number.isRequired,
   img: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(PropTypes.string),
-  fetchApps: PropTypes.func.isRequired,
+  allApps: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps = {}) => {
@@ -134,7 +134,7 @@ const mapStateToProps = (state, ownProps = {}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    fetchApps: fetchApps,
+    allApps: allApps,
     fetchAppByID: fetchAppByID
   }, dispatch);
 };

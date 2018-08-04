@@ -42,24 +42,24 @@ const createFetchConfig = (query, vars) => {
 const queryUri = 'http://localhost:8080/graphql';
 
 // NOTE THESE ARE THUNKS
-export const fetchApps = () => dispatch => {
-    fetch(queryUri, createFetchConfig(GET_ALL_APPS))
+export const allApps = () => dispatch => {
+    return fetch(queryUri, createFetchConfig(GET_ALL_APPS))
         /* eslint-disable no-undef*/
         .then(res => res.json())
-        .then(res => {
-            if (res.errors) {
-                console.log(res.errors);
-                // return false;
-            }
-            const filteredApps = filter(res.data, (app) => { // leaving this filtering example
-                return app.email === null; // all emails are null atm so it should return every app
-            });
-            console.log("filtered apps", filteredApps);
-            dispatch({
-                type: ActionTypes.LOAD_APPS,
-                payload: res.data
-            });
-        });
+        .then(data => data);
+        //     if (res.errors) {
+        //         console.log(res.errors);
+        //         // return false;
+        //     }
+        //     const filteredApps = filter(res.data, (app) => { // leaving this filtering example
+        //         return app.email === null; // all emails are null atm so it should return every app
+        //     });
+        //     console.log("filtered apps", filteredApps);
+        //     dispatch({
+        //         type: ActionTypes.LOAD_APPS,
+        //         payload: res.data
+        //     });
+        // });
     // add error handling
 };
 
@@ -118,6 +118,13 @@ export const createUser = (args) => dispatch =>  {
 export const login = (args) => dispatch =>  {
     const query = LOGIN_USER(args);
     return fetch(queryUri, createFetchConfig(query))
+        .then(res => res.json())
+        .then(data => data);
+};
+
+export const searchApps = (args) => dispatch =>  {
+    const query = SEARCH_APPS_QUERY(args);
+    return fetch(queryUri, createFetchConfig(query, args))
         .then(res => res.json())
         .then(data => data);
 };

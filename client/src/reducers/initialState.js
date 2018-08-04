@@ -19,7 +19,8 @@ export default {
     }
   },
   appStore: {
-    apps: {},
+    apps: [],
+    searchApps: [],
     lastUpdated: getFormattedDateTime(),
   }
 };

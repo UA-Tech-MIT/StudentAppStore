@@ -16,7 +16,6 @@ export default function appStoreReducer(state = initialState.appStore, action) {
 
     switch(type) {
         case ActionTypes.LOAD_APPS:
-        console.log(payload);
         return {
             ...state,
             apps: payload.apps,
@@ -46,6 +45,32 @@ export default function appStoreReducer(state = initialState.appStore, action) {
                 ...state,
                 apps: newAppState,
                 lastUpdated: currentTime
+            };
+        }
+        case ActionTypes.LOAD_SEARCH_APPS:
+        return {
+            ...state,
+            searchApps: payload.apps,
+            lastUpdated: "testMode"
+        };
+        case ActionTypes.CLEAR_SEARCH_APPS:
+        return {
+            ...state,
+            searchApps: [],
+            lastUpdated: "testMode"
+        };
+        case ActionTypes.FILTER_SEARCH_APPS:
+        return {
+            ...state,
+            searchApps: helperFuncs.filter(state.apps, payload.predicate),
+            lastUpdated: "testMode"
+        };
+        case ActionTypes.UPDATE_SEARCH_APPS: {
+            const newAppState = updateApps(state.apps, payload.updatedApps);
+            return {
+                ...state,
+                searchApps: newAppState,
+                lastUpdated: "testMode"
             };
         }
         default:
