@@ -11,13 +11,13 @@ class FrontPageContainer extends Component {
     constructor(props) {
         super(props);
 
-        this.fetchSpotlightApps = ActionCreators.fetchApps.bind(this);
+        this.allApps = ActionCreators.allApps.bind(this);
         this.fetchUserData = ActionCreators.customFetch.bind(this);
     }
 
     componentDidMount = () => {
       //fetch apps
-        this.fetchSpotlightApps();
+        this.allApps();
     }
     
   render() {
@@ -31,7 +31,7 @@ class FrontPageContainer extends Component {
 }
 
 FrontPageContainer.propTypes = {
-    fetchSpotlightApps: PropTypes.func,
+    allApps: PropTypes.func,
     customFetch: PropTypes.func,
     spotlightApps: PropTypes.object,
 };
@@ -44,7 +44,7 @@ const mapStateToProps = (state, ownProps = {}) => {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        fetchSpotlightApps: ActionCreators.fetchApps,
+        allApps: ActionCreators.allApps,
         customFetch: ActionCreators.customFetch,
     }, dispatch);
 };

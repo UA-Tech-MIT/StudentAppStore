@@ -42,13 +42,20 @@ export class OnlineComponent extends React.Component {
                   id,
                 }
                 allApps {
-                  id,
+                  ok,
+                  apps{
+                    id,
                   name,
                   appNo,
                   createdAt,
                   url,
                   genre,
                   isOfficialResource
+                  }
+                  errors{
+                    path,
+                    message
+                  }
                 }
               }
             `}
@@ -75,7 +82,7 @@ export class OnlineComponent extends React.Component {
               ))}
               <br />
               <h4>Apps</h4>
-              {data.allApps.map(({ id, name, appNo, createdAt, url, genre, isOfficialResource }) => {
+              {data.allApps.apps.map(({ id, name, appNo, createdAt, url, genre, isOfficialResource }) => {
                 return (
                   <div key={id} className="online-user">
 

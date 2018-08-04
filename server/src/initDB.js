@@ -1,5 +1,6 @@
 import Faker from 'faker';
 import models from './models';
+import _ from 'lodash';
 
 export default function initDB() {
     models.sequelize
@@ -44,7 +45,7 @@ export default function initDB() {
 
         //TODO find some other way to instantiate teams for apps (add a delay?)
 
-        [1, 2, 3, 4, 5, 6, 7].forEach((_, i) => {
+        _.range(0,25).forEach((_, i) => {
             const userID = Faker.random.uuid();
             const reviewID = Faker.random.uuid();
             const appID = Faker.random.uuid();

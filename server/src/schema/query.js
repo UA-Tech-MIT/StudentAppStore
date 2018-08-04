@@ -4,15 +4,17 @@ export const typeDef = `
 
         #APP QUERIES
 
-        getApp(id: ID!): App!
-        allApps: [App!]!
-        searchApps(id: ID, 
-            keyword: String, 
-            genre: String, 
-            isOfficialResource: Boolean, 
-            medium: String, 
-            date: String): [App!]!
-        getTeamApps(id: ID!): [App!]!
+    getApp(id: ID!): AppQueryResponse!
+    allApps: AppQueryResponse!
+    searchApps(id: ID, 
+        keyword: String, 
+        genre: String, 
+        isOfficialResource: Boolean, 
+        medium: String, 
+        date: String): [App!]!
+    searchAppsMulti(id: [ID], 
+            name:[String]): AppQueryResponse!
+    getTeamApps(id: ID!): [App!]!
 
         # USER QUERIES
 

@@ -19,4 +19,10 @@ export const typeDef = `
         updatedAt: String!
     }
 
+    type AppQueryResponse {
+        ok: Boolean!
+        apps: [App!]
+        errors: [Error!]
+      }
+
 `;

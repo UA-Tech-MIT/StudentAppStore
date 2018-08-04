@@ -10,6 +10,10 @@ export const CLEAR_APPS = "CLEAR_APPS";
 export const FILTER_APPS = "FILTER_APPS";
 export const UPDATE_APP = "UPDATE_APP";
 export const UPDATE_APPS = "UPDATE_APPS";
+export const LOAD_SEARCH_APPS = "LOAD_SEARCH_APPS";
+export const CLEAR_SEARCH_APPS = "CLEAR_SEARCH_APPS";
+export const FILTER_SEARCH_APPS = "FILTER_SEARCH_APPS";
+export const UPDATE_SEARCH_APPS = "UPDATE_SEARCH_APPS";
 
 // appReducer
 export const SET_APP = "SET_APP";
