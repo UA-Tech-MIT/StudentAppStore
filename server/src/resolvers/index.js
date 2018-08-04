@@ -78,28 +78,7 @@ export default {
         //USER QUERIES
 
         getUser: (parent, args, /*{ models } */) => {
-            // RACHEL! SO we have an issue where if findOne doesn't find anything,
-            //   graphql freaks out saying "can't return null for non-nullable"
-            //   I've tried the commented promise logic, but that doesn't appease it
-            //   what should we do in the instance where findOne can't find the user?
-
             return models.User.findOne({where: { ...args }})
-
-            // Gonzo's test code
-
-            models.User.findOne({where: {...args} })
-                .then(response => {
-                    if (!response) { // if no user is found
-                        throw new Error(`No user for ID ${args.id} found!`);
-                    }
-                    return response;
-                    // could we use promise resolution and rejection? That'd be cleaner
-                    // Promise.resolve(response);
-                })
-                .catch(error => {
-                    return error;
-                    // Promise.reject(error);
-                })
         },
         allUsers: (parent, args, /*{ models } */) => {
             return models.User.findAll()
