@@ -4,6 +4,7 @@ export default `
         author: String!
         name: String!
         isOfficialResource: Boolean!
+        rating: Float!
         genre: String
         medium: String!
         image: String

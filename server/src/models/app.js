@@ -50,6 +50,11 @@ export default (Conn, Sequelize) => {
                 isUrl: true
             }
         },
+        rating: {
+            type: Sequelize.FLOAT,
+            allowNull: false,
+            validate: { min: 0, max: 5 }
+        },
         ownerHomePage: {
             type: Sequelize.STRING,
             allowNull: true,
