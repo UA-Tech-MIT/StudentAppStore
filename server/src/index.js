@@ -5,12 +5,13 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import initDatabase from './initDB';
 import { makeExecutableSchema } from 'graphql-tools';
-import { query, mutation, appSchema, reviewSchema, teamSchema, userSchema, itemTagSchema, tagSchema, error } from './schema/';
+import { schemaArray } from './schema/index';
 import resolvers from './resolvers';
 import models from './models';
 
+
 const schema = makeExecutableSchema({
-  typeDefs: [query, mutation, appSchema, reviewSchema, teamSchema, userSchema, itemTagSchema, tagSchema, error],
+  typeDefs: schemaArray,
   resolvers: { ...resolvers },
 });
 
