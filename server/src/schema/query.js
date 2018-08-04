@@ -12,6 +12,8 @@ type Query {
         isOfficialResource: Boolean, 
         medium: String, 
         date: String): [App!]!
+    searchAppsMulti(id: [ID], 
+            name:[String]): AppQueryResponse!
     getTeamApps(id: ID!): [App!]!
 
     # USER QUERIES

@@ -136,7 +136,7 @@ export const CREATE_APP = (args) => {
 };
 
 
-export const REGISTER_USER = ({username, password, email, ...args}) => {
+export const REGISTER_USER = ({ username, password, email, ...args }) => {
     const query = buildQueryString(args);
     //NOTE: all required fields must be passed. Other fields can be build with the helper func
     // otherwise graphql won't recognize the mutation and you'll get a strange error
@@ -157,7 +157,7 @@ export const REGISTER_USER = ({username, password, email, ...args}) => {
     `;
 };
 
-export const LOGIN_USER = ({username, password}) => {
+export const LOGIN_USER = ({ username, password }) => {
     return `
         mutation loginUser {
             login(username: "${username}", password: "${password}") {
@@ -175,7 +175,7 @@ export const LOGIN_USER = ({username, password}) => {
 
 
 
-export const SEARCH_APPS_QUERY = (args) => {
+export const SEARCH_APP_QUERY = (args) => {
     const query = buildQueryString(args);
 
     return `
@@ -187,13 +187,43 @@ export const SEARCH_APPS_QUERY = (args) => {
     `;
 };
 
+export const SEARCH_APPS_QUERY = (args) => {
+    let query = "", params = "";
+    if (args.name && args.name.length) {
+        query += "name: $name";
+        params += "$name: [String],";
+    }
+    if (args.id && args.id.length) {
+        query += "id: $id";
+        params += "$id: [ID],";
+    }
+
+    // For some reason appNo causes problems in the search bar
+    // TODO (figure out how to congfig searchbar class)
+
+    return `
+        query SearchAppsQuery(${params}) {
+            searchAppsMulti(${query}) {
+                ok
+                apps{
+                    ${generalAppQuery}
+                }
+                errors{
+                    path
+                    message
+                }
+            } 
+        }
+    `;
+};
+
 
 function buildQueryString(params) {
     let queryStringBuilder = "";
     const entryList = Object.entries(params);
     for (let i = 0; i < entryList.length; i++) {
-        const [ key, value ] = entryList[i];
-        if( !value || typeof value !== 'string') 
+        const [key, value] = entryList[i];
+        if (!value || typeof value !== 'string')
             continue; // skip null values so they aren't entered as strings
         if (i !== 0)
             queryStringBuilder += ", ";

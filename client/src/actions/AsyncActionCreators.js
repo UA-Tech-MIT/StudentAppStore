@@ -124,7 +124,7 @@ export const login = (args) => dispatch =>  {
 
 export const searchApps = (args) => dispatch =>  {
     const query = SEARCH_APPS_QUERY(args);
-    return fetch(queryUri, createFetchConfig(query))
+    return fetch(queryUri, createFetchConfig(query, args))
         .then(res => res.json())
         .then(data => data);
 };

@@ -51,6 +51,22 @@ export default {
                     }
                 });
         },
+        searchAppsMulti: async (parent, args, /*{ models } */) => {
+            return models.App.findAll({where:{...args}})
+                .then((res) => {
+                    console.log(res);
+                    return {
+                        ok: true,
+                        apps: res
+                    }
+                })
+                .catch((err) => {
+                    return {
+                        ok: false,
+                        errors: formatErrors(err, models)
+                    }
+                });
+        },
         searchApps: async (parent, args, /*{ models } */) => {
             try {
                 return models.App.findAll({ where: { ...args } });
