@@ -1,8 +1,8 @@
-export default `
+export const typeDef = `
 
-type Query {
+    type Query {
 
-    #APP QUERIES
+        #APP QUERIES
 
     getApp(id: ID!): AppQueryResponse!
     allApps: AppQueryResponse!
@@ -16,22 +16,22 @@ type Query {
             name:[String]): AppQueryResponse!
     getTeamApps(id: ID!): [App!]!
 
-    # USER QUERIES
+        # USER QUERIES
 
-    getUser(id: ID!): User!
-    allUsers: [User!]!
-    getAppCreators(id: ID!): [User!]!
-    getTeamUsers(id: ID!): [User!]!
+        getUser(id: ID!): User!
+        allUsers: [User!]!
+        getAppCreators(id: ID!): [User!]!
+        getTeamUsers(id: ID!): [User!]!
 
-    #REVIEW QUERIES
+        #REVIEW QUERIES
 
-    allReviews: [Review!]!
-    getAppReviews(appId: ID!): [Review!]!
+        allReviews: [Review!]!
+        getAppReviews(appId: ID!): [Review!]!
 
-    #TEAM QUERIES
+        #TEAM QUERIES
 
-    allTeams: [Team!]!
-    getTeam: Team!
-    
-}
+        allTeams: [Team!]!
+        getTeam: Team!
+        
+    }
 `;

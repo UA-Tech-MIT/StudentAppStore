@@ -1,41 +1,41 @@
-export default `
-type Mutation {
+export const typeDef = `
+    type Mutation {
 
-    #APP MUTATIONS
+        #APP MUTATIONS
 
-    createApp(author: String!
-        name: String!
-        isOfficialResource: Boolean!
-        genre: String
-        medium: String!
-        image: String
-        email: String!
-        dateLaunched: String
-        description: String!
-        url:  String!
-        ownerHomePage: String): Boolean!
+        createApp(author: String!
+            name: String!
+            isOfficialResource: Boolean!
+            genre: String
+            medium: String!
+            image: String
+            email: String!
+            dateLaunched: String
+            description: String!
+            url:  String!
+            ownerHomePage: String): Boolean!
 
-    #USER MUTATIONS
+        #USER MUTATIONS
 
-    login(username: String!, password: String!): LoginResponse!
-    addApp(appId: ID!, teamId: ID): Boolean!
-    removeApp(appId: ID!, teamID: ID): Boolean!
-    joinTeam(teamID: ID!): Boolean!
-    createUser(username: String!
-        email: String!
-        password: String!
-        firstName: String
-        lastName: String): RegisterResponse!
+        login(username: String!, password: String!): LoginResponse!
+        addApp(appId: ID!, teamId: ID): Boolean!
+        removeApp(appId: ID!, teamID: ID): Boolean!
+        joinTeam(teamID: ID!): Boolean!
+        createUser(username: String!
+            email: String!
+            password: String!
+            firstName: String
+            lastName: String): RegisterResponse!
 
-    #REVIEW MUTATIONS
+        #REVIEW MUTATIONS
 
-    createReview(appId: ID!, text: String!): Boolean!
-    editReview(id: ID!, content: String!, rating: Float): Boolean!
+        createReview(appId: ID!, text: String!): Boolean!
+        editReview(id: ID!, content: String!, rating: Float): Boolean!
 
-    #TEAM MUTATIONS 
-    
-    addUser(userId: ID!): Boolean!
-    removeUser(userID: ID!): Boolean!
+        #TEAM MUTATIONS 
+        
+        addUser(userId: ID!): Boolean!
+        removeUser(userID: ID!): Boolean!
 
-}
+    }
 `;

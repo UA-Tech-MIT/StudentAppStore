@@ -1,4 +1,4 @@
-export default `
+export const typeDef = `
 
   type ItemTag {
     id: Int!

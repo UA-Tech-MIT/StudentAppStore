@@ -77,8 +77,12 @@ export default {
 
         //USER QUERIES
 
-        getUser: (parent, { id }, /*{ models } */) => models.User.findOne({ where: { id } }),
-        allUsers: (parent, args, /*{ models } */) => models.User.findAll(),
+        getUser: (parent, args, /*{ models } */) => {
+            return models.User.findOne({where: { ...args }})
+        },
+        allUsers: (parent, args, /*{ models } */) => {
+            return models.User.findAll()
+        },
         getAppCreators: async (parent, args, { app }) => {
             try {
                 return models.User.findAll({
