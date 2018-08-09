@@ -36,7 +36,7 @@ export default {
           
         },
         allApps: async (parent, args, /*{ models } */) => {
-            return models.App.findAll()
+            return models.App.findAll({order: [['views', 'DESC'],['likes', 'DESC']]})
                 .then((res) => {
                     console.log(res);
                     return {
@@ -52,7 +52,7 @@ export default {
                 });
         },
         searchAppsMulti: async (parent, args, /*{ models } */) => {
-            return models.App.findAll({where:{...args}})
+            return models.App.findAll({where:{...args}, order: [['views', 'DESC'],['likes', 'DESC']]})
                 .then((res) => {
                     console.log(res);
                     return {
@@ -69,7 +69,7 @@ export default {
         },
         searchApps: async (parent, args, /*{ models } */) => {
             try {
-                return models.App.findAll({ where: { ...args } });
+                return models.App.findAll({ where: { ...args }, order: [['views', 'DESC'],['likes', 'DESC']] });
             } catch (err) {
                 console.log(err); return false;
             }
@@ -152,7 +152,8 @@ export default {
                     include: [
                         {
                             model: models.App,
-                            where: { id: id }
+                            where: { id: id },
+                            order: [['likes', 'DESC']]
                         }
                     ]
                 });
@@ -163,9 +164,7 @@ export default {
         }
     },
     Mutation: {
-        //APP 
-        
-        //WORKING!
+        //APP         
         createApp: async (parent, args, /*{ models } */) => {
             let id = Faker.random.uuid();
             return models.App.create({ ...args, id })
@@ -178,6 +177,24 @@ export default {
                     return false;
                 })
         },
+        incrementAppLikes: async (parent, appNo) => {
+            return models.App.findOne({where: appNo}).then((app) => {
+                // Oddly enough if you use a field thats not id it just returns one of the apps in ID order.
+                if(app.appNo !== appNo)
+                    return false;
+                app.increment('likes')
+                return true;
+            }).catch(() => false);
+        },
+        incrementAppViews: async (parent, appNo) => {
+            return models.App.findOne({where: appNo}).then((app) => {
+                if(app.appNo !== appNo)
+                    return false;
+                app.increment('views')
+                return true;
+            }).catch(() => false);
+        },
+
 
         //USER MUTATIONS
         createUser: async (parent, args, /*{ models } */) => {

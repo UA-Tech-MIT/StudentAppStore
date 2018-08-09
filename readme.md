@@ -15,6 +15,7 @@
         - [Postgres](#postgres)
     - [Having Issues? Try these things first](#having-issues-try-these-things-first)
     - [Technologies](#technologies)
+    - [License](#license)
 
 
 This app was built using the React-Slingshot Starter. Refer to it [Here](https://github.com/coryhouse/react-slingshot/) or check out the [FAQ](./docs/FAQ.md)
@@ -232,3 +233,6 @@ Slingshot offers a rich development experience using the following technologies:
 
 Please fix typos by editing readme.md
 
+## License
+
+This project is Licensed under the MIT License.

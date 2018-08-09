@@ -41,6 +41,7 @@ const basicAppQuery = `
     name,
     author,
     url,
+    appNo
 `;
 
 const generalReviewQuery = `
@@ -189,13 +190,13 @@ export const SEARCH_APP_QUERY = (args) => {
 
 export const SEARCH_APPS_QUERY = (args) => {
     let query = "", params = "";
-    if (args.name && args.name.length) {
-        query += "name: $name";
-        params += "$name: [String],";
-    }
-    if (args.id && args.id.length) {
-        query += "id: $id";
-        params += "$id: [ID],";
+    // if (args.name && args.name.length) {
+    //     query += "name: $name";
+    //     params += "$name: [String],";
+    // }
+    if (args.appNo && args.appNo.length) {
+        query += "appNo: $appNo";
+        params += "$appNo: [Int],";
     }
 
     // For some reason appNo causes problems in the search bar

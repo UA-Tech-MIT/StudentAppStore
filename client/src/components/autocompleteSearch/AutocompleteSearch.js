@@ -37,6 +37,10 @@ class AutocompleteSearch extends Component {
     this.resetComponent();
   }
 
+  componentWillUnmount() {
+    this.resetComponent();
+  }
+
   resetComponent() {
     this.setState({
       disabled: !!this.props.apps,
@@ -62,7 +66,10 @@ class AutocompleteSearch extends Component {
         return isMatch(app, this.state.value);
       });
 
-      this.props.searchApps({ name: filteredResults.map(item => item.name) })
+      let searchQuery = { appNo: filteredResults.map(item => item.appNo) };
+      searchQuery = searchQuery ? searchQuery : [];
+
+      this.props.searchApps(searchQuery)
         .then((response) => {
           const {ok, apps, err} = response.data.searchAppsMulti;
           if(ok) {
@@ -104,7 +111,7 @@ class AutocompleteSearch extends Component {
     const { isLoading, value, results, redirect } = this.state;
     if (redirect) {
       return (
-        <Redirect to="/search" />
+        <Redirect to={"/search/"+ value} />
       );
     }
     else

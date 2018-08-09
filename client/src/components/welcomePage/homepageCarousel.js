@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import * as helperFuncs from '../../utils/helperFunctions';
 import {Carousel} from 'react-bootstrap';
+import {Image} from 'semantic-ui-react';
 
 const dummyState = {
   tiles: [
@@ -45,6 +46,7 @@ function appTile(app, i) {
   const imageClick = () => {
     helperFuncs(app.url);
   };
+  // semantic has no carousel unfortunately
   return (
     <Carousel.Item className="homepage-tile-container" key={i}> 
       <img src={require(`../../public/${app.img}`)} className="homepage-tile" onClick={imageClick} alt="loading..." />

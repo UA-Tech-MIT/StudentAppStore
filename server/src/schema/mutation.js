@@ -15,6 +15,10 @@ export const typeDef = `
             url:  String!
             ownerHomePage: String): Boolean!
 
+
+        incrementAppLikes(appNo: Int!): Boolean!
+        incrementAppViews(appNo: Int!): Boolean!
+
         #USER MUTATIONS
 
         login(username: String!, password: String!): LoginResponse!

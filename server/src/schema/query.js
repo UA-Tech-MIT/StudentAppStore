@@ -13,7 +13,7 @@ export const typeDef = `
         medium: String, 
         date: String): [App!]!
     searchAppsMulti(id: [ID], 
-            name:[String]): AppQueryResponse!
+            name:[String], appNo: [Int]): AppQueryResponse!
     getTeamApps(id: ID!): [App!]!
 
         # USER QUERIES

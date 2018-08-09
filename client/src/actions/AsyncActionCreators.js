@@ -85,19 +85,6 @@ export const fetchAppByID = (id) => {
         .then(res => console.log(res.data));
 };
 
-
-export const postApp = postData => dispatch => { // find out how to post data to graphql?? or some other end point
-    fetch(queryUri, {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(postData)
-    })
-        .then(res => res.json())
-        .then(data => console.log(data));
-};
-
 export const createApp = (args) => dispatch => {
     let vars = { isofficialresource: JSON.parse(args.isofficialresource) };
 
@@ -124,6 +111,7 @@ export const login = (args) => dispatch =>  {
 
 export const searchApps = (args) => dispatch =>  {
     const query = SEARCH_APPS_QUERY(args);
+    debugger;
     return fetch(queryUri, createFetchConfig(query, args))
         .then(res => res.json())
         .then(data => data);

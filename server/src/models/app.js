@@ -73,6 +73,14 @@ export default (Conn, Sequelize) => {
             autoIncrement: true,
             unique: true,
             comment: 'For redux counters'
+        },
+        views: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        },
+        likes: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
         }
     }, {
             name: {

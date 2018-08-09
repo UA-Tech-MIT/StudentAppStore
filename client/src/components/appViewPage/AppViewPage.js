@@ -10,6 +10,8 @@ import { bindActionCreators } from 'redux';
 import AppCarousel from '../common/AppCarousel';
 import {Container} from 'semantic-ui-react';
 
+// SEE NEWAPPVIEWPAGE, this is just to retain the utility from this old code.
+
 const testApp = {
   author: "MIT",
   type: "App",
@@ -28,12 +30,14 @@ const testApp = {
   reviews: []
 };
 
-class AppPage extends React.Component {
+class AppViewPage extends React.Component {
   constructor(props, context) {
     super(props, context);
   }
 
   render() {
+    // SEE NEWAPPVIEWPAGE, this is just to retain the utility from this old code.
+
     return (
       <div>
         <Jumbotron>
@@ -99,9 +103,10 @@ class AppPage extends React.Component {
   }
 }
 
+// SEE NEWAPPVIEWPAGE, this is just to retain the utility from this old code.
 
 
-AppPage.propTypes = {
+AppViewPage.propTypes = {
   // actions: PropTypes.object.isRequired,
   // app: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
@@ -139,4 +144,5 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AppViewPage);
+// SEE NEWAPPVIEWPAGE, this is just to retain the utility from this old code.
