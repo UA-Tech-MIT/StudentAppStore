@@ -1,13 +1,13 @@
 export const typeDef = `
 
   type User {
-    id: ID!
+    id: Int!
     firstName: String
     lastName: String
     username: String!
     email: String!
     password: String!
-    userNo: Int!
+    userHash: ID!
     createdAt: String!
     updatedAt: String!
   }

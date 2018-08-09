@@ -66,7 +66,7 @@ class AutocompleteSearch extends Component {
         return isMatch(app, this.state.value);
       });
 
-      let searchQuery = { appNo: filteredResults.map(item => item.appNo) };
+      let searchQuery = { id: filteredResults.map(item => item.id) };
       searchQuery = searchQuery ? searchQuery : [];
 
       this.props.searchApps(searchQuery)

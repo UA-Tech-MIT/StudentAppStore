@@ -31,7 +31,7 @@ export default function initDB() {
         });
         // console.log(TagIDs[0])
 
-        const defaultUserId = Faker.random.uuid();
+        const defaultUserHash = Faker.random.uuid();
 
         users.push(models.User.create({
             username: "username",
@@ -39,19 +39,19 @@ export default function initDB() {
             email: "email",
             firstName: "Default",
             lastName: "User",
-            id: defaultUserId
+            userHash: defaultUserHash
         }));
-        userIDs.push(defaultUserId);
+        userIDs.push(defaultUserHash);
 
         //TODO find some other way to instantiate teams for apps (add a delay?)
 
         _.range(0,25).forEach((_, i) => {
-            const userID = Faker.random.uuid();
-            const reviewID = Faker.random.uuid();
-            const appID = Faker.random.uuid();
-            userIDs.push(userID);
-            appIDs.push(appID);
-            reviewIDs.push(reviewID);
+            const userHash = Faker.random.uuid();
+            const reviewHash = Faker.random.uuid();
+            const appHash = Faker.random.uuid();
+            userIDs.push(userHash);
+            appIDs.push(appHash);
+            reviewIDs.push(reviewHash);
 
 
             reviews.push(models.Review.create({
@@ -59,7 +59,7 @@ export default function initDB() {
                 content: Faker.random.words(100),
                 rating: Faker.random.number(50) / 10,
                 foundThisHelpful: Faker.random.number(10),
-                id: reviewID
+                reviewHash
             }));
             const firstName =  Faker.name.firstName();
             const lastName =  Faker.name.lastName();
@@ -71,10 +71,10 @@ export default function initDB() {
                 username: firstName + lastName,
                 email: Faker.internet.email(),
                 password: Faker.internet.password(12, true),
-                id: userID
+                userHash
             })
             .then((user) => {
-                user.addReview(reviewID);
+                user.addReview(reviewHash);
                 for (let index = 0; index < i; index++) {
                     user.addCreations(appIDs[index]);
                 }
@@ -93,9 +93,9 @@ export default function initDB() {
                 rating: Faker.random.number(50) / 10,
                 views: 0,
                 likes: 0,
-                id: appID
+                appHash
             }).then((app) => {
-                app.addReview(reviewID);
+                app.addReview(reviewHash);
                 for (let index = 0; index < i; index++) {
                     // app.addCreators(userIDs[index]);
                 }

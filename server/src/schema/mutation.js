@@ -16,15 +16,15 @@ export const typeDef = `
             ownerHomePage: String): Boolean!
 
 
-        incrementAppLikes(appNo: Int!): Boolean!
-        incrementAppViews(appNo: Int!): Boolean!
+        incrementAppLikes(id: Int!): Boolean!
+        incrementAppViews(id: Int!): Boolean!
 
         #USER MUTATIONS
 
         login(username: String!, password: String!): LoginResponse!
-        addApp(appId: ID!, teamId: ID): Boolean!
-        removeApp(appId: ID!, teamID: ID): Boolean!
-        joinTeam(teamID: ID!): Boolean!
+        addApp(appHash: ID!, teamHash: ID): Boolean!
+        removeApp(appHash: ID!, teamHash: ID): Boolean!
+        joinTeam(teamHash: ID!): Boolean!
         createUser(username: String!
             email: String!
             password: String!
@@ -33,13 +33,13 @@ export const typeDef = `
 
         #REVIEW MUTATIONS
 
-        createReview(appId: ID!, text: String!): Boolean!
-        editReview(id: ID!, content: String!, rating: Float): Boolean!
+        createReview(appHash: ID!, text: String!): Boolean!
+        editReview(id: Int!, content: String!, rating: Float): Boolean!
 
         #TEAM MUTATIONS 
         
-        addUser(userId: ID!): Boolean!
-        removeUser(userID: ID!): Boolean!
+        addUser(userHash: ID!): Boolean!
+        removeUser(userHash: ID!): Boolean!
 
     }
 `;

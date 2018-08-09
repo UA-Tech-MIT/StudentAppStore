@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt';
 export const createTokens = async (user, secret, secret2) => {
   const createToken = jwt.sign(
     {
-      user: _.pick(user, ['id']),
+      user: _.pick(user, ['userHash']),
     },
     secret,
     {
@@ -17,7 +17,7 @@ export const createTokens = async (user, secret, secret2) => {
 
   const createRefreshToken = jwt.sign(
     {
-      user: _.pick(user, 'id'),
+      user: _.pick(user, 'userHash'),
     },
     secret2,
     {
@@ -31,8 +31,8 @@ export const createTokens = async (user, secret, secret2) => {
 export const refreshTokens = async (token, refreshToken, models, SECRET) => {
   let userId = -1;
   try {
-    const { user: { id } } = jwt.decode(refreshToken);
-    userId = id;
+    const { user: { userHash } } = jwt.decode(refreshToken);
+    userId = userHash;
   } catch (err) {
     return {};
   }
@@ -41,7 +41,7 @@ export const refreshTokens = async (token, refreshToken, models, SECRET) => {
     return {};
   }
 
-  const user = await models.User.findOne({ where: { id: userId }, raw: true });
+  const user = await models.User.findOne({ where: { userHash}, raw: true });
 
   if (!user) {
     return {};

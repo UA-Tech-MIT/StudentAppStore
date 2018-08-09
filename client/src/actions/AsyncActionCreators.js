@@ -76,7 +76,7 @@ export const customFetch = (query) => dispatch => {
 };
 
 
-// note 2 ways to do the same thing
+// DEPRECATED, see other examples, this is just to illustrate what the basic fetch looks like
 export const fetchAppByID = (id) => {
     fetch(queryUri, {
         query: GET_ALL_APPS,

@@ -46,13 +46,13 @@ export default (Conn, Sequelize) => {
         //         settings: {}
         //     }
         // },
-        id: {
+        userHash: {
             type: Sequelize.UUID,
             primaryKey: true,
             unique: true,
             allowNull: false
         },
-        userNo: {
+        id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
             unique: true,

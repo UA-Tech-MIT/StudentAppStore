@@ -15,7 +15,7 @@ const generalAppQuery = `
     id,
     name,
     author,
-    appNo,
+    appHash,
     createdAt,
     url,
     email,
@@ -30,7 +30,7 @@ const searchAppQuery = `
     id,
     name,
     author,
-    appNo,
+    appHash,
     createdAt,
     url,
     email,
@@ -41,14 +41,15 @@ const basicAppQuery = `
     name,
     author,
     url,
-    appNo
+    id
 `;
 
 const generalReviewQuery = `
+    id,
     content,
     title,
-    userId,
-    reviewNo,
+    userHash,
+    reviewHash,
 `;
 
 const generalUserQuery = `
@@ -56,7 +57,7 @@ const generalUserQuery = `
     lastName,
     email,
     id,
-    userNo,
+    userHash,
 `;
 
 export const GET_ALL_APPS = `
@@ -194,12 +195,12 @@ export const SEARCH_APPS_QUERY = (args) => {
     //     query += "name: $name";
     //     params += "$name: [String],";
     // }
-    if (args.appNo && args.appNo.length) {
-        query += "appNo: $appNo";
-        params += "$appNo: [Int],";
+    if (args.id && args.id.length) {
+        query += "id: $id";
+        params += "$id: [Int],";
     }
 
-    // For some reason appNo causes problems in the search bar
+    // For some reason appHash causes problems in the search bar
     // TODO (figure out how to congfig searchbar class)
 
     return `

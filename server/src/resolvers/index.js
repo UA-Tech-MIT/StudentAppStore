@@ -84,6 +84,7 @@ export default {
             return models.User.findAll()
         },
         getAppCreators: async (parent, args, { app }) => {
+            // 1 syntax is wrong, 2 we wouldn't pass in the app we'd want to find and authenticate (maybe), then findall for that app.
             try {
                 return models.User.findAll({
                     where: { ...args }, include: [ // include syntax?
@@ -91,7 +92,7 @@ export default {
                             models: models.Team,
                             where: {
                                 //   team member prop has user id
-                                appId: app.id
+                                appHash: app.appHash
                             }
                         }
                     ]
@@ -166,8 +167,8 @@ export default {
     Mutation: {
         //APP         
         createApp: async (parent, args, /*{ models } */) => {
-            let id = Faker.random.uuid();
-            return models.App.create({ ...args, id })
+            let appHash = Faker.random.uuid();
+            return models.App.create({ ...args, appHash })
                 .then((res) => {
                     console.log("app created successfully with args", res);
                     return true;
@@ -177,19 +178,14 @@ export default {
                     return false;
                 })
         },
-        incrementAppLikes: async (parent, appNo) => {
-            return models.App.findOne({where: appNo}).then((app) => {
-                // Oddly enough if you use a field thats not id it just returns one of the apps in ID order.
-                if(app.appNo !== appNo)
-                    return false;
+        incrementAppLikes: async (parent, id) => {
+            return models.App.findOne({where: id}).then((app) => {
                 app.increment('likes')
                 return true;
             }).catch(() => false);
         },
-        incrementAppViews: async (parent, appNo) => {
-            return models.App.findOne({where: appNo}).then((app) => {
-                if(app.appNo !== appNo)
-                    return false;
+        incrementAppViews: async (parent, id) => {
+            return models.App.findOne({where: id}).then((app) => {
                 app.increment('views')
                 return true;
             }).catch(() => false);
@@ -201,7 +197,7 @@ export default {
             // MOSTLY FOR AN EXAMPLE, we will generally do client side validation for most of these cases
                 let {password, ...otherArgs} = args;
                 // const hashedPassword = await bcrypt.hash(password, 12);
-                let id = Faker.random.uuid();
+                let userHash = Faker.random.uuid();
 
                 console.log("running createUser")
                 console.log(args)
@@ -245,7 +241,7 @@ export default {
                     }
                 }
 
-                return models.User.create({...otherArgs, id, password})
+                return models.User.create({...otherArgs, userHash, password})
                     .then((res) => {
                         console.log("User created successfully with args", res);
                         return {

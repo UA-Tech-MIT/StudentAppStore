@@ -13,8 +13,8 @@ export const typeDef = `
         description: String!
         url:  String!
         ownerHomePage: String
-        id: ID!
-        appNo: Int!
+        id: Int!
+        appHash: ID!
         createdAt: String!
         updatedAt: String!
         views: Int!

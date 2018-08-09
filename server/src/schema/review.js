@@ -1,12 +1,12 @@
 export const typeDef = `
 
   type Review {
-    id: ID!
+    id: Int!
     title: String!
     content: String!
     rating: Float!
     foundThisHelpful: Int
-    reviewNo: Int!
+    reviewHash: ID!
     userId: User!
     appId: App!
     createdAt: String!

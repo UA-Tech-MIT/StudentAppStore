@@ -24,13 +24,13 @@ export default (Conn, Sequelize) => {
         // path to thumbnail?
         // allow other content like pics in reviews)
         // profilelink?
-        id: {
+        reviewHash: {
             type: Sequelize.UUID,
             primaryKey: true,
             unique: true,
             allowNull: false
         },
-        reviewNo: {
+        id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
             unique: true,
