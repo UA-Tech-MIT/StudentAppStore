@@ -3,26 +3,26 @@ import * as helperFunctions from './helperFunctions';
 describe('Helper functions', () => {
 
     const apps = [{
-        id: 'this is a hash',
+        id: 1,
         name: 'app 1',
     },
     {
-        id: 'this is another hash',
+        id: 2,
         name: 'app 2'
     }, {
-        id: 'this is a third hash',
+        id: 3,
         name: 'app 3'
     }];
     const appObj = {
         0: {
-            id: 'this is a hash',
+            id: 1,
             name: 'app 1',
         },
         1: {
-            id: 'this is another hash',
+            id: 2,
             name: 'app 2'
         }, 2: {
-            id: 'this is a third hash',
+            id: 3,
             name: 'app 3'
         }
     };
@@ -32,14 +32,14 @@ describe('Helper functions', () => {
         it('Should return apps with the right hashes from an array', () => {
             expect(helperFunctions
                 .getAppsById(
-                    ['this is a hash', 'this is another hash'], apps))
+                    [1, 2], apps))
                 .toEqual({
                     0: {
-                        id: 'this is a hash',
+                        id: 1,
                         name: 'app 1',
                     },
                     1: {
-                        id: 'this is another hash',
+                        id: 2,
                         name: 'app 2'
                     },
                 });
@@ -48,14 +48,14 @@ describe('Helper functions', () => {
         it('Should return apps with the right hashes from an object', () => {
             expect(helperFunctions
                 .getAppsById(
-                    ['this is a hash', 'this is another hash'], appObj))
+                    [1, 2], appObj))
                 .toEqual({
                     0: {
-                        id: 'this is a hash',
+                        id: 1,
                         name: 'app 1',
                     },
                     1: {
-                        id: 'this is another hash',
+                        id: 2,
                         name: 'app 2'
                     },
                 });
@@ -71,7 +71,7 @@ describe('Helper functions', () => {
             expect(() => helperFunctions.getAppsById([], apps, {})).toThrowError(Error);
         });
         it('should return an empty object if no apps have id', () => {
-            expect(helperFunctions.getAppsById([1], apps)).toEqual({});
+            expect(helperFunctions.getAppsById(['this is a hash'], apps)).toEqual({});
         });
     });
 

@@ -31,7 +31,7 @@ export default class TestForm extends React.Component {
 
     render() {
         return (
-            <div>
+          <div className="page-template">
             <h3> Submit An App! </h3>
             <form>
               <FieldGroup

@@ -6,7 +6,7 @@ import HomePage from './demo/HomePage';
 import FuelSavingsPage from './demo/FuelSavingsPage';
 import AboutPage from './aboutPage/AboutPage';
 import AppStorePage from './welcomePage/AppStorePage';
-import AppPage from './appViewPage/AppPage';
+import AppViewPage from './appViewPage/AppViewPage';
 import NotFoundPage from './demo/NotFoundPage';
 import Navbar from './navbar/NavBar';
 import OnlineComponent from './demo/onlineComponent.example';
@@ -48,7 +48,7 @@ class Router extends React.Component {
         {/* <div className="container"> */}
         <Navbar leftItems={leftItems} rightItems={rightItems} />
         {/* </div> */}
-        <div className="page-template">
+        
 
 
         <Switch>
@@ -56,21 +56,23 @@ class Router extends React.Component {
           <Route path="/fuel-savings" component={FuelSavingsPage} />
           <Route path="/about" component={AboutPage} />
           <Route path="/app-store" component={AppStorePage} />
-          <Route path="/app-page" component={AppPage} />
+          <Route path="/app-page" component={AppViewPage} />
           <Route path="/online-component" component={OnlineComponent} />
           <Route path="/test-form" component={TestForm} />
-          <Route path="/image-upload" component={ImageUploadComponent} />
-          <Route path="/front-page-container" component={FrontPageContainer} />
           <Route path="/submit-app" component={CreateAppForm} />
           <Route path="/register-user" component={RegisterForm} />
           <Route path="/login" component={LoginForm} />
-          <Route path="/search" component={SearchResults} />
+          <Route exact path="/search" component={SearchResults} />
+          <Route path="/search/:params" component={SearchResults} />
+          <Route path="/view/:id" component={AppViewPage} /> {/* In the long run we will be using 
+          this and pushing a param on redirect. Checking for it in the current search Repo, and then
+          updating the state if it isn't there. Pages that have been loaded should remain in the state
+          until the user unloads the page.*/}
           {/* <Route path="*" render={() => (<Redirect to="/" />)} />           */}
 
           <Route component={NotFoundPage} />
         </Switch>
         </div>
-      </div>
     );
   }
 }

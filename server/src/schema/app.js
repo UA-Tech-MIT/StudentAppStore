@@ -13,10 +13,12 @@ export const typeDef = `
         description: String!
         url:  String!
         ownerHomePage: String
-        id: String!
-        appNo: Int!
+        id: Int!
+        appHash: ID!
         createdAt: String!
         updatedAt: String!
+        views: Int!
+        likes: Int!
     }
 
     type AppQueryResponse {

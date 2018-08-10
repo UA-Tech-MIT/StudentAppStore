@@ -131,7 +131,7 @@ class CreateAppForm extends Component {
          formTags, formDescription, formIsOfficialResource, formImage} = this.state;
 
     return (
-        <div>
+        <div className="page-template">
             <h1>Request An App (Create App in DB)</h1>
 
             <form onSubmit={this.handleSubmit}>

@@ -16,7 +16,7 @@ import React from 'react';
 // apps {
 // id,
 // name,
-// appNo,
+// appHash,
 // createdAt,
 // url,
 // genre,
@@ -40,13 +40,14 @@ export class OnlineComponent extends React.Component {
                   lastName,
                   email,
                   id,
+                  userHash
                 }
                 allApps {
                   ok,
                   apps{
                     id,
                   name,
-                  appNo,
+                  appHash,
                   createdAt,
                   url,
                   genre,
@@ -65,7 +66,7 @@ export class OnlineComponent extends React.Component {
           if (error) return <p>Error :(</p>;
 
           return (
-            <div>
+            <div className="page-template">
               <h3>Online component example</h3>
               <p>
                 {message}
@@ -73,22 +74,23 @@ export class OnlineComponent extends React.Component {
 
               <br />
               <h4>Users</h4>
-              {data.allUsers.map(({ firstName, lastName, email, id, }) => (
+              {data.allUsers.map(({ firstName, lastName, email, id, userHash }) => (
                 <div key={id} className="online-user">
                   <p>{`Name: ${firstName}, ${lastName}`}</p>
                   <p>{`Email: ${email}`}</p>
-                  <p>{`hashCode: ${id}`}</p>
+                  <p>{`id: ${id}`}</p>
+                  <p>{`hashCode: ${userHash}`}</p>
                 </div>
               ))}
               <br />
               <h4>Apps</h4>
-              {data.allApps.apps.map(({ id, name, appNo, createdAt, url, genre, isOfficialResource }) => {
+              {data.allApps.apps.map(({ id, name, appHash, createdAt, url, genre, isOfficialResource }) => {
                 return (
                   <div key={id} className="online-user">
 
                     <p>{`name: ${name}`}</p>
-                    <p>{`hashCode: ${id}`}</p>
-                    <p>{`appNo: ${appNo}`}</p>
+                    <p>{`id: ${id}`}</p>
+                    <p>{`hashCode: ${appHash}`}</p>
                     <p>{`createdAt: ${createdAt}`}</p>
                     <p>{`url: ${url}`}</p>
                     <p>{`genre: ${genre}`}</p>

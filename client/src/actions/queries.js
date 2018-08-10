@@ -15,7 +15,7 @@ const generalAppQuery = `
     id,
     name,
     author,
-    appNo,
+    appHash,
     createdAt,
     url,
     email,
@@ -30,9 +30,8 @@ const searchAppQuery = `
     id,
     name,
     author,
-    appNo,
+    appHash,
     createdAt,
-    url,
     email,
     description,
 `;
@@ -41,13 +40,27 @@ const basicAppQuery = `
     name,
     author,
     url,
+    id
+`;
+
+const thumbnailAppQuery = `
+    name,
+    author,
+    rating,
+    genre,
+    medium,
+    likes,
+    views,
+    isOfficialResource,
+    id
 `;
 
 const generalReviewQuery = `
+    id,
     content,
     title,
-    userId,
-    reviewNo,
+    userHash,
+    reviewHash,
 `;
 
 const generalUserQuery = `
@@ -55,14 +68,14 @@ const generalUserQuery = `
     lastName,
     email,
     id,
-    userNo,
+    userHash,
 `;
 
 export const GET_ALL_APPS = `
     query GetAllApps {
         allApps {
             ok
-            apps{
+            apps {
                 ${basicAppQuery}
             }
             errors{
@@ -72,8 +85,40 @@ export const GET_ALL_APPS = `
         } 
     }
 `;
+
+export const GET_ALL_THUMBNAILS = `
+    query GetAllThumbnails {
+        allApps {
+            ok
+            apps {
+                ${thumbnailAppQuery}
+            }
+            errors{
+                path
+                message
+            }
+        }
+    }
+`;
+
+
 //NOTE you must fill in what fields you want like the example above
 /* eslint-disable no-unused-vars*/
+
+
+
+export const LIKE_APP = (id) => `
+    mutation likeApp{
+        incrementAppLikes(id: ${id})
+    }
+`;
+
+export const VIEW_APP = (id) => `
+    mutation viewApp{
+        incrementAppViews(id: ${id})
+    }
+`;
+
 export const GET_APP_BY_ID = (id) => `
     query GetAppsByID{
         searchApps(id: ${id}) {
@@ -189,16 +234,16 @@ export const SEARCH_APP_QUERY = (args) => {
 
 export const SEARCH_APPS_QUERY = (args) => {
     let query = "", params = "";
-    if (args.name && args.name.length) {
-        query += "name: $name";
-        params += "$name: [String],";
-    }
+    // if (args.name && args.name.length) {
+    //     query += "name: $name";
+    //     params += "$name: [String],";
+    // }
     if (args.id && args.id.length) {
         query += "id: $id";
-        params += "$id: [ID],";
+        params += "$id: [Int],";
     }
 
-    // For some reason appNo causes problems in the search bar
+    // For some reason appHash causes problems in the search bar
     // TODO (figure out how to congfig searchbar class)
 
     return `

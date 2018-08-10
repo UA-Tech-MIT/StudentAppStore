@@ -17,7 +17,7 @@ const testApp = {
   reviews: []
 };
 
-export class AppPage extends React.Component {
+export class AppViewPage extends React.Component {
   constructor(props, context) {
     super(props, context);
     // this.state = {
@@ -89,7 +89,7 @@ export class AppPage extends React.Component {
   }
 }
 
-AppPage.propTypes = {
+AppViewPage.propTypes = {
   // actions: PropTypes.object.isRequired,
   // app: PropTypes.object.isRequired
   // name: PropTypes.String.isRequired,
@@ -135,6 +135,6 @@ AppPage.propTypes = {
 // export default connect(
 //   mapStateToProps,
 //   // mapDispatchToProps
-// )(AppPage);
-export default AppPage;
+// )(AppViewPage);
+export default AppViewPage;
 

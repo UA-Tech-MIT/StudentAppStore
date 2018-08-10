@@ -62,17 +62,25 @@ export default (Conn, Sequelize) => {
                 isUrl: true
             }
         },
-        id: {
+        appHash: {
             type: Sequelize.UUID,
             primaryKey: true,
             unique: true,
             allowNull: false
         },
-        appNo: {
+        id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
             unique: true,
             comment: 'For redux counters'
+        },
+        views: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        },
+        likes: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
         }
     }, {
             name: {

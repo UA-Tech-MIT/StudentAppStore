@@ -1,6 +1,6 @@
 import React from 'react';
  import {DropdownButton, MenuItem} from 'react-bootstrap';
-//  import response from './dummyData';
+ import response from '../common/dummyData';
  import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -19,7 +19,7 @@ import { bindActionCreators } from 'redux';
      render (){
          console.log(this.props.apps); // apps are now a prop, not part of state
          return (
-         <div>
+        <div className="page-template">
              <h3>Search App Store </h3>
              <DropdownButton bsStyle= "primary" title = "Filter Apps" id="dropdown-size-large">
                  <MenuItem eventKey="1">Scheduling</MenuItem>

@@ -36,7 +36,7 @@ export default {
           
         },
         allApps: async (parent, args, /*{ models } */) => {
-            return models.App.findAll()
+            return models.App.findAll({order: [['views', 'DESC'],['likes', 'DESC']]})
                 .then((res) => {
                     console.log(res);
                     return {
@@ -52,7 +52,7 @@ export default {
                 });
         },
         searchAppsMulti: async (parent, args, /*{ models } */) => {
-            return models.App.findAll({where:{...args}})
+            return models.App.findAll({where:{...args}, order: [['views', 'DESC'],['likes', 'DESC']]})
                 .then((res) => {
                     console.log(res);
                     return {
@@ -69,7 +69,7 @@ export default {
         },
         searchApps: async (parent, args, /*{ models } */) => {
             try {
-                return models.App.findAll({ where: { ...args } });
+                return models.App.findAll({ where: { ...args }, order: [['views', 'DESC'],['likes', 'DESC']] });
             } catch (err) {
                 console.log(err); return false;
             }
@@ -84,6 +84,7 @@ export default {
             return models.User.findAll()
         },
         getAppCreators: async (parent, args, { app }) => {
+            // 1 syntax is wrong, 2 we wouldn't pass in the app we'd want to find and authenticate (maybe), then findall for that app.
             try {
                 return models.User.findAll({
                     where: { ...args }, include: [ // include syntax?
@@ -91,7 +92,7 @@ export default {
                             models: models.Team,
                             where: {
                                 //   team member prop has user id
-                                appId: app.id
+                                appHash: app.appHash
                             }
                         }
                     ]
@@ -152,7 +153,8 @@ export default {
                     include: [
                         {
                             model: models.App,
-                            where: { id: id }
+                            where: { id: id },
+                            order: [['likes', 'DESC']]
                         }
                     ]
                 });
@@ -163,12 +165,10 @@ export default {
         }
     },
     Mutation: {
-        //APP 
-        
-        //WORKING!
+        //APP         
         createApp: async (parent, args, /*{ models } */) => {
-            let id = Faker.random.uuid();
-            return models.App.create({ ...args, id })
+            let appHash = Faker.random.uuid();
+            return models.App.create({ ...args, appHash })
                 .then((res) => {
                     console.log("app created successfully with args", res);
                     return true;
@@ -178,13 +178,26 @@ export default {
                     return false;
                 })
         },
+        incrementAppLikes: async (parent, id) => {
+            return models.App.findOne({where: id}).then((app) => {
+                app.increment('likes')
+                return true;
+            }).catch(() => false);
+        },
+        incrementAppViews: async (parent, id) => {
+            return models.App.findOne({where: id}).then((app) => {
+                app.increment('views')
+                return true;
+            }).catch(() => false);
+        },
+
 
         //USER MUTATIONS
         createUser: async (parent, args, /*{ models } */) => {
             // MOSTLY FOR AN EXAMPLE, we will generally do client side validation for most of these cases
                 let {password, ...otherArgs} = args;
                 // const hashedPassword = await bcrypt.hash(password, 12);
-                let id = Faker.random.uuid();
+                let userHash = Faker.random.uuid();
 
                 console.log("running createUser")
                 console.log(args)
@@ -228,7 +241,7 @@ export default {
                     }
                 }
 
-                return models.User.create({...otherArgs, id, password})
+                return models.User.create({...otherArgs, userHash, password})
                     .then((res) => {
                         console.log("User created successfully with args", res);
                         return {

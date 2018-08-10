@@ -10,7 +10,10 @@ import {
     CREATE_APP,
     SEARCH_APPS_QUERY,
     REGISTER_USER,
-    LOGIN_USER
+    LOGIN_USER,
+    LIKE_APP,
+    VIEW_APP,
+    GET_ALL_THUMBNAILS,
 } from './queries';
 // note: by using this syntax we are almost ompletely independent from the apollo stack
 // please do NOT USE THE Apollo Query element (its fine for bootstrapping components without redux in place)
@@ -76,26 +79,13 @@ export const customFetch = (query) => dispatch => {
 };
 
 
-// note 2 ways to do the same thing
+// DEPRECATED, see other examples, this is just to illustrate what the basic fetch looks like
 export const fetchAppByID = (id) => {
     fetch(queryUri, {
         query: GET_ALL_APPS,
         variables: { ID: id }
     })
         .then(res => console.log(res.data));
-};
-
-
-export const postApp = postData => dispatch => { // find out how to post data to graphql?? or some other end point
-    fetch(queryUri, {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(postData)
-    })
-        .then(res => res.json())
-        .then(data => console.log(data));
 };
 
 export const createApp = (args) => dispatch => {
@@ -129,3 +119,20 @@ export const searchApps = (args) => dispatch =>  {
         .then(data => data);
 };
 
+export const likeApp = (args) => dispatch => {
+    return fetch(queryUri, createFetchConfig(LIKE_APP(args)))
+        .then(res => res.json())
+        .then(payload => console.log('like app ' + payload));
+};
+
+export const viewApp = (args) => dispatch => {
+    return fetch(queryUri, createFetchConfig(VIEW_APP(args)))
+        .then(res => res.json())
+        .then(payload => console.log('view app ' + payload));
+};
+
+export const getThumbnails = (args) => dispatch => {
+    return fetch(queryUri, createFetchConfig(GET_ALL_THUMBNAILS))
+    .then(res => res.json())
+    .then(data => data);
+}

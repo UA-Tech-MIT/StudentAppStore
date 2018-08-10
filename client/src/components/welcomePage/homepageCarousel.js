@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import * as helperFuncs from '../../utils/helperFunctions';
 import {Carousel} from 'react-bootstrap';
+import {Image} from 'semantic-ui-react';
 
 const dummyState = {
   tiles: [
@@ -45,6 +46,7 @@ function appTile(app, i) {
   const imageClick = () => {
     helperFuncs(app.url);
   };
+  // semantic has no carousel unfortunately
   return (
     <Carousel.Item className="homepage-tile-container" key={i}> 
       <img src={require(`../../public/${app.img}`)} className="homepage-tile" onClick={imageClick} alt="loading..." />
@@ -63,6 +65,10 @@ class HomepageCarousel extends React.Component {
     };
   }
 
+
+  // I think we should move away from the bootstrap carousel 
+  // because when you lose wifi connectivity the styles don't load (not a great reason so i'll leave it for now)
+
   render() {
     const headerMessage = "Spotlight Apps";
 
@@ -70,7 +76,7 @@ class HomepageCarousel extends React.Component {
       return (
         <div>
           <h2>{headerMessage}</h2>
-          <Carousel>
+          <Carousel className="homepage-carousel">
             <Carousel.Caption className="tile-preview">Loading...</Carousel.Caption>
           </Carousel>
         </div>
@@ -81,7 +87,7 @@ class HomepageCarousel extends React.Component {
       return (
         <div>
           <h2>{headerMessage}</h2>
-          <Carousel>
+          <Carousel className="homepage-carousel">
             <Carousel.Caption className="tile-preview">No articles are here... yet.</Carousel.Caption>
           </Carousel>
         </div>
@@ -90,7 +96,7 @@ class HomepageCarousel extends React.Component {
     return (
       <div>
         <h2>{headerMessage}</h2>
-        <Carousel>
+        <Carousel className="homepage-carousel">
           {this.state.tiles.map((tile, index) => appTile(tile, index))}
         </Carousel>
       </div>
