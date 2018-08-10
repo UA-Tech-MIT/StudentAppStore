@@ -2,7 +2,7 @@ import React from 'react';
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="page-template">
       <h1>UA App Store</h1>
 
       <h2>Getting started</h2>

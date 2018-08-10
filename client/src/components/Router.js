@@ -48,7 +48,7 @@ class Router extends React.Component {
         {/* <div className="container"> */}
         <Navbar leftItems={leftItems} rightItems={rightItems} />
         {/* </div> */}
-        <div className="page-template">
+        
 
 
         <Switch>
@@ -59,8 +59,6 @@ class Router extends React.Component {
           <Route path="/app-page" component={AppViewPage} />
           <Route path="/online-component" component={OnlineComponent} />
           <Route path="/test-form" component={TestForm} />
-          <Route path="/image-upload" component={ImageUploadComponent} />
-          <Route path="/front-page-container" component={FrontPageContainer} />
           <Route path="/submit-app" component={CreateAppForm} />
           <Route path="/register-user" component={RegisterForm} />
           <Route path="/login" component={LoginForm} />
@@ -75,7 +73,6 @@ class Router extends React.Component {
           <Route component={NotFoundPage} />
         </Switch>
         </div>
-      </div>
     );
   }
 }

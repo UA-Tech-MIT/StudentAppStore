@@ -32,7 +32,6 @@ const searchAppQuery = `
     author,
     appHash,
     createdAt,
-    url,
     email,
     description,
 `;
@@ -41,6 +40,18 @@ const basicAppQuery = `
     name,
     author,
     url,
+    id
+`;
+
+const thumbnailAppQuery = `
+    name,
+    author,
+    rating,
+    genre,
+    medium,
+    likes,
+    views,
+    isOfficialResource,
     id
 `;
 
@@ -64,7 +75,7 @@ export const GET_ALL_APPS = `
     query GetAllApps {
         allApps {
             ok
-            apps{
+            apps {
                 ${basicAppQuery}
             }
             errors{
@@ -74,8 +85,40 @@ export const GET_ALL_APPS = `
         } 
     }
 `;
+
+export const GET_ALL_THUMBNAILS = `
+    query GetAllThumbnails {
+        allApps {
+            ok
+            apps {
+                ${thumbnailAppQuery}
+            }
+            errors{
+                path
+                message
+            }
+        }
+    }
+`;
+
+
 //NOTE you must fill in what fields you want like the example above
 /* eslint-disable no-unused-vars*/
+
+
+
+export const LIKE_APP = (id) => `
+    mutation likeApp{
+        incrementAppLikes(id: ${id})
+    }
+`;
+
+export const VIEW_APP = (id) => `
+    mutation viewApp{
+        incrementAppViews(id: ${id})
+    }
+`;
+
 export const GET_APP_BY_ID = (id) => `
     query GetAppsByID{
         searchApps(id: ${id}) {

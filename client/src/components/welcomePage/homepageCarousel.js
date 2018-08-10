@@ -65,6 +65,10 @@ class HomepageCarousel extends React.Component {
     };
   }
 
+
+  // I think we should move away from the bootstrap carousel 
+  // because when you lose wifi connectivity the styles don't load (not a great reason so i'll leave it for now)
+
   render() {
     const headerMessage = "Spotlight Apps";
 
@@ -72,7 +76,7 @@ class HomepageCarousel extends React.Component {
       return (
         <div>
           <h2>{headerMessage}</h2>
-          <Carousel>
+          <Carousel className="homepage-carousel">
             <Carousel.Caption className="tile-preview">Loading...</Carousel.Caption>
           </Carousel>
         </div>
@@ -83,7 +87,7 @@ class HomepageCarousel extends React.Component {
       return (
         <div>
           <h2>{headerMessage}</h2>
-          <Carousel>
+          <Carousel className="homepage-carousel">
             <Carousel.Caption className="tile-preview">No articles are here... yet.</Carousel.Caption>
           </Carousel>
         </div>
@@ -92,7 +96,7 @@ class HomepageCarousel extends React.Component {
     return (
       <div>
         <h2>{headerMessage}</h2>
-        <Carousel>
+        <Carousel className="homepage-carousel">
           {this.state.tiles.map((tile, index) => appTile(tile, index))}
         </Carousel>
       </div>

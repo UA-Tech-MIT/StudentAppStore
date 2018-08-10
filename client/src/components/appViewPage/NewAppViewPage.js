@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AppCarousel from '../common/AppCarousel';
 import {Container, Card, Image, Modal, Popup, Rating, Divider, Segment } from 'semantic-ui-react'; // just threw in a bunch of components i thought u might find useful
-import dummyData from '../searchResults/dummyData'; // ctrl + click to check it out
+import dummyData from '../common/dummyData'; // ctrl + click to check it out
 
 
 class AppViewPage extends React.Component {

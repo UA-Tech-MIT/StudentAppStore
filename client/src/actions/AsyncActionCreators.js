@@ -10,7 +10,10 @@ import {
     CREATE_APP,
     SEARCH_APPS_QUERY,
     REGISTER_USER,
-    LOGIN_USER
+    LOGIN_USER,
+    LIKE_APP,
+    VIEW_APP,
+    GET_ALL_THUMBNAILS,
 } from './queries';
 // note: by using this syntax we are almost ompletely independent from the apollo stack
 // please do NOT USE THE Apollo Query element (its fine for bootstrapping components without redux in place)
@@ -111,9 +114,25 @@ export const login = (args) => dispatch =>  {
 
 export const searchApps = (args) => dispatch =>  {
     const query = SEARCH_APPS_QUERY(args);
-    debugger;
     return fetch(queryUri, createFetchConfig(query, args))
         .then(res => res.json())
         .then(data => data);
 };
 
+export const likeApp = (args) => dispatch => {
+    return fetch(queryUri, createFetchConfig(LIKE_APP(args)))
+        .then(res => res.json())
+        .then(payload => console.log('like app ' + payload));
+};
+
+export const viewApp = (args) => dispatch => {
+    return fetch(queryUri, createFetchConfig(VIEW_APP(args)))
+        .then(res => res.json())
+        .then(payload => console.log('view app ' + payload));
+};
+
+export const getThumbnails = (args) => dispatch => {
+    return fetch(queryUri, createFetchConfig(GET_ALL_THUMBNAILS))
+    .then(res => res.json())
+    .then(data => data);
+}

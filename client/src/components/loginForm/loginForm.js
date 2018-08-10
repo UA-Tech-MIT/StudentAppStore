@@ -99,7 +99,7 @@ class LoginForm extends React.Component {
         }
 
         return (
-            <Container text>
+            <Container text className="page-template">
                 <Header as="h2">Login</Header>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Field error={!!username.error}>

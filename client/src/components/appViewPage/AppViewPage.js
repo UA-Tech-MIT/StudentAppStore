@@ -39,7 +39,7 @@ class AppViewPage extends React.Component {
     // SEE NEWAPPVIEWPAGE, this is just to retain the utility from this old code.
 
     return (
-      <div>
+      <div className="page-template">
         <Jumbotron>
           <h1>{this.props.name}</h1>
           <p>
