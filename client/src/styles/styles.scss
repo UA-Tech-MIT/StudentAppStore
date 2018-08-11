@@ -58,6 +58,25 @@ h2 {
 }
 
 
+.spotlight-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+
+  .right-content {
+    width: 10vw;
+    margin-left:auto;
+    align-self: center;
+  }
+  .left-content {
+    width: 10vw;
+    // margin: auto;
+    align-self: center;
+  }
+}
+
+
 .online-user {
   border-radius: 1%;
   border: #4d4d4d;
@@ -151,6 +170,15 @@ td.fuel-savings-label { width: 175px; }
   margin: 2px;
 }
 
+.app-store-page {
+  // position: absolute;
+  margin-left: 0px!important;
+  margin-right: 0px!important;
+  // top: 61;
+  // left: 0;
+  width: 100%;
+}
+
 .homepage-carousel {
   margin: 25px;
 }
@@ -182,4 +210,19 @@ td.fuel-savings-label { width: 175px; }
 }
 .nav-search-bar {
   margin-top: 12px;
+  margin-right: 5px;
+  input {
+    width: 15vw;
+  }
+}
+
+.spotlight-tile {
+  box-shadow: none;
+}
+
+.spotlight {
+  min-height: 40vh;
+  width: 100vw;
+  background: #FBF8F9;
+  padding: 4vh 8vw
 }

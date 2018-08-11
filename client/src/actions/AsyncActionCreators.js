@@ -1,12 +1,6 @@
 import * as ActionTypes from '../constants/actionTypes';
-import { filter } from '../utils/helperFunctions';
 import {
     GET_ALL_APPS,
-    GET_APP_BY_ID,
-    GET_ALL_USERS,
-    GET_USER_BY_ID,
-    GET_ALL_REVIEWS,
-    GET_REVIEW_BY_ID,
     CREATE_APP,
     SEARCH_APPS_QUERY,
     REGISTER_USER,
@@ -45,6 +39,7 @@ const createFetchConfig = (query, vars) => {
 const queryUri = 'http://localhost:8080/graphql';
 
 // NOTE THESE ARE THUNKS
+/* eslint-disable no-unused-vars*/
 export const allApps = () => dispatch => {
     return fetch(queryUri, createFetchConfig(GET_ALL_APPS))
         /* eslint-disable no-undef*/
@@ -87,7 +82,7 @@ export const fetchAppByID = (id) => {
     })
         .then(res => console.log(res.data));
 };
-
+/* eslint-disable no-unused-vars*/
 export const createApp = (args) => dispatch => {
     let vars = { isofficialresource: JSON.parse(args.isofficialresource) };
 
@@ -122,7 +117,7 @@ export const searchApps = (args) => dispatch =>  {
 export const likeApp = (args) => dispatch => {
     return fetch(queryUri, createFetchConfig(LIKE_APP(args)))
         .then(res => res.json())
-        .then(payload => console.log('like app ' + payload));
+        .then(payload => payload);
 };
 
 export const viewApp = (args) => dispatch => {
@@ -135,4 +130,4 @@ export const getThumbnails = (args) => dispatch => {
     return fetch(queryUri, createFetchConfig(GET_ALL_THUMBNAILS))
     .then(res => res.json())
     .then(data => data);
-}
+};
