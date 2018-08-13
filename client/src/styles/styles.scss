@@ -71,7 +71,6 @@ h2 {
   }
   .left-content {
     width: 10vw;
-    // margin: auto;
     align-self: center;
   }
 }
@@ -166,16 +165,18 @@ td.fuel-savings-label { width: 175px; }
   }
 }
 
+.spotlight-tile-official {
+  padding: 5px;
+  align-content: left;
+}
+
 .app-tile-label {
   margin: 2px;
 }
 
 .app-store-page {
-  // position: absolute;
   margin-left: 0px!important;
   margin-right: 0px!important;
-  // top: 61;
-  // left: 0;
   width: 100%;
 }
 

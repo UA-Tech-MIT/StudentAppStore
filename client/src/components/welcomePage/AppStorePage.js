@@ -63,8 +63,8 @@ class AppStorePage extends React.Component {
               <p> A course planning website.</p>
         </div>
             <div className="right-content">
-              <Icon name="heart" size='big'/>
-              <Icon name="eye" size='big'/>
+              <Icon name="heart" size='big' label={{as:'a', content:'1000 likes'}}/>
+              <Icon name="eye" size='big' label={{as:'a', content:'1000 likes'}}/>
               <Icon name="external" size='big'/>
             </div>
           </div>
@@ -79,20 +79,6 @@ class AppStorePage extends React.Component {
           </Card.Group>
         </Container>
       </section>
-
-      // <div>
-      //   <Jumbotron className="Title">
-      //     <h1> Welcome </h1>
-      //     <p>{message}</p>
-      //     <Button>Sign in with Kerberos!</Button>
-      //   </Jumbotron>
-      //   <HomepageCarousel />
-      //   <div>
-      //     <span {...this.props}>there
-      //     s some text here</span>
-      //   </div>
-
-      // </div>
     );
   }
 }

@@ -6,6 +6,17 @@ import {likeApp as queryLike} from '../../actions/AsyncActionCreators'; // TODO
 import {Container, Card, Image, Label, Popup, Rating, Segment, Icon} from 'semantic-ui-react';
 
 //TODO cap tags at 16 characters and check back. does it overflow? can we do 20
+
+const cornerFlag = {
+    as:'a',
+    corner:'left', 
+    content:'MIT', 
+    style:{
+        padding: 6 + 'px',
+        textAlign: 'left',
+    }
+};
+
 class AppTile extends React.Component {
     constructor(props) {
         super(props);
@@ -36,7 +47,8 @@ class AppTile extends React.Component {
     render() {
         return (
           <Card style={{'boxShadow': 'none', border: 0, 'borderRadius': 0}}>
-            <Image src={require('../../public/stellar.png')} />
+            <Image src={require('../../public/stellar.png')}
+                label={this.props.app.isOfficialResource ? cornerFlag : null} />
             <Card.Content>
             <Card.Header style={{maxWidth: 100 +'%'}}>
                             {this.props.app.name}</Card.Header>
