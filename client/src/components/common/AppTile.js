@@ -3,9 +3,20 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {likeApp as queryLike} from '../../actions/AsyncActionCreators'; // TODO
-import {Container, Card, Image, Label, Popup, Rating, Segment, Icon} from 'semantic-ui-react';
-
+import {Container, Card, Image, Popup, Rating, Segment, Icon} from 'semantic-ui-react';
+import {TagLabel} from './TagLabel';
 //TODO cap tags at 16 characters and check back. does it overflow? can we do 20
+
+const cornerFlag = {
+    as: 'a',
+    corner: 'left', 
+    content: 'MIT', 
+    style:{
+        padding: 6 + 'px',
+        textAlign: 'left',
+    }
+};
+
 class AppTile extends React.Component {
     constructor(props) {
         super(props);
@@ -36,12 +47,13 @@ class AppTile extends React.Component {
     render() {
         return (
           <Card style={{'boxShadow': 'none', border: 0, 'borderRadius': 0}}>
-            <Image src={require('../../public/stellar.png')} />
+            <Image src={require('../../public/stellar.png')}
+                label={this.props.app.isOfficialResource ? cornerFlag : null} />
             <Card.Content>
             <Card.Header style={{maxWidth: 100 +'%'}}>
                             {this.props.app.name}</Card.Header>
               <Card.Meta>
-                <span className='date'>by {this.props.app.author}</span>
+                <span className='author'>by {this.props.app.author}</span>
               </Card.Meta>
               <Card.Description as='div' style={{'alignContent': 'center'}}>{this.generateLabels()}</Card.Description>
             </Card.Content>
@@ -55,7 +67,8 @@ class AppTile extends React.Component {
                 </Segment>
 
                 <Segment>
-                <Popup trigger={AppRating(this.props.app.rating)} flowing hoverable>
+                <Popup trigger={AppRating(
+                    parseFloat(this.props.app.rating.toFixed(1))+ '/5')} flowing hoverable>
                     <Rating icon='star' defaultRating={0} maxRating={5} />
                 </Popup>
 
@@ -74,23 +87,6 @@ class AppTile extends React.Component {
 AppTile.propTypes = {
     app: PropTypes.object.isRequired,
     queryLike: PropTypes.func.isRequired,
-};
-
-
-class TagLabel extends React.Component {
-    render() {
-        return (
-            <a onClick={() => console.log('search by label??')}>
-              <Label style={{ marginLeft: 2.5 + '%', marginRight: 2.5 + '%'}}>
-                {this.props.tag}
-              </Label>
-            </a>
-          );
-    }
-}
-
-TagLabel.propTypes = {
-    tag: PropTypes.string.isRequired,
 };
 
 const AppRating = (rating) =>  {

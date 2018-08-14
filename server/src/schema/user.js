@@ -10,6 +10,7 @@ export const typeDef = `
     userHash: ID!
     createdAt: String!
     updatedAt: String!
+    tags: [Tag!]
   }
 
   type RegisterResponse {

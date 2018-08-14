@@ -19,6 +19,9 @@ export const typeDef = `
         updatedAt: String!
         views: Int!
         likes: Int!
+        numRatings: Int!
+        tags: [Tag!]
+        creators: [User]
     }
 
     type AppQueryResponse {

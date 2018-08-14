@@ -91,8 +91,6 @@ export default function initDB() {
                 image: Faker.random.image(),
                 email: Faker.internet.email(),
                 rating: Faker.random.number(50) / 10,
-                views: 0,
-                likes: 0,
                 appHash
             }).then((app) => {
                 app.addReview(reviewHash);

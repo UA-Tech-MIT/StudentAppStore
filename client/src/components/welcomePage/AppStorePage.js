@@ -4,13 +4,21 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { allApps, likeApp, viewApp, getThumbnails } from '../../actions/AsyncActionCreators'; // TODO
 import { Container, Header, Card, Image, Divider, Icon } from 'semantic-ui-react';
-import faker from 'faker';
 import AppTile from '../common/AppTile';
-
-
+import UserTile from '../common/UserTile';
+import {NavLink} from 'react-router-dom';
 
 const message = `to the MIT Student App Store, the one stop location for student made resources.\n
 to get started, browes the apps below or...`;
+
+const testUser = {
+  firstName: 'Yaateh',
+  lastName:  'Richardson',
+  email: 'yaatehr@mit.edu',
+  flair: ['Course 6', 'Love & a 🥪', 'Jr.'],
+  isModerator: true,
+  image: require('../../public/yaateh.jpg'),
+};
 
 class AppStorePage extends React.Component {
   constructor(props) {
@@ -23,7 +31,7 @@ class AppStorePage extends React.Component {
 
   componentWillMount() {
     this.props.getThumbnails().then((response) => {
-      const { ok, apps, err } = response.data.allApps;
+      const { ok, apps, err } = response.data.spotlightApps;
       if (ok) {
         this.setState({
           isLoading: false,
@@ -39,7 +47,6 @@ class AppStorePage extends React.Component {
 
   render() {
     const { isLoading, allThumbnails } = this.state;
-
     if (isLoading) {
       return (
         <p> loading... </p>
@@ -52,7 +59,7 @@ class AppStorePage extends React.Component {
         <div className='spotlight-content'>
           <Header className='left-content' content="Spotlight" size='huge'/>
           <div className="right-content">
-              <Image circular src={faker.internet.avatar()} alt="creator" size="tiny" />
+              <UserTile user={testUser} />
         </div>
           </div>
           <Image src={require('../../public/firehose.png')} centered size="massive" />
@@ -63,15 +70,19 @@ class AppStorePage extends React.Component {
               <p> A course planning website.</p>
         </div>
             <div className="right-content">
-              <Icon name="heart" size='big'/>
-              <Icon name="eye" size='big'/>
-              <Icon name="external" size='big'/>
+                <a>
+                    <Icon name={
+                      /*eslint-disable */
+                      false ? 'heart' : 'heart outline'} size='big' color="black" />
+                </a>
+              <NavLink to='/app-page'>
+                <Icon color='black' name="external" size='big'/>
+              </NavLink>
             </div>
           </div>
         </div>
         <Container style={{ margin: 10 + 'px', width: 80 + 'vw' }}>
           <Header content="Popular" attached={false} size="huge" />
-          {/* <HomepageCarousel/> */}
         </Container>
         <Container style={{ width: 80 + 'vw' }}>
           <Card.Group itemsPerRow={4}>
@@ -79,25 +90,12 @@ class AppStorePage extends React.Component {
           </Card.Group>
         </Container>
       </section>
-
-      // <div>
-      //   <Jumbotron className="Title">
-      //     <h1> Welcome </h1>
-      //     <p>{message}</p>
-      //     <Button>Sign in with Kerberos!</Button>
-      //   </Jumbotron>
-      //   <HomepageCarousel />
-      //   <div>
-      //     <span {...this.props}>there
-      //     s some text here</span>
-      //   </div>
-
-      // </div>
     );
   }
 }
 
 AppStorePage.propTypes = {
+  spotlightApp: PropTypes.object,
   allApps: PropTypes.func,
   getThumbnails: PropTypes.func,
   likeApp: PropTypes.func,
@@ -105,9 +103,8 @@ AppStorePage.propTypes = {
   homepageapps: PropTypes.object.isRequired
 };
 
-
 function mapStateToProps(state) {
-  return {// eventually pass the carousel apps in through here
+  return {
     homepageapps: state.appRepository
   };
 }
@@ -125,6 +122,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(AppStorePage);
-
-
-// export default AppStorePage;
