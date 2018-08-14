@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Label} from 'semantic-ui-react';
-
-
-
-
 export class TagLabel extends React.Component {
     render() {
         return (
@@ -27,7 +23,7 @@ const yearToColor = (year) => {
         case 'Sr.': return 'blue';
         default: null;
     }
- }
+ };
 
 TagLabel.propTypes = {
     tag: PropTypes.string.isRequired,

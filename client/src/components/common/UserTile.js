@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Container, Card, Image, Label, Popup, Rating, Segment, Icon, PopupContent } from 'semantic-ui-react';
+import { Container, Card, Image, Popup, Icon } from 'semantic-ui-react';
 import faker from 'faker';
 import { TagLabel } from './TagLabel';
 
@@ -14,17 +14,12 @@ const modFlag = {
     size: 'mini',
 
 };
-
-
-
-
 class UserTile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             errors: [],
         };
-
         this.generateLabels = this.generateLabels.bind(this);
     }
 
@@ -44,8 +39,7 @@ class UserTile extends React.Component {
                 <Image circular src={user.image ?
                     user.image : faker.internet.avatar()} alt='user'
                     label={user.isModerator ? modFlag : null} size='tiny' />
-            }
-                flowing hoverable >
+            } flowing hoverable >
                 <Card style={{ 'boxShadow': 'none' }}  >
                     <Card.Content>
                         <Card.Header style={{ maxWidth: 100 + '%', display: 'inline' }}>
@@ -66,14 +60,9 @@ class UserTile extends React.Component {
     }
 }
 
-
-
-
 UserTile.propTypes = {
     user: PropTypes.object.isRequired,
 };
-
-
 
 const mapStateToProps = (state) => {
     return {

@@ -4,16 +4,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { allApps, likeApp, viewApp, getThumbnails } from '../../actions/AsyncActionCreators'; // TODO
 import { Container, Header, Card, Image, Divider, Icon } from 'semantic-ui-react';
-import faker from 'faker';
 import AppTile from '../common/AppTile';
 import UserTile from '../common/UserTile';
 import {NavLink} from 'react-router-dom';
 
-
 const message = `to the MIT Student App Store, the one stop location for student made resources.\n
 to get started, browes the apps below or...`;
-
-
 
 const testUser = {
   firstName: 'Yaateh',
@@ -51,7 +47,6 @@ class AppStorePage extends React.Component {
 
   render() {
     const { isLoading, allThumbnails } = this.state;
-
     if (isLoading) {
       return (
         <p> loading... </p>
@@ -64,7 +59,6 @@ class AppStorePage extends React.Component {
         <div className='spotlight-content'>
           <Header className='left-content' content="Spotlight" size='huge'/>
           <div className="right-content">
-              {/* <Image circular src={faker.internet.avatar()} alt="creator" size="tiny" /> */}
               <UserTile user={testUser} />
         </div>
           </div>
@@ -89,7 +83,6 @@ class AppStorePage extends React.Component {
         </div>
         <Container style={{ margin: 10 + 'px', width: 80 + 'vw' }}>
           <Header content="Popular" attached={false} size="huge" />
-          {/* <HomepageCarousel/> */}
         </Container>
         <Container style={{ width: 80 + 'vw' }}>
           <Card.Group itemsPerRow={4}>
@@ -110,9 +103,8 @@ AppStorePage.propTypes = {
   homepageapps: PropTypes.object.isRequired
 };
 
-
 function mapStateToProps(state) {
-  return {// eventually pass the carousel apps in through here
+  return {
     homepageapps: state.appRepository
   };
 }
@@ -130,6 +122,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(AppStorePage);
-
-
-// export default AppStorePage;
