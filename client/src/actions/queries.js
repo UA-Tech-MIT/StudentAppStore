@@ -43,6 +43,7 @@ const basicAppQuery = `
     id
 `;
 
+//NOTE, text binding can only go a couple layers deep, may become undefined.
 const thumbnailAppQuery = `
     name,
     author,
@@ -52,7 +53,13 @@ const thumbnailAppQuery = `
     likes,
     views,
     isOfficialResource,
-    id
+    id,
+    creators {
+        firstName,
+        lastName,
+        email,
+        id,
+    }
 `;
 
 const generalReviewQuery = `
@@ -68,7 +75,6 @@ const generalUserQuery = `
     lastName,
     email,
     id,
-    userHash,
 `;
 
 export const GET_ALL_APPS = `
@@ -88,7 +94,7 @@ export const GET_ALL_APPS = `
 
 export const GET_ALL_THUMBNAILS = `
     query GetAllThumbnails {
-        allApps {
+        spotlightApps {
             ok
             apps {
                 ${thumbnailAppQuery}

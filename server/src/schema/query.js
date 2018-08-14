@@ -6,6 +6,7 @@ export const typeDef = `
 
     getApp(id: Int!): AppQueryResponse!
     allApps: AppQueryResponse!
+    spotlightApps: AppQueryResponse!
     searchApps(id: Int, 
         keyword: String, 
         genre: String, 

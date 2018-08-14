@@ -67,7 +67,8 @@ class AppTile extends React.Component {
                 </Segment>
 
                 <Segment>
-                <Popup trigger={AppRating(this.props.app.rating)} flowing hoverable>
+                <Popup trigger={AppRating(
+                    parseFloat(this.props.app.rating.toFixed(1))+ '/5')} flowing hoverable>
                     <Rating icon='star' defaultRating={0} maxRating={5} />
                 </Popup>
 

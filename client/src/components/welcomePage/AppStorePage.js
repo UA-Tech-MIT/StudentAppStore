@@ -16,7 +16,8 @@ to get started, browes the apps below or...`;
 
 
 const testUser = {
-  name: 'Yaateh Henry Richardson',
+  firstName: 'Yaateh',
+  lastName:  'Richardson',
   email: 'yaatehr@mit.edu',
   flair: ['Course 6', 'Love & a 🥪', 'Jr.'],
   isModerator: true,
@@ -34,7 +35,7 @@ class AppStorePage extends React.Component {
 
   componentWillMount() {
     this.props.getThumbnails().then((response) => {
-      const { ok, apps, err } = response.data.allApps;
+      const { ok, apps, err } = response.data.spotlightApps;
       if (ok) {
         this.setState({
           isLoading: false,

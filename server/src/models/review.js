@@ -3,20 +3,17 @@ export default (Conn, Sequelize) => {
     const Review = Conn.define('review', {
         title: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: false,
         },
         content: {
             type: Sequelize.TEXT,
-            allowNull: false
+            allowNull: false,
         },
         rating: {
             type: Sequelize.FLOAT,
-            allowNull: false
+            allowNull: false,
+            validate: { min: 0, max: 5 },
         },
-        // authorName: {
-        //     type: Sequelize.STRING,
-        //     allowNull: false
-        // },
         foundThisHelpful: {
             type: Sequelize.INTEGER,
             // should we allow null here?
@@ -28,7 +25,7 @@ export default (Conn, Sequelize) => {
             type: Sequelize.UUID,
             primaryKey: true,
             unique: true,
-            allowNull: false
+            allowNull: false,
         },
         id: {
             type: Sequelize.INTEGER,
