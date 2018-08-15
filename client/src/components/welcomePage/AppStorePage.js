@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { allApps, likeApp, viewApp, getThumbnails } from '../../actions/AsyncActionCreators'; // TODO
+import { allApps, likeApp, viewApp, getThumbnails } from '../../actions/AsyncActionCreators';
 import { Container, Header, Card, Image, Divider, Icon } from 'semantic-ui-react';
 import AppTile from '../common/AppTile';
 import UserTile from '../common/UserTile';

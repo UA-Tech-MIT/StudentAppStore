@@ -16,10 +16,6 @@ function FieldGroup({ id, label, help, ...props }) {
   }
   
 
-//TODO
-//make the real Submit and App, and Edit an App Form views
-// make a sign up form (users)
-
 export default class TestForm extends React.Component {
 
     onDrop(pictureFiles, pictureDataURLs) {// handles the image upload with these inputs

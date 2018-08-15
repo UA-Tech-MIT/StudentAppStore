@@ -25,11 +25,9 @@ export default function initDB() {
             models.Tag.create({
                 name: Faker.random.word(['Essential', 'Social', 'Anonymous', 'Planning']),
             }).then((tag) => {
-                // console.log(tag)
                 TagIDs.push(tag.get('id'));
             });
         });
-        // console.log(TagIDs[0])
 
         const defaultUserHash = Faker.random.uuid();
 
@@ -95,6 +93,7 @@ export default function initDB() {
             }).then((app) => {
                 app.addReview(reviewHash);
                 for (let index = 0; index < i; index++) {
+                    // causes errors
                     // app.addCreators(userIDs[index]);
                 }
                 app.addTag(TagIDs[Faker.random.number(10)]);
