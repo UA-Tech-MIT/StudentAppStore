@@ -59,6 +59,9 @@ const thumbnailAppQuery = `
         lastName,
         email,
         id,
+        tags {
+            name
+        }
     }
 `;
 

@@ -24,36 +24,37 @@ class UserTile extends React.Component {
     }
 
     generateLabels() {
-        const labels = [].concat(this.props.user.flair);
+        const labels = this.props.user.tags;
         return (
-            <Container style={{ display: 'inline' }}>
-                {labels.map((tag, index) => <TagLabel tag={tag} key={index} />)}
-            </Container>
+            <div style={{ 'alignContent': 'center' }}>
+                <div style={{ display: 'inline' }}>
+                    {labels.map((tag, index) => <TagLabel tag={tag} key={index} />)}
+                </div>
+            </div>
         );
     }
 
     render() {
-        let user = this.props.user;
+        const {user, imgSize} = this.props;
+        const hasDescription = user.tags && user.tags.length;
         return (
             <Popup trigger={
                 <Image circular src={user.image ?
                     user.image : faker.internet.avatar()} alt='user'
-                    label={user.isModerator ? modFlag : null} size='tiny' />
+                    label={user.isModerator ? modFlag : null} size={imgSize ? imgSize : 'tiny'} />
             } flowing hoverable >
                 <Card style={{ 'boxShadow': 'none' }}  >
                     <Card.Content>
                         <Card.Header style={{ maxWidth: 100 + '%', display: 'inline' }}>
                             {user.firstName + ' ' + user.lastName + '\t'}
-
                                 <a href={'mailto:' + user.email} className='user-tile-mail'>
                                     <Icon name='mail' />
                                 </a>
                         </Card.Header>
                     </Card.Content>
-                    <Card.Description as='div' style={{ 'alignContent': 'center' }}>
-                        {this.generateLabels()}
-                    </Card.Description>
-
+                    {
+                        hasDescription ? this.generateLabels() : null
+                    }
                 </Card>
             </Popup>
         );
@@ -62,12 +63,11 @@ class UserTile extends React.Component {
 
 UserTile.propTypes = {
     user: PropTypes.object.isRequired,
+    imgSize: PropTypes.string,
 };
 
 const mapStateToProps = (state) => {
-    return {
-
-    };
+    return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
