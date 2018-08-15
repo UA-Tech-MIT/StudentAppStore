@@ -3,11 +3,9 @@ import ImageUploader from 'react-images-upload';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-
 //TODO establish a CDN or schema for storing references (paths) to images in the DB
 // should be fairly straighforward, to start you can just save the files locally to the public folder
 // that should be enough for simulation purposes
-
 
 class ImageUploadComponent extends React.Component {
 

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createUser } from '../../actions/AsyncActionCreators';
 
-
 const getDefaultState = () => {
     return {
         username: {value: '', error: ''},
@@ -37,10 +36,7 @@ class RegisterForm extends React.Component {
 
     handleSubmit = () => {
         let args = this.createArgs();
-
-
-
-         //TODO(yaatehr) add client side varification
+         //TODO add client side varification
 
         this.props.createUser(args).then((response) => {
             const { ok, errors } = response.data.createUser;
@@ -190,9 +186,7 @@ RegisterForm.propTypes = {
 };
 
 const mapStateToProps = (state, { ownProps }) => {
-    return {
-
-    };
+    return {};
 };
 
 const mapDispatchToProps = (dispatch) => {

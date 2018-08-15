@@ -4,10 +4,7 @@ import * as helperFuncs from '../utils/helperFunctions';
 import * as ActionTypes from '../constants/actionTypes';
 import initialState from './initialState';
 
-//TODO make real state
-//TODO fill out all crud endpoints (delete, add?)
-//TODO Make reducer tests
-
+//TODO testing
 
 export default function appStoreReducer(state = initialState.appStore, action) {
     const { type, payload } = action;
@@ -76,8 +73,6 @@ export default function appStoreReducer(state = initialState.appStore, action) {
         default:
             return state;
         }
-
-
     }
 
 

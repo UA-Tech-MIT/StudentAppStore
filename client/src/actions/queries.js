@@ -249,9 +249,6 @@ export const SEARCH_APPS_QUERY = (args) => {
         params += "$id: [Int],";
     }
 
-    // For some reason appHash causes problems in the search bar
-    // TODO (figure out how to congfig searchbar class)
-
     return `
         query SearchAppsQuery(${params}) {
             searchAppsMulti(${query}) {

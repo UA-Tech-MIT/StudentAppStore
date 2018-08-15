@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as helperFuncs from '../../utils/helperFunctions'; // TODO
+import * as helperFuncs from '../../utils/helperFunctions';
 import { ReviewList } from '../common/ReviewList';
 import { allApps, fetchAppByID } from '../../actions/AsyncActionCreators';
 import { connect } from 'react-redux';
