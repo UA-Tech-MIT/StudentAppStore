@@ -15,7 +15,7 @@ const testUser = {
   firstName: 'Yaateh',
   lastName:  'Richardson',
   email: 'yaatehr@mit.edu',
-  flair: ['Course 6', 'Love & a 🥪', 'Jr.'],
+  tags: ['Course 6', 'Love & a 🥪', 'Jr.'],
   isModerator: true,
   image: require('../../public/yaateh.jpg'),
 };
