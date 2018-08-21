@@ -53,7 +53,8 @@ export default (Conn, Sequelize) => {
         rating: {
             type: Sequelize.FLOAT,
             allowNull: false,
-            validate: { min: 0, max: 5 }
+            validate: { min: 0, max: 5 },
+            defaultValue: 0,
         },
         ownerHomePage: {
             type: Sequelize.STRING,
@@ -77,10 +78,17 @@ export default (Conn, Sequelize) => {
         views: {
             type: Sequelize.INTEGER,
             allowNull: false,
+            defaultValue: 0,
         },
         likes: {
             type: Sequelize.INTEGER,
             allowNull: false,
+            defaultValue: 0,
+        },
+        numRatings: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
         }
     }, {
             name: {

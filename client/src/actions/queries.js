@@ -43,6 +43,7 @@ const basicAppQuery = `
     id
 `;
 
+//NOTE, text binding can only go a couple layers deep, may become undefined.
 const thumbnailAppQuery = `
     name,
     author,
@@ -52,7 +53,16 @@ const thumbnailAppQuery = `
     likes,
     views,
     isOfficialResource,
-    id
+    id,
+    creators {
+        firstName,
+        lastName,
+        email,
+        id,
+        tags {
+            name
+        }
+    }
 `;
 
 const generalReviewQuery = `
@@ -68,7 +78,6 @@ const generalUserQuery = `
     lastName,
     email,
     id,
-    userHash,
 `;
 
 export const GET_ALL_APPS = `
@@ -88,7 +97,7 @@ export const GET_ALL_APPS = `
 
 export const GET_ALL_THUMBNAILS = `
     query GetAllThumbnails {
-        allApps {
+        spotlightApps {
             ok
             apps {
                 ${thumbnailAppQuery}
@@ -242,9 +251,6 @@ export const SEARCH_APPS_QUERY = (args) => {
         query += "id: $id";
         params += "$id: [Int],";
     }
-
-    // For some reason appHash causes problems in the search bar
-    // TODO (figure out how to congfig searchbar class)
 
     return `
         query SearchAppsQuery(${params}) {

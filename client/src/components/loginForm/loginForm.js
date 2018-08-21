@@ -35,8 +35,6 @@ class LoginForm extends React.Component {
     handleSubmit = () => {
         let args = this.createArgs();
 
-
-
          //TODO(yaatehr) add client side varification
 
         this.props.login(args).then((response) => {

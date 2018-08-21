@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as helperFuncs from '../../utils/helperFunctions'; // TODO
 import { Media, Jumbotron, Button, Row, Grid, Col, Glyphicon } from 'react-bootstrap';
 import Rating from 'react-rating';
 import { ReviewList } from '../common/ReviewList';

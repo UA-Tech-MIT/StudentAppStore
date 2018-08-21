@@ -1,19 +1,16 @@
-// import App from './app';
-// import Review from './review';
-// import User from './user';
 import models from '../models';
 import Faker from 'faker';
 import _ from 'lodash';
-import {tryLogin} from '../auth';
+import { tryLogin } from '../auth';
 
-
+// Notation: errors.push({path: 'password', message: 'Password is required!'});
 const formatErrors = (e, models) => {
     if (e instanceof models.sequelize.ValidationError) {
-      //  _.pick({a: 1, b: 2}, 'a') => {a: 1}
-      return e.errors.map(x => _.pick(x, ['path', 'message']));
+        //  _.pick({a: 1, b: 2}, 'a') => {a: 1}
+        return e.errors.map(x => _.pick(x, ['path', 'message']));
     }
     return [{ path: 'name', message: 'something went wrong' }];
-  };
+};
 
 
 export default {
@@ -33,10 +30,10 @@ export default {
                         errors: formatErrors(err, models)
                     }
                 });
-          
+
         },
         allApps: async (parent, args, /*{ models } */) => {
-            return models.App.findAll({order: [['views', 'DESC'],['likes', 'DESC']]})
+            return models.App.findAll()
                 .then((res) => {
                     console.log(res);
                     return {
@@ -51,8 +48,32 @@ export default {
                     }
                 });
         },
+        spotlightApps: async (parent, args, /*{ models } */) => {
+            return models.App.findAll({
+                 order: [['views', 'DESC'], ['likes', 'DESC']],
+                 include: [{
+                    model: models.User,
+                    as: 'creators'
+                }],
+                limit: 20,
+                 })
+                .then((res) => {
+                    console.log(res);
+                    return {
+                        ok: true,
+                        apps: res
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                    return {
+                        ok: false,
+                        errors: formatErrors(err, models)
+                    }
+                });
+        },
         searchAppsMulti: async (parent, args, /*{ models } */) => {
-            return models.App.findAll({where:{...args}, order: [['views', 'DESC'],['likes', 'DESC']]})
+            return models.App.findAll({ where: { ...args }, order: [['views', 'DESC'], ['likes', 'DESC']] })
                 .then((res) => {
                     console.log(res);
                     return {
@@ -69,7 +90,7 @@ export default {
         },
         searchApps: async (parent, args, /*{ models } */) => {
             try {
-                return models.App.findAll({ where: { ...args }, order: [['views', 'DESC'],['likes', 'DESC']] });
+                return models.App.findAll({ where: { ...args }, order: [['views', 'DESC'], ['likes', 'DESC']] });
             } catch (err) {
                 console.log(err); return false;
             }
@@ -78,7 +99,12 @@ export default {
         //USER QUERIES
 
         getUser: (parent, args, /*{ models } */) => {
-            return models.User.findOne({where: { ...args }})
+            return models.User.findOne({ 
+                where: { ...args },
+                include: [{
+                    model: models.Tag,
+                }]  
+            })
         },
         allUsers: (parent, args, /*{ models } */) => {
             return models.User.findAll()
@@ -87,7 +113,7 @@ export default {
             // 1 syntax is wrong, 2 we wouldn't pass in the app we'd want to find and authenticate (maybe), then findall for that app.
             try {
                 return models.User.findAll({
-                    where: { ...args }, include: [ // include syntax?
+                    where: { ...args }, include: [
                         {
                             models: models.Team,
                             where: {
@@ -179,13 +205,13 @@ export default {
                 })
         },
         incrementAppLikes: async (parent, id) => {
-            return models.App.findOne({where: id}).then((app) => {
+            return models.App.findOne({ where: id }).then((app) => {
                 app.increment('likes')
                 return true;
             }).catch(() => false);
         },
         incrementAppViews: async (parent, id) => {
-            return models.App.findOne({where: id}).then((app) => {
+            return models.App.findOne({ where: id }).then((app) => {
                 app.increment('views')
                 return true;
             }).catch(() => false);
@@ -194,86 +220,94 @@ export default {
 
         //USER MUTATIONS
         createUser: async (parent, args, /*{ models } */) => {
-            // MOSTLY FOR AN EXAMPLE, we will generally do client side validation for most of these cases
-                let {password, ...otherArgs} = args;
-                // const hashedPassword = await bcrypt.hash(password, 12);
-                let userHash = Faker.random.uuid();
+            let { password, ...otherArgs } = args;
+            let userHash = Faker.random.uuid();
+            let errors = [];
+            for (const key in args) {
+                switch (key) {
+                    default: {
+                        if (args[key].length > 25)
+                            errors.push({ path: key, message: `${key} must be shorter than 25 characters` })
+                    }
+                    case 'password': {
+                        if (!args[key])
+                            errors.push({ path: key, message: 'Password is required!' })
+                    }
+                    case 'username': {
+                        if (!args[key])
+                            errors.push({ path: key, message: 'Username is required!' })
+                    }
 
-                console.log("running createUser")
-                console.log(args)
-                let errors = [];
-
-                // if(!args['password'])
-                //     errors.push({path: 'password', message: 'Password is required!'});
-                // if(!args['username'])
-                //     errors.push({path: 'username', message: 'Username is required!'});
-                // if(!args['email'])
-                //     errors.push({path: 'email', message: 'Email is required!'});
-                // this was checking for required params. Shouldn't have to do this. Just make sure to specify them in queries
-
-                for(const key in args) {
-                    switch(key) {
-                        default: {
-                            if(args[key].length > 25)
-                                errors.push({path: key, message: `${key} must be shorter than 25 characters`})
-
-                        }
-                        case 'password': {
-                            if(!args[key])
-                                errors.push({path: key, message: 'Password is required!'})
-                        }
-                        case 'username': {
-                            if(!args[key])
-                                errors.push({path: key, message: 'Username is required!'})
-                        }
-                        
-                        case 'email': {
-                            if(!args[key])
-                                errors.push({path: key, message: 'Email is required!'})
-                        }
+                    case 'email': {
+                        if (!args[key])
+                            errors.push({ path: key, message: 'Email is required!' })
                     }
                 }
-                console.log(errors);
-                if(errors.length) {
+            }
+            console.log(errors);
+            if (errors.length) {
+                return {
+                    ok: false,
+                    errors
+                }
+            }
+
+            return models.User.create({ ...otherArgs, userHash, password })
+                .then((res) => {
+                    console.log("User created successfully with args", res);
+                    return {
+                        ok: true,
+                        user: res.User
+                    };
+                })
+                .catch((err) => {
+                    console.log(err);
                     return {
                         ok: false,
-                        errors
-                    }
-                }
-
-                return models.User.create({...otherArgs, userHash, password})
-                    .then((res) => {
-                        console.log("User created successfully with args", res);
-                        return {
-                            ok: true,
-                            user: res.User
-                        };
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                        return {
-                            ok: false,
-                            errors: formatErrors(err, models),
-                          };
-                    });
+                        errors: formatErrors(err, models),
+                    };
+                });
         },
-
 
         login: (parent, { username, password }, { models, SECRET, SECRET2 }) =>
             tryLogin(username, password, models, SECRET),
 
 
         //REVIEW MUTATIONS
-        createReview: async (parents, args, /*{ models } */) => {// TODO validation
-            try {
-                models.Review.create({ ...args });
-                return true;
-            } catch (error) {
-                console.log(error);
+        createReview: async (parents, { id, title, content, rating }, { user }) => {
+            // user must be logged in to create a review
+            if(!user)
                 return false;
-            }
+
+            return models.App.findOne({ where: { id } }).then((app) => {
+                let reviewHash = Faker.random.uuid();
+                return models.Review.create({
+                    title,
+                    content,
+                    rating,
+                    reviewHash
+                }).then((review) => {
+                    let appRating = app.rating, numRatings = app.numRatings;
+                    if (numRatings !== 0) {
+                        appRating = appRating * (numRatings / (numRatings + 1)) + rating / (numRatings + 1); // floating point problems here? numErrors here
+                    } else {
+                        appRating = rating;
+                    }
+
+                    app.addReview(reviewHash);
+                    user.addReview(reviewHash);
+                    app.update({ rating: appRating, numRatings: numRatings + 1 });
+                    return true;
+                }).catch((err) => {
+                        console.log(err);
+                        return false;
+                    });
+            }).catch((err) => {
+                    console.log(err);
+                    return false;
+                });
         },
-        editReview: async (parents, args, { review }) => {
+        editReview: async (parents, { id, title, content, rating }, { review }) => {
             try {
                 models.Review.update({ ...args }, { where: { id: review.id } })
                 return true;

@@ -33,8 +33,8 @@ export const typeDef = `
 
         #REVIEW MUTATIONS
 
-        createReview(appHash: ID!, text: String!): Boolean!
-        editReview(id: Int!, content: String!, rating: Float): Boolean!
+        createReview(id: Int!, title: String!, content: String!, rating: Float!): Boolean!
+        editReview(id: Int!, title: String!, content: String!, rating: Float!): Boolean!
 
         #TEAM MUTATIONS 
         
@@ -43,3 +43,5 @@ export const typeDef = `
 
     }
 `;
+
+
