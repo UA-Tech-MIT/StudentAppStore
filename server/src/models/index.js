@@ -30,8 +30,8 @@ const Conn = offlineMode === true ? offlineSql : onlineSql;
 
 const models = {
     User: Conn.import('./user'),
-    App: Conn.import('./App'),
-    Review: Conn.import('./Review'),
+    App: Conn.import('./app'),
+    Review: Conn.import('./review'),
     Team: Conn.import('./team'),
     Tag: Conn.import('./tag'),
     ItemTag: Conn.import('./itemTag'),
