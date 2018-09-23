@@ -9,6 +9,7 @@ import initialState from './initialState';
 export default function appStoreReducer(state = initialState.appStore, action) {
     const { type, payload } = action;
     const currentTime  = getFormattedDateTime();
+    /* eslint-disable */
     process.env.NODE_ENV === 'development' ? console.log(action) : null;
 
     switch(type) {

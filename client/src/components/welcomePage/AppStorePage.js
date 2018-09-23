@@ -6,7 +6,7 @@ import { allApps, likeApp, viewApp, getBetaThumbnails } from '../../actions/Asyn
 import { Container, Header, Card, Image, Divider, Icon, Dimmer, Loader } from 'semantic-ui-react';
 import AppTile from '../common/AppTile';
 import UserTile from '../common/UserTile';
-import {NavLink} from 'react-router-dom';
+// import {NavLink} from 'react-router-dom';
 import faker from 'faker';
 
 class AppStorePage extends React.Component {
@@ -28,6 +28,7 @@ class AppStorePage extends React.Component {
         });
       }
       else {
+        /* eslint-disable no-console */
         console.log(err);
       }
     });

@@ -26,6 +26,7 @@ const generalAppQuery = `
     image
 `;
 
+/*eslint-disable no-unused-vars */
 const searchAppQuery = `
     id,
     name,

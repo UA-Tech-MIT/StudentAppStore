@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 
-let offlineMode = true;
+let offlineMode = false;
 
 const onlineSql = new Sequelize(
     'yaatehr+UATech',

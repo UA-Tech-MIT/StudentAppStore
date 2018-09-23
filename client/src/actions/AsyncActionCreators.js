@@ -82,6 +82,7 @@ export const fetchAppByID = (id) => {
         query: GET_ALL_APPS,
         variables: { ID: id }
     })
+    /* eslint-disable no-console*/
         .then(res => console.log(res.data));
 };
 /* eslint-disable no-unused-vars*/

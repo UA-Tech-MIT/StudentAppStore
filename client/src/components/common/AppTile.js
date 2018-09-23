@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { likeApp as queryLike } from '../../actions/AsyncActionCreators';
-import { Card, Image, Popup, Rating, Segment, Icon } from 'semantic-ui-react';
+import { Card, Image, Rating, Segment, Icon } from 'semantic-ui-react';
 import { TagLabel } from './TagLabel';
 import UserTile from './UserTile';
 //TODO cap tags at 16 characters and check back. does it overflow? can we do 20

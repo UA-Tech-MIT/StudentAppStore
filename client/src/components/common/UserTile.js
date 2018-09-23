@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Container, Card, Image, Popup, Icon } from 'semantic-ui-react';
+import { Card, Image, Popup, Icon } from 'semantic-ui-react';
 // import faker from 'faker';
 import { TagLabel } from './TagLabel';
 
@@ -65,7 +65,7 @@ UserTile.propTypes = {
     user: PropTypes.object.isRequired,
     imgSize: PropTypes.string,
 };
-
+/* eslint-disable no-unused-vars */
 const mapStateToProps = (state) => {
     return {};
 };

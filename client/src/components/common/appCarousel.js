@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import * as helperFuncs from '../../utils/helperFunctions';
-import { Container, Card, Icon, Image } from 'semantic-ui-react';
+import { Card, Image } from 'semantic-ui-react';
 
 // import AppTile from '../AppViewPage/AppTile.js';
 // import { connect, Provider, bindActionCreators } from 'react-redux';
