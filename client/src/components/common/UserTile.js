@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Container, Card, Image, Popup, Icon } from 'semantic-ui-react';
-import faker from 'faker';
+// import faker from 'faker';
 import { TagLabel } from './TagLabel';
 
 const modFlag = {
@@ -40,7 +40,7 @@ class UserTile extends React.Component {
         return (
             <Popup trigger={
                 <Image circular src={user.image ?
-                    user.image : faker.internet.avatar()} alt='user'
+                    user.image : require('../../public/yaateh.jpg')} alt='user'
                     label={user.isModerator ? modFlag : null} size={imgSize ? imgSize : 'tiny'} />
             } flowing hoverable >
                 <Card style={{ 'boxShadow': 'none' }}  >

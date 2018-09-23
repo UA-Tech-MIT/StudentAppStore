@@ -31,6 +31,7 @@
   "license": "MIT",
   "dependencies": {
     "apollo-boost": "0.1.4",
+    "faker": "4.1.0",
     "graphql": "0.13.2",
     "graphql-tag": "2.9.1",
     "object-assign": "4.1.0",
