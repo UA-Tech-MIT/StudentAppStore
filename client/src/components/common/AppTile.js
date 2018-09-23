@@ -56,7 +56,7 @@ class AppTile extends React.Component {
     generateLabels() {
         const labels = [].concat(this.props.app.genre).concat(this.props.app.medium);
         return (
-            <div style={{ display: 'inline' }}>
+            <div style={{ display: 'inline-flex', maxWidth: '19vw' }}>
                 {labels.map((tag, index) => <TagLabel tag={tag} key={index} />)}
             </div>
         );
@@ -68,36 +68,23 @@ class AppTile extends React.Component {
             <Card style={{ 'boxShadow': 'none', border: 0, 'borderRadius': 0 }}>
                 <Image src={require('../../public/stellar.png')}
                     label={this.props.app.isOfficialResource ? cornerFlag : null} />
-                <Card.Content>
-                    <Card.Header >{this.props.app.name}</Card.Header>
+                <Card.Content style={{paddingBottom: '7px'}}>
+                    <Card.Header content={this.props.app.name}/>
                     <Card.Meta>
                         {
                             hasCreators ? this.generateUserTiles()
                                 : <span className='author'>by {this.props.app.author}</span>
                         }
                     </Card.Meta>
-                    <Card.Description as='div' style={{ alignContent: 'center' }}>{this.generateLabels()}</Card.Description>
+                    <Card.Description style={{textAlign: 'center', marginBottom: '7px'}}>{this.props.app.description}</Card.Description>
+                    {this.generateLabels()}
                 </Card.Content>
                 <Card.Content extra as='div' className="no-padding">
-                    <Segment.Group horizontal style={{ margin: 0 }}>
-                        <Segment>
-                            <a onClick={() => this.likeApp()}>
-                                <Icon name={this.state.isLiked ? 'heart' : 'heart outline'} color="pink" />
-                                {this.props.app.likes} Likes
-                </a>
-                        </Segment>
-
-                        <Segment>
-                            <Popup trigger={AppRating(
-                                parseFloat(this.props.app.rating.toFixed(1)) + '/5')} flowing hoverable>
-                                <Rating icon='star' defaultRating={0} maxRating={5} />
-                            </Popup>
-
-                        </Segment>
+                    <Segment.Group horizontal style={{ margin: 0, textAlign: 'center' }}>
                         <Segment>
                             <Icon name='eye' />
                             {this.props.app.views} Views
-                </Segment>
+                        </Segment>
                     </Segment.Group>
                 </Card.Content>
             </Card>

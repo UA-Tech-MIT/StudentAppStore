@@ -8,7 +8,9 @@ import {
     LIKE_APP,
     VIEW_APP,
     GET_ALL_THUMBNAILS,
+    GET_ALL_THUMBNAILS_BETA,
 } from './queries';
+// import { getCiphers } from 'tls'; // what was this for?
 // note: by using this syntax we are almost ompletely independent from the apollo stack
 // please do NOT USE THE Apollo Query element (its fine for bootstrapping components without redux in place)
 
@@ -36,7 +38,7 @@ const createFetchConfig = (query, vars) => {
 };
 
 
-const queryUri = 'http://gonzo.tech:8080/graphql';
+const queryUri = 'http://localhost:8080/graphql';
 
 // NOTE THESE ARE THUNKS
 /* eslint-disable no-unused-vars*/
@@ -130,4 +132,10 @@ export const getThumbnails = (args) => dispatch => {
     return fetch(queryUri, createFetchConfig(GET_ALL_THUMBNAILS))
     .then(res => res.json())
     .then(data => data);
+};
+
+export const getBetaThumbnails = (args) => dispatch => {
+    return fetch(queryUri, createFetchConfig(GET_ALL_THUMBNAILS_BETA))
+        .then(res => res.json())
+        .then(data => data);
 };

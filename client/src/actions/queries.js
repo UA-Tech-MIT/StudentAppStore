@@ -65,6 +65,19 @@ const thumbnailAppQuery = `
     }
 `;
 
+const thumbnailBetaQuery = `
+    name,
+    author,
+    rating,
+    genre,
+    medium,
+    description,
+    likes,
+    views,
+    isOfficialResource,
+    id,
+`;
+
 const generalReviewQuery = `
     id,
     content,
@@ -101,6 +114,21 @@ export const GET_ALL_THUMBNAILS = `
             ok
             apps {
                 ${thumbnailAppQuery}
+            }
+            errors{
+                path
+                message
+            }
+        }
+    }
+`;
+
+export const GET_ALL_THUMBNAILS_BETA = `
+    query GetAllThumbnails {
+        spotlightApps {
+            ok
+            apps {
+                ${thumbnailBetaQuery}
             }
             errors{
                 path

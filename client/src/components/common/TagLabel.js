@@ -5,7 +5,7 @@ export class TagLabel extends React.Component {
     render() {
         return (
             <a onClick={() => console.log('search by label??')}>
-              <Label style={{ marginLeft: 2.5 + '%', marginRight: 2.5 + '%'}}
+              <Label style={{ marginLeft: 2 + 'px', marginRight: 2 + 'px'}}
               color={yearToColor(this.props.tag)}>
                 {this.props.tag}
               </Label>
