@@ -128,6 +128,7 @@ If you keep having problems try the next two steps:
     Open Visual Studio and go to File -> New -> Project -> Visual C++ -> Install Visual C++ Tools for Windows Desktop.
     The C++ compiler is used to compile browser-sync (and perhaps other Node modules).
 
+You will be using cygwin to run the program. You should be able access the root of your directory with `cd C:\ ` then navigate to your repository location. Contact me if you have any trouble.
 
 ---
 
