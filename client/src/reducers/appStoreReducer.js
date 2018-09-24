@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 import {getFormattedDateTime} from '../utils/dates';
 import * as helperFuncs from '../utils/helperFunctions';
 import * as ActionTypes from '../constants/actionTypes';

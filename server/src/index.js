@@ -8,6 +8,8 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { schemaArray } from './schema/index';
 import resolvers from './resolvers';
 import models from './models';
+import parseFile from './parser'
+const fs = require('fs');
 
 
 const schema = makeExecutableSchema({
@@ -15,6 +17,8 @@ const schema = makeExecutableSchema({
   resolvers: { ...resolvers },
 });
 
+// const file = fs.createReadStream('app-list.csv');
+// parseFile(file);
 
 const graphqlEndpoint = '/graphql';
 const SECRET = 'asiodfhoi1hoi23jnl1kejd';

@@ -2,22 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { allApps, likeApp, viewApp, getThumbnails } from '../../actions/AsyncActionCreators';
-import { Container, Header, Card, Image, Divider, Icon } from 'semantic-ui-react';
+import { allApps, likeApp, viewApp, getThumbnails, getBetaThumbnails } from '../../actions/AsyncActionCreators';
+import { Container, Header, Card, Image, Divider, Icon, Dimmer, Loader } from 'semantic-ui-react';
 import AppTile from '../common/AppTile';
 import UserTile from '../common/UserTile';
-import {NavLink} from 'react-router-dom';
+// import {NavLink} from 'react-router-dom';
+import faker from 'faker';
 
-const message = `to the MIT Student App Store, the one stop location for student made resources.\n
-to get started, browes the apps below or...`;
+const message = `to the MIT Student App Store, the one stop location for student made resources.\n	
+to get started, browes the apps below or...`;	
 
-const testUser = {
-  firstName: 'Yaateh',
-  lastName:  'Richardson',
-  email: 'yaatehr@mit.edu',
-  tags: ['Course 6', 'Love & a 🥪', 'Jr.'],
-  isModerator: true,
-  image: require('../../public/yaateh.jpg'),
+ const testUser = {	
+  firstName: 'Yaateh',	
+  lastName:  'Richardson',	
+  email: 'yaatehr@mit.edu',	
+  tags: ['Course 6', 'Love & a 🥪', 'Jr.'],	
+  isModerator: true,	
+  image: require('../../public/yaateh.jpg'),	
 };
 
 class AppStorePage extends React.Component {
@@ -39,17 +40,24 @@ class AppStorePage extends React.Component {
         });
       }
       else {
+        /* eslint-disable no-console */
         console.log(err);
       }
     });
   }
 
-
   render() {
     const { isLoading, allThumbnails } = this.state;
+    const spotlightApp = allThumbnails.pop(faker.random.number(0, allThumbnails.length -1));
+    const hasCreators = spotlightApp.creators && spotlightApp.creators.length;
+
     if (isLoading) {
       return (
-        <p> loading... </p>
+        <section>
+          <Dimmer active inverted>
+            <Loader inverted>Loading</Loader>
+          </Dimmer>
+        </section>
       );
     }
 
@@ -100,7 +108,8 @@ AppStorePage.propTypes = {
   getThumbnails: PropTypes.func,
   likeApp: PropTypes.func,
   viewApp: PropTypes.func,
-  homepageapps: PropTypes.object.isRequired
+  homepageapps: PropTypes.object.isRequired,
+  getBetaThumbnails: PropTypes.func,
 };
 
 function mapStateToProps(state) {

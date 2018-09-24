@@ -1,3 +1,4 @@
+
 //CRUD on a single app
 
 //Query default app streams (query a bunch of apps based on x param?
@@ -26,6 +27,7 @@ const generalAppQuery = `
     image
 `;
 
+/*eslint-disable no-unused-vars */
 const searchAppQuery = `
     id,
     name,
@@ -65,6 +67,19 @@ const thumbnailAppQuery = `
     }
 `;
 
+const thumbnailBetaQuery = `
+    name,
+    author,
+    rating,
+    genre,
+    medium,
+    description,
+    likes,
+    views,
+    isOfficialResource,
+    id,
+`;
+
 const generalReviewQuery = `
     id,
     content,
@@ -101,6 +116,21 @@ export const GET_ALL_THUMBNAILS = `
             ok
             apps {
                 ${thumbnailAppQuery}
+            }
+            errors{
+                path
+                message
+            }
+        }
+    }
+`;
+
+export const GET_ALL_THUMBNAILS_BETA = `
+    query GetAllThumbnails {
+        spotlightApps {
+            ok
+            apps {
+                ${thumbnailBetaQuery}
             }
             errors{
                 path
