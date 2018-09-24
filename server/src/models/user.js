@@ -85,6 +85,17 @@ export default (Conn, Sequelize) => {
     User.associate = (models) => {
         User.hasMany(models.Review);
         User.belongsToMany(models.App, { through: models.Team, as: 'creations' });
+        User.belongsToMany(models.Tag, {
+            through: {
+                model: models.UserTag,
+                unique: false,
+                scope: {
+                    taggable: 'user'
+                }
+            },
+            foreignKey: 'taggable_id',
+            constraints: false
+        });
     };
     return User;
 };

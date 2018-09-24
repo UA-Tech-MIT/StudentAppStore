@@ -2,6 +2,7 @@ import models from '../models';
 import Faker from 'faker';
 import _ from 'lodash';
 import { tryLogin } from '../auth';
+import requiresAuth from '../permissions';
 
 // Notation: errors.push({path: 'password', message: 'Password is required!'});
 const formatErrors = (e, models) => {
@@ -30,7 +31,6 @@ export default {
                         errors: formatErrors(err, models)
                     }
                 });
-
         },
         allApps: async (parent, args, /*{ models } */) => {
             return models.App.findAll()
@@ -144,7 +144,6 @@ export default {
                 console.log(err);
                 return false;
             }
-
         },
         getTeamApps: async (parent, { id }, /*{ models } */) => {
             try {
@@ -166,12 +165,11 @@ export default {
 
         //REVIEW QUERIES
         allReviews: async (parents, args, /*{ models } */) => {
-            try {
-                return models.Reviews.findAll();
-            } catch (err) {
+            return models.Reviews.findAll()
+            .catch((err) => {
                 console.log(err);
                 return false;
-            }
+            });
         },
         getAppReviews: async (parents, id, /*{ models } */) => {// TODO
             try {
@@ -188,11 +186,14 @@ export default {
                 console.log(err);
                 return false;
             }
-        }
+        },
+        allFiles: async (parent, args) => {
+            return models.FileUpload.findAll();
+        },
     },
     Mutation: {
         //APP         
-        createApp: async (parent, args, /*{ models } */) => {
+        createApp: requiresAuth.createResolver(async (parent, args, /*{ models } */) => {
             let appHash = Faker.random.uuid();
             return models.App.create({ ...args, appHash })
                 .then((res) => {
@@ -203,19 +204,19 @@ export default {
                     console.log(err);
                     return false;
                 })
-        },
-        incrementAppLikes: async (parent, id) => {
+        }),
+        incrementAppLikes: requiresAuth.createResolver(async (parent, id) => {
             return models.App.findOne({ where: id }).then((app) => {
                 app.increment('likes')
                 return true;
             }).catch(() => false);
-        },
-        incrementAppViews: async (parent, id) => {
+        }),
+        incrementAppViews: requiresAuth.createResolver(async (parent, id) => {
             return models.App.findOne({ where: id }).then((app) => {
                 app.increment('views')
                 return true;
             }).catch(() => false);
-        },
+        }),
 
 
         //USER MUTATIONS
@@ -274,11 +275,7 @@ export default {
 
 
         //REVIEW MUTATIONS
-        createReview: async (parents, { id, title, content, rating }, { user }) => {
-            // user must be logged in to create a review
-            if(!user)
-                return false;
-
+        createReview: requiresAuth.createResolver(async (parents, { id, title, content, rating }, { user }) => {
             return models.App.findOne({ where: { id } }).then((app) => {
                 let reviewHash = Faker.random.uuid();
                 return models.Review.create({
@@ -306,8 +303,8 @@ export default {
                     console.log(err);
                     return false;
                 });
-        },
-        editReview: async (parents, { id, title, content, rating }, { review }) => {
+        }),
+        editReview: requiresAuth.createResolver(async (parents, { id, title, content, rating }, { review }) => {
             try {
                 models.Review.update({ ...args }, { where: { id: review.id } })
                 return true;
@@ -315,6 +312,13 @@ export default {
                 console.log(err);
                 return false;
             }
+        }),
+        addFile: async (parent, args) => {
+            return models.FileUpload.create({...args})
+                .then((res) => {
+                    console.log(res);
+                    return true;
+                });
         },
     },
 };

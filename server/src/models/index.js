@@ -29,12 +29,14 @@ const Conn = offlineMode === true ? offlineSql : onlineSql;
 
 
 const models = {
-    User: Conn.import('./user'),
-    App: Conn.import('./app'),
-    Review: Conn.import('./review'),
-    Team: Conn.import('./team'),
-    Tag: Conn.import('./tag'),
-    ItemTag: Conn.import('./itemTag'),
+    User: Conn.import('./User'),
+    App: Conn.import('./App'),
+    Review: Conn.import('./Review'),
+    Team: Conn.import('./Team'),
+    Tag: Conn.import('./Tag'),
+    AppTag: Conn.import('./AppTag'),
+    UserTag: Conn.import('./UserTag'),
+    FileUpload: Conn.import('./FileUpload'),
 };
 
 Object.keys(models).forEach((modelName) => {

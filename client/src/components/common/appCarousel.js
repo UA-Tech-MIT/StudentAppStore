@@ -9,8 +9,6 @@ import { Container, Card, Icon, Image } from 'semantic-ui-react';
 // import AppTile from '../AppViewPage/AppTile.js';
 // import { connect, Provider, bindActionCreators } from 'react-redux';
 
-// import PhoneAuthTest from './Components/phoneAuthTest'
-
 // mapDispatchToProps = dispatch => bindActionCreators({
 //     toAbout: () => push('/')
 //   }, dispatch)

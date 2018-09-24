@@ -41,6 +41,9 @@ export const typeDef = `
         addUser(userHash: ID!): Boolean!
         removeUser(userHash: ID!): Boolean!
 
+        #FILE MUTATIONS
+        addFile(url: String!, filetype: String!, name: String, size: String): Boolean
+
     }
 `;
 

@@ -1,6 +1,6 @@
 export const typeDef = `
 
-  type ItemTag {
+  type AppTag {
     id: Int!
     tag_id: Int
     taggable: String

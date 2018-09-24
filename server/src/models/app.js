@@ -104,7 +104,7 @@ export default (Conn, Sequelize) => {
         App.belongsToMany(models.User, { through: models.Team, as: 'creators' });
         App.belongsToMany(models.Tag, {
             through: {
-                model: models.ItemTag,
+                model: models.AppTag,
                 unique: false,
                 scope: {
                     taggable: 'app'

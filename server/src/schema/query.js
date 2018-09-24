@@ -34,5 +34,6 @@ export const typeDef = `
         allTeams: [Team!]!
         getTeam: Team!
         
+        allFiles(id: Int, url: String, filetype: String): [File!]
     }
 `;

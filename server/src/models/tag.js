@@ -7,7 +7,16 @@ export default (Conn, Sequelize) => {
     Tag.associate = (models) => {
         Tag.belongsToMany(models.App, {
             through: {
-                model: models.ItemTag,
+                model: models.AppTag,
+                unique: false
+            },
+            foreignKey: 'tag_id',
+            constraints: false
+        });
+        
+        Tag.belongsToMany(models.User, {
+            through: {
+                model: models.UserTag,
                 unique: false
             },
             foreignKey: 'tag_id',
