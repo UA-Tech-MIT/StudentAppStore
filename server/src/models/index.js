@@ -34,9 +34,9 @@ const models = {
     Review: Conn.import('./review'),
     Team: Conn.import('./team'),
     Tag: Conn.import('./tag'),
-    AppTag: Conn.import('./AppTag'),
-    UserTag: Conn.import('./UserTag'),
-    FileUpload: Conn.import('./FileUpload'),
+    AppTag: Conn.import('./appTag'),
+    UserTag: Conn.import('./userTag'),
+    FileUpload: Conn.import('./fileUpload'),
 };
 
 Object.keys(models).forEach((modelName) => {
