@@ -38,7 +38,7 @@ const createFetchConfig = (query, vars) => {
 };
 
 
-const queryUri = 'http://localhost:8080/graphql';
+const queryUri = 'https://ua-tech-agentalexgit.c9users.io:8080/graphql';
 
 // NOTE THESE ARE THUNKS
 /* eslint-disable no-unused-vars*/

@@ -21,7 +21,7 @@ const schema = makeExecutableSchema({
 // parseFile(file);
 
 const graphqlEndpoint = '/graphql';
-const SECRET = 'asiodfhoi1hoi23jnl1kejd';
+const SECRET = 'asiodfhoi1hoi23jnl1kejd'; //TODO FIX THIS ISSUE
 const SECRET2 = 'a0y7986g786c4uetrytb705864durc';
 const addUser = async (req, res, next) => {
   const token = req.headers['x-token'];
@@ -73,6 +73,6 @@ setTimeout(() => {
   initDatabase();
 }, 4000);
 
-app.listen(APP_PORT, () => {
+app.listen(APP_PORT,"0.0.0.0", () => {
   console.log('DB Listening on port 8080\n');
 });

@@ -12,13 +12,15 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../webpack.config.dev';
 
 const bundler = webpack(config);
-
+console.log("IP IS AT " + process.env.IP)
 // Run Browsersync and use middleware for Hot Module Replacement
 browserSync({
-  port: 3000,
+  port: 8082,
   ui: {
-    port: 3001
+    port: 8081
   },
+  host: process.env.IP,
+  
   server: {
     baseDir: 'src',
 
