@@ -23,6 +23,7 @@ const schema = makeExecutableSchema({
 const graphqlEndpoint = '/graphql';
 const SECRET = 'asiodfhoi1hoi23jnl1kejd'; //TODO FIX THIS ISSUE
 const SECRET2 = 'a0y7986g786c4uetrytb705864durc';
+const devMode = true;
 const addUser = async (req, res, next) => {
   const token = req.headers['x-token'];
   if (token) {
@@ -62,6 +63,7 @@ app.use(graphqlEndpoint, bodyParser.json(), GraphHTTP( async (req, res) => ({
     user: req.user,
     SECRET,
     SECRET2,
+    devMode,
   },
 })));
 
