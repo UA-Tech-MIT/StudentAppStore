@@ -31,19 +31,17 @@ class AppStorePage extends React.Component {
   }
 
   componentWillMount() {
-    return this.props.getThumbnails().then((response) => {
+    this.props.getThumbnails().then((response) => {
       const { ok, apps, err } = response.data.spotlightApps;
       if (ok) {
         this.setState({
           isLoading: false,
           allThumbnails: apps
         });
-        return true;
       }
       else {
         /* eslint-disable no-console */
         console.log(err);
-        return false;
       }
     });
   }
