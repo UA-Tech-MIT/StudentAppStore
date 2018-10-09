@@ -6,7 +6,7 @@ import { allApps, likeApp, viewApp, getThumbnails, getBetaThumbnails } from '../
 import { Container, Header, Card, Image, Divider, Icon, Dimmer, Loader } from 'semantic-ui-react';
 import AppTile from '../common/AppTile';
 import UserTile from '../common/UserTile';
-// import {NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import faker from 'faker';
 
 const message = `to the MIT Student App Store, the one stop location for student made resources.\n	
@@ -48,8 +48,6 @@ class AppStorePage extends React.Component {
 
   render() {
     const { isLoading, allThumbnails } = this.state;
-    const spotlightApp = allThumbnails.pop(faker.random.number(0, allThumbnails.length -1));
-    const hasCreators = spotlightApp.creators && spotlightApp.creators.length;
 
     if (isLoading) {
       return (
@@ -60,6 +58,9 @@ class AppStorePage extends React.Component {
         </section>
       );
     }
+
+    const spotlightApp = allThumbnails.pop(faker.random.number(0, allThumbnails.length -1));
+    const hasCreators = spotlightApp.creators && spotlightApp.creators.length;
 
     return (
       <section>
