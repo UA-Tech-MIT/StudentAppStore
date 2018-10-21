@@ -106,7 +106,7 @@ class CreateAppForm extends Component {
                         state[key].validationState = 'error';
                         isValid = false;
                     }
-                    else 
+                    else
                         state[key].validationState = null;
                     break;
                 }
@@ -115,7 +115,7 @@ class CreateAppForm extends Component {
                         state[key].validationState = 'error';
                         isValid = false;
                     }
-                    else 
+                    else
                         state[key].validationState = null;
                     break;
                 }
@@ -134,25 +134,25 @@ class CreateAppForm extends Component {
             <h1>Request An App (Create App in DB)</h1>
 
             <form onSubmit={this.handleSubmit}>
-                <FieldGroup 
-                    id="formName" 
-                    label="App Name" 
-                    type="text" 
-                    placeholder="App Name" 
-                    onChange={this.handleChange} 
-                    validationState={formName.validationState} 
+                <FieldGroup
+                    id="formName"
+                    label="App Name"
+                    type="text"
+                    placeholder="App Name"
+                    onChange={this.handleChange}
+                    validationState={formName.validationState}
                     value={formName.value}/>
 
-                <FieldGroup 
-                    id="formUrl" 
-                    label="URL" 
-                    type="text" 
+                <FieldGroup
+                    id="formUrl"
+                    label="URL"
+                    type="text"
                     onChange={this.handleChange}
                     validationState={formUrl.validationState}
                     value={formUrl.value}/>
 
-                <FormGroup 
-                onChange={this.handleChange} 
+                <FormGroup
+                onChange={this.handleChange}
                 // value={formIsOwner.value}
                 validationState={formIsOwner.validationState}>
                     <ControlLabel>Did you make this? (email must be provided)</ControlLabel>
@@ -166,9 +166,9 @@ class CreateAppForm extends Component {
                 </FormGroup>
 
 
-                <FormGroup 
-                    controlId="formAuthor" 
-                    className={formIsOwner.value === 'false' ? '' : 'hidden'} 
+                <FormGroup
+                    controlId="formAuthor"
+                    className={formIsOwner.value === 'false' ? '' : 'hidden'}
                     onChange={this.handleChange}
                     validationState={formAuthor.validationState}
                     value={formAuthor.value}>
@@ -178,17 +178,17 @@ class CreateAppForm extends Component {
 
 
 
-                <FieldGroup 
-                    id="formGenre" 
-                    label="Medium" 
-                    type="select" 
+                <FieldGroup
+                    id="formGenre"
+                    label="Medium"
+                    type="select"
                     onChange={this.handleChange}
-                    validationState={formGenre.validationState} 
+                    validationState={formGenre.validationState}
                     value={formGenre.value}/>
 
-                <FormGroup 
-                    onChange={this.handleChange} 
-                    validationState={formIsOfficialResource.validationState} 
+                <FormGroup
+                    onChange={this.handleChange}
+                    validationState={formIsOfficialResource.validationState}
                     value={formIsOfficialResource.value}>
                     <ControlLabel>What kind of resource is this?</ControlLabel>
                     <br/>
@@ -204,8 +204,8 @@ class CreateAppForm extends Component {
 
 
 
-                <FormGroup 
-                    controlId="formDescription" 
+                <FormGroup
+                    controlId="formDescription"
                     onChange={this.handleChange}
                     validationState={formDescription.validationState}
                     value={formDescription.value}>
@@ -213,8 +213,8 @@ class CreateAppForm extends Component {
                     <FormControl componentClass="textarea" placeholder="describe your app here"  />
                 </FormGroup>
 
-                <FormGroup 
-                    controlId="formTags" 
+                <FormGroup
+                    controlId="formTags"
                     onChange={this.handleChange}
                     value={formTags.value}
                     validationState={formTags.validationState}>
@@ -226,7 +226,7 @@ class CreateAppForm extends Component {
                 <FormGroup controlId="formImage" validationState={formImage.validationState}>
                 <ControlLabel>Upload Images</ControlLabel>
                 <FormControl.Static> Your first image will be used as a thumbnail</FormControl.Static>
-              </FormGroup>                    
+              </FormGroup>
                 <br/>
 
                 <ImageUploader
@@ -255,7 +255,7 @@ CreateAppForm.propTypes = {
 
 const mapStateToProps = (state, {ownProps}) =>  {
     return {
-        
+
     };
 };
 
@@ -264,6 +264,6 @@ const mapDispatchToProps = (dispatch) => {
       createApp
     }, dispatch);
   };
-  
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateAppForm);

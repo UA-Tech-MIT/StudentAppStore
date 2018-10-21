@@ -14,6 +14,7 @@ import TestForm from './demo/testForm';
 import ImageUploadComponent from './common/ImageUploader';
 import FrontPageContainer from '../containers/FrontPageContainer';
 import CreateAppForm from './createAppForm/CreateAppForm';
+import ResourcesTab from './ResourcesTab/ResourcesPage';
 import RegisterForm from './registerForm/RegisterForm';
 import LoginForm from './loginForm/loginForm';
 import AutocompoleteSearch from './autocompleteSearch/AutocompleteSearch';
@@ -33,6 +34,7 @@ const leftItems = [
   { as: NavLink, to: "/online-component", content: "DB Entries", key: "online" },
   { as: NavLink, to: "/about", content: "About", key: "about" },
   { as: NavLink, to: "/search", content: "Search Results", key: "search" },
+  { as: NavLink, to: "/resources", content: "Resources", key: "submitApp" },
 ];
 const rightItems = [
   { as: AutocompoleteSearch, key: "search" },
@@ -48,7 +50,7 @@ class Router extends React.Component {
         {/* <div className="container"> */}
         <Navbar leftItems={leftItems} rightItems={rightItems} />
         {/* </div> */}
-        
+
 
 
         <Switch>
@@ -60,11 +62,12 @@ class Router extends React.Component {
           <Route path="/online-component" component={OnlineComponent} />
           <Route path="/test-form" component={TestForm} />
           <Route path="/submit-app" component={CreateAppForm} />
+          <Route path="/resources" component={ResourcesTab} />
           <Route path="/register-user" component={RegisterForm} />
           <Route path="/login" component={LoginForm} />
           <Route exact path="/search" component={SearchResults} />
           <Route path="/search/:params" component={SearchResults} />
-          <Route path="/view/:id" component={AppViewPage} /> {/* In the long run we will be using 
+          <Route path="/view/:id" component={AppViewPage} /> {/* In the long run we will be using
           this and pushing a param on redirect. Checking for it in the current search Repo, and then
           updating the state if it isn't there. Pages that have been loaded should remain in the state
           until the user unloads the page.*/}
