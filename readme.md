@@ -8,6 +8,7 @@
         - [Mac Users](#mac-users)
         - [On Linux](#on-linux)
         - [On Windows](#on-windows)
+            - [Alternative install](#alternative-install)
     - [Install Modules and Packages](#install-modules-and-packages)
     - [Tools](#tools)
         - [Install Chrome extensions](#install-chrome-extensions)
@@ -98,6 +99,19 @@ install linuxbrew and follow the instructions for mac.
 
 ### On Windows
 
+Use command prompt (administrative rights)
+
+**Install [Node 4.0.0 or greater](https://nodejs.org)**
+
+    (5.0 or greater is recommended for optimal build performance)
+    Need to run multiple versions of Node? Try unlinking and linking with Brew or use [nvm](https://github.com/creationix/nvm).
+
+install [yarn for windows](https://yarnpkg.com/lang/en/docs/install/#windows-stable).
+
+`npm i -g windows-build-tools` to install c++ compiler (this will install python 2.7 if you don't already have it).
+
+#### Alternative install
+
 Download [cygwin](http://www.cygwin.com/), you will be using this as your terminal
 In the installation you will see a menu with many expandable dropdowns, these are packages for your cygwin environment.
 Find python, expand the dropdown (hit the plus) and click on python2 and pip (python2-pip...). Make sure it doesn't say skip and that the bin box is checked.
@@ -133,6 +147,9 @@ You will be using cygwin to run the program. You should be able access the root 
 ---
 
 ## Install Modules and Packages
+
+cd into the repository 
+
 install packages: `yarn`
 
 `npm install -g nodemon`
