@@ -15,7 +15,7 @@ $cyan: #00bcd4;
 $white: #fff;
 $gray: #6c757d;
 $gray-dark: #343a40;
-$primary: #3F51B5;
+$primary: #3f51b5;
 $secondary: #6c757d;
 $success: #4caf50;
 $info: #03a9f4;
@@ -29,11 +29,12 @@ $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 $font-family-sans-serif: "Roboto", "Helvetica", "Arial", sans-serif;
-$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+  "Liberation Mono", "Courier New", monospace;
 
 /* Styles */
 body {
-  font: 14px "Roboto",UILanguageFont,Arial,sans-serif;
+  font: 14px "Roboto", UILanguageFont, Arial, sans-serif;
   width: 100vw;
   color: #4d4d4d;
 
@@ -45,18 +46,16 @@ body {
 }
 
 td {
-	padding: 12px;
+  padding: 12px;
 }
 
 h2 {
-	color: $vin-blue;
+  color: $vin-blue;
 }
-
 
 .hidden {
   display: none;
 }
-
 
 .spotlight-content {
   display: flex;
@@ -66,7 +65,7 @@ h2 {
 
   .right-content {
     width: 10vw;
-    margin-left:auto;
+    margin-left: auto;
     align-self: center;
   }
   .left-content {
@@ -75,28 +74,31 @@ h2 {
   }
 }
 
-
 .online-user {
   border-radius: 1%;
   border: #4d4d4d;
   padding: 5px;
   background: #eeeeee;
   margin: 10px;
-
-
 }
 .page-template {
   padding: 25px;
   padding-left: 100px;
   padding-right: 100px;
-
 }
 
-
-.savings { color: $vin-green; }
-.loss { color: $vin-red; }
-input.small { width: 46px; }
-td.fuel-savings-label { width: 175px; }
+.savings {
+  color: $vin-green;
+}
+.loss {
+  color: $vin-red;
+}
+input.small {
+  width: 46px;
+}
+td.fuel-savings-label {
+  width: 175px;
+}
 
 .slick-slider .slick-track {
   display: flex;
@@ -104,24 +106,24 @@ td.fuel-savings-label { width: 175px; }
 }
 
 .app-page {
-  background-color: #eeeeee;
-  font-family: "Roboto",UILanguageFont,Arial,sans-serif;
-    font-size: 13px;
-    font-weight: 300;
-    line-height: 1.4;
+  background-color: #ffffff;
+  font-family: "Roboto", UILanguageFont, Arial, sans-serif;
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1.4;
 
-    .icon {
-      width: 15px;
-      height: 15px;
-    }
+  .icon {
+    width: 15px;
+    height: 15px;
+  }
 }
 
 .navLink {
-  font-family: "Roboto",UILanguageFont,Arial,sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.4;
-    color: white;
+  font-family: "Roboto", UILanguageFont, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.4;
+  color: white;
 }
 
 .navbar-inverse {
@@ -175,8 +177,8 @@ td.fuel-savings-label { width: 175px; }
 }
 
 .app-store-page {
-  margin-left: 0px!important;
-  margin-right: 0px!important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
   width: 100%;
 }
 
@@ -185,14 +187,14 @@ td.fuel-savings-label { width: 175px; }
 }
 
 .no-padding {
-  padding: 0!important;
+  padding: 0 !important;
 }
 
 .homepage-tile-container {
   // max-width: 800px;
   padding: 25px;
   margin: auto;
-  
+
   // justify-content: center;
   display: block;
   .homepage-tile {
@@ -206,7 +208,7 @@ td.fuel-savings-label { width: 175px; }
 
 .carousel {
   // width: 900px;
-  height:500px;
+  height: 500px;
   margin: auto;
 }
 .nav-search-bar {
@@ -224,8 +226,8 @@ td.fuel-savings-label { width: 175px; }
 .spotlight {
   min-height: 40vh;
   width: 100vw;
-  background: #FBF8F9;
-  padding: 4vh 8vw
+  background: #fbf8f9;
+  padding: 4vh 8vw;
 }
 
 .user-tile-mail {

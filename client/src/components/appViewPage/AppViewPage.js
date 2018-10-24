@@ -8,13 +8,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AppCarousel from '../common/AppCarousel';
 import {Container} from 'semantic-ui-react';
+import dummyData from '../common/dummyData';
 
 // SEE NEWAPPVIEWPAGE, this is just to retain the utility from this old code.
 
 const testApp = {
   author: "MIT",
   type: "App",
-  name: 'Stellar',
+  name: dummyData.data.allApps[0].name,
   img: 'stellar.png',
   url: 'https://stellar.mit.edu',
   rating: 4,
