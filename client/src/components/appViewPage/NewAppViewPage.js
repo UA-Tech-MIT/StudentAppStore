@@ -16,7 +16,10 @@ import {
   Rating,
   Divider,
   Segment,
-  Header
+  Header,
+  Button,
+  Form,
+  TextArea
 } from "semantic-ui-react"; // just threw in a bunch of components i thought u might find useful
 import dummyData from "../common/dummyData"; // ctrl + click to check it out
 
@@ -36,14 +39,61 @@ class AppViewPage extends React.Component {
       <div className="page-template">
         <div className="app-page">
           <Container style={style}>
-            <Image src={require("../../public/stellar.png")} />
+            <Image src={require("../../public/stellar.png")} floated="left" />
             <Header size="huge" color="teal">
               {this.state.app.name}
             </Header>
-            <Header as="h2" dividing>
-              {this.state.app.author}
+            <Rating
+              icon="star"
+              defaultRating={this.state.app.rating}
+              maxRating={5}
+              OnRate={this.handleRate}
+            />
+            <Button
+              basic
+              color="purple"
+              content="Get This App"
+              icon="external alternate"
+              floated="right"
+            />
+            <Header as="h2">{this.state.app.author}</Header>
+            <Header size="tiny" color="teal" floated="left">
+              Genre:
+            </Header>
+            {this.state.app.genre}
+            <Divider dividing />
+            <Header size="smal" color="teal">
+              Description:
             </Header>
             {this.state.app.description}
+            <Divider dividing />
+            <Button
+              basic
+              color="purple"
+              content="Like"
+              icon="heart"
+              label={{
+                basic: false,
+                color: "purple",
+                pointing: "left",
+                content: this.state.app.likes
+              }}
+            />
+            <Button
+              basic
+              color="purple"
+              content="Write a Review"
+              icon="write"
+              label={{
+                basic: false,
+                color: "purple",
+                pointing: "left",
+                content: "10"
+              }}
+            />
+            <Form>
+              <TextArea autoHeight placeholder="Tell us about this app!" />
+            </Form>
           </Container>
         </div>
       </div>
@@ -51,6 +101,9 @@ class AppViewPage extends React.Component {
   }
 }
 
+const handleRate = () => {
+  //something
+};
 AppViewPage.propTypes = {
   fetchAppByID: PropTypes.func, // we may use this wit ha startup component here
   app: PropTypes.object,
