@@ -6,6 +6,7 @@ import { ReviewList } from "../common/ReviewList";
 import { allApps, fetchAppByID } from "../../actions/AsyncActionCreators";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import Slider from "../Slider/Slider";
 import {
   Container,
   Card,
@@ -54,22 +55,22 @@ class AppViewPage extends React.Component {
               icon="star"
               defaultRating={this.state.app.rating}
               maxRating={5}
-              OnRate={this.handleRate}
+              onRate={this.handleRate}
             />
             <Button
               basic
+              content="Get this app"
               color="purple"
-              content="Get This App"
               icon="external alternate"
               floated="right"
             />
             <Header as="h2">{this.state.app.author}</Header>
-            <p>
+            <div>
               <Header size="tiny" color="teal" floated="left">
                 Genre:
               </Header>
               {this.state.app.genre}
-            </p>
+            </div>
             <Header size="tiny" color="teal" floated="left">
               Tags:
             </Header>
@@ -82,6 +83,7 @@ class AppViewPage extends React.Component {
                 content={tag}
               />
             ))}
+            <Button basic size="mini" color="teal" content="Add a tag" />
             <Divider dividing />
             <Header size="small" color="teal">
               Description:
@@ -120,6 +122,7 @@ class AppViewPage extends React.Component {
             ) : (
               <div />
             )}
+            <Slider />
           </Container>
         </div>
       </div>
