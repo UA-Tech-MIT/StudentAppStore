@@ -6,7 +6,6 @@ import { ReviewList } from "../common/ReviewList";
 import { allApps, fetchAppByID } from "../../actions/AsyncActionCreators";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AppCarousel from "../common/AppCarousel";
 import {
   Container,
   Card,
@@ -27,7 +26,8 @@ class AppViewPage extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      app: dummyData.data.allApps[0]
+      app: dummyData.data.allApps[0],
+      showTextBox: false
     };
   }
 
@@ -43,6 +43,13 @@ class AppViewPage extends React.Component {
             <Header size="huge" color="teal">
               {this.state.app.name}
             </Header>
+            <Button
+              basic
+              color="teal"
+              content="Edit"
+              icon="edit"
+              floated="right"
+            />
             <Rating
               icon="star"
               defaultRating={this.state.app.rating}
@@ -57,12 +64,26 @@ class AppViewPage extends React.Component {
               floated="right"
             />
             <Header as="h2">{this.state.app.author}</Header>
+            <p>
+              <Header size="tiny" color="teal" floated="left">
+                Genre:
+              </Header>
+              {this.state.app.genre}
+            </p>
             <Header size="tiny" color="teal" floated="left">
-              Genre:
+              Tags:
             </Header>
-            {this.state.app.genre}
+            {this.state.app.tags.map(tag => (
+              <Button
+                basic
+                key={tag}
+                size="mini"
+                color="purple"
+                content={tag}
+              />
+            ))}
             <Divider dividing />
-            <Header size="smal" color="teal">
+            <Header size="small" color="teal">
               Description:
             </Header>
             {this.state.app.description}
@@ -84,6 +105,7 @@ class AppViewPage extends React.Component {
               color="purple"
               content="Write a Review"
               icon="write"
+              onClick={this.showText}
               label={{
                 basic: false,
                 color: "purple",
@@ -91,19 +113,27 @@ class AppViewPage extends React.Component {
                 content: "10"
               }}
             />
-            <Form>
-              <TextArea autoHeight placeholder="Tell us about this app!" />
-            </Form>
+            {this.state.showTextBox ? (
+              <Form>
+                <TextArea autoHeight placeholder="Tell us about this app!" />
+              </Form>
+            ) : (
+              <div />
+            )}
           </Container>
         </div>
       </div>
     );
   }
+  showText = () => {
+    this.setState({ showTextBox: true });
+  };
+
+  handleRate = () => {
+    //something
+  };
 }
 
-const handleRate = () => {
-  //something
-};
 AppViewPage.propTypes = {
   fetchAppByID: PropTypes.func, // we may use this wit ha startup component here
   app: PropTypes.object,
