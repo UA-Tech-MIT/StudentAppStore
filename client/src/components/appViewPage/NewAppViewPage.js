@@ -24,18 +24,19 @@ import {
   Label
 } from "semantic-ui-react"; // just threw in a bunch of components i thought u might find useful
 import dummyData from "../common/dummyData"; // ctrl + click to check it out
+import NewLabel from "./NewLabel";
 
 class AppViewPage extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
       app: dummyData.data.allApps[0],
-      showTextBox: false
+      showTextBox: false,
+      enableEdit: false
     };
   }
 
   render() {
-    let state = this.state;
     let style = {};
 
     return (
@@ -43,15 +44,30 @@ class AppViewPage extends React.Component {
         <div className="app-page">
           <Container style={style}>
             <Image src={require("../../public/stellar.png")} floated="left" />
-            <Header size="huge" color="teal">
-              {this.state.app.name}
-            </Header>
+            {this.state.enableEdit ? (
+              <div>
+                <Input defaultValue={this.state.app.name} size="large" />
+                <Button
+                  basic
+                  color="teal"
+                  content="Upload new picture"
+                  icon="picture"
+                  floated="right"
+                />
+                <br />
+              </div>
+            ) : (
+              <Header size="huge" color="teal">
+                {this.state.app.name}
+              </Header>
+            )}
             <Button
               basic
               color="teal"
               content="Edit"
               icon="edit"
               floated="right"
+              onClick={this.enableEdit}
             />
             <Rating
               icon="star"
@@ -73,7 +89,14 @@ class AppViewPage extends React.Component {
               <Header size="tiny" color="teal" floated="left">
                 Genre:
               </Header>
-              {this.state.app.genre}
+              {this.state.enableEdit ? (
+                <div>
+                  <Input defaultValue={this.state.app.genre} size="mini" />
+                  <br />
+                </div>
+              ) : (
+                this.state.app.genre
+              )}
             </div>
             <Header size="tiny" color="teal" floated="left">
               Tags:
@@ -86,18 +109,21 @@ class AppViewPage extends React.Component {
                 {appTag}
               </Label>
             ))}
-            <Input
-              icon="tags"
-              iconPosition="left"
-              label={{ tag: true, content: "Add Tag" }}
-              labelPosition="right"
-              placeholder="Enter tags"
-            />
+            <NewLabel />
             <Divider dividing />
             <Header size="small" color="teal">
               Description:
             </Header>
-            {this.state.app.description}
+            {this.state.enableEdit ? (
+              <Form>
+                <TextArea
+                  autoHeight
+                  defaultValue={this.state.app.description}
+                />
+              </Form>
+            ) : (
+              this.state.app.description
+            )}
             <Divider dividing />
             <Button
               basic
@@ -131,6 +157,18 @@ class AppViewPage extends React.Component {
             ) : (
               <div />
             )}
+            {this.state.enableEdit ? (
+              <Button
+                basic
+                color="teal"
+                content="Save changes"
+                icon="save"
+                floated="right"
+                onClick={this.disableEdit}
+              />
+            ) : (
+              <div />
+            )}
             <Slider />
           </Container>
         </div>
@@ -139,6 +177,13 @@ class AppViewPage extends React.Component {
   }
   showText = () => {
     this.setState({ showTextBox: true });
+  };
+
+  enableEdit = () => {
+    this.setState({ enableEdit: true });
+  };
+  disableEdit = () => {
+    this.setState({ enableEdit: false });
   };
 
   handleRate = () => {
