@@ -61,6 +61,8 @@ class AppViewPage extends React.Component {
             />
             <Button
               basic
+              href={this.state.app.url}
+              target="_blank"
               content="Get this app"
               color="purple"
               icon="external alternate"
