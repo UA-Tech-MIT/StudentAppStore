@@ -19,7 +19,9 @@ import {
   Header,
   Button,
   Form,
-  TextArea
+  TextArea,
+  Input,
+  Label
 } from "semantic-ui-react"; // just threw in a bunch of components i thought u might find useful
 import dummyData from "../common/dummyData"; // ctrl + click to check it out
 
@@ -74,16 +76,21 @@ class AppViewPage extends React.Component {
             <Header size="tiny" color="teal" floated="left">
               Tags:
             </Header>
-            {this.state.app.tags.map(tag => (
-              <Button
-                basic
-                key={tag}
-                size="mini"
-                color="purple"
-                content={tag}
-              />
+            {this.state.app.tags.map(appTag => (
+              <Label
+                style={{ marginLeft: 1 + "%", marginRight: 1 + "%" }}
+                key={appTag}
+              >
+                {appTag}
+              </Label>
             ))}
-            <Button basic size="mini" color="teal" content="Add a tag" />
+            <Input
+              icon="tags"
+              iconPosition="left"
+              label={{ tag: true, content: "Add Tag" }}
+              labelPosition="right"
+              placeholder="Enter tags"
+            />
             <Divider dividing />
             <Header size="small" color="teal">
               Description:
