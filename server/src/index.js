@@ -9,6 +9,7 @@ import { schemaArray } from './schema/index';
 import resolvers from './resolvers';
 import models from './models';
 import parseFile from './parser'
+import routes from "./routes";
 const fs = require('fs');
 
 
@@ -51,6 +52,7 @@ const APP_PORT = 8080;
 const app = Express();
 app.use(cors('*'));
 app.use(addUser);
+app.use(routes);
 
 
 app.use(graphqlEndpoint, bodyParser.json(), GraphHTTP( async (req, res) => ({

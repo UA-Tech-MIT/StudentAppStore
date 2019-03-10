@@ -87,13 +87,27 @@ export const fetchAppByID = (id) => {
 };
 /* eslint-disable no-unused-vars*/
 export const createApp = (args) => dispatch => {
-    let vars = { isofficialresource: JSON.parse(args.isofficialresource) };
+    // let vars = { isfficialresource: JSON.parse(args.isofficialresource) };
 
     //TODO(yaatehr) add varification?
-    const query = CREATE_APP(args);
-    fetch(queryUri, createFetchConfig(query, vars))
-        .then(res => res.json())
-        .then(data => console.log(data));
+    console.log("ARGUMENTS: ");
+    console.log(args);
+    let data = new FormData();
+    Object.entries(args).forEach(entry => {
+        let [key, value] = entry;
+        if (key) {
+            data.append(key, value);
+        }
+    });
+    
+
+    console.log(args);
+
+    fetch("http://localhost:8080/app", {
+        method: "POST",
+        mode: "cors",
+        body: data
+    }).then(d => console.log(d));
 };
 
 export const createUser = (args) => dispatch =>  {

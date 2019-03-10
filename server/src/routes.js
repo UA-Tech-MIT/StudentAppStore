@@ -1,36 +1,40 @@
-import formidable from 'formidable';
+import multer from 'multer';
 import auth from './auth';
- export default (app) => {
-    // define the home page route
-    app.post('/user/:userId/thumbnail', function (req, res) {
-        const reqParam = req.params.userId; let userId;
-        console.log(req.user);
+import { parse } from 'path';
+import { Router } from 'express';
+import models from './models/index';
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, __dirname.replace("/server/src", "") + "/uploads");
+    },
+    filename: function(req, file, cb) {
+        let name = parse(file.originalname);
+        cb(null, `${name.name}-${Date.now()}${name.ext}`);
+    }
+});
+
+const upload = multer({ 
+    storage: storage 
+});
+
+const router = Router();
+router.post("/app", upload.single('icon'), async function(req, res) {
+        let tags = req.body.tags ? req.body.tags.split(" "): null;
+        let t = await models.sequelize.transaction();
         try {
-            userId = parseInt(reqParam);
-        } catch (err) {
-            console.log(err);
-            res.send(false);
+            let app = await models.App.create({
+               include: [] 
+            }, {
+                transaction: t
+            });
+        } catch(err) {
+
         }
-        // use formiddable to parse form data
-        var form = new formidable.IncomingForm();
-         form.parse(req);
-         // form.uploadDir= '/uploads';
-        // form.type = 'multipart';
-        // form.maxFieldsSize = 25 * 1024 * 1024;
-     
-        form.on('fileBegin', function (name, file){
-            file.path = __dirname + '/uploads/' + file.name;
-        });
-    
-        form.on('file', function (name, file){
-            console.log('Uploaded ' + file.name);
-        });
-    
-        // res.sendFile(__dirname + '/index.html');
-         res.send(true)
-    })
-    // define the about route
-    app.post('/app/:appId/thumbnail', function (req, res) {
-        res.send('About birds')
-    })
-}
+        console.log(tags);
+        console.log(req.file);
+        console.log(req.body);
+        res.send(true);
+    });
+
+export default router;

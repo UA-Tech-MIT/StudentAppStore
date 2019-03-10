@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 
-let offlineMode = false;
+let offlineMode = true;
 
 const onlineSql = new Sequelize(
     'yaatehr+UATech',
@@ -19,7 +19,7 @@ const offlineSql = new Sequelize(
     {
         dialect: 'postgres',
         host: 'localhost',
-        port: 9876
+        port: 5432
     }
 );
 
@@ -37,6 +37,8 @@ const models = {
     AppTag: Conn.import('./appTag'),
     UserTag: Conn.import('./userTag'),
     FileUpload: Conn.import('./fileUpload'),
+    sequelize: Conn,
+    Sequelize: Sequelize
 };
 
 Object.keys(models).forEach((modelName) => {
@@ -45,7 +47,5 @@ Object.keys(models).forEach((modelName) => {
     }
 });
 
-models.sequelize = Conn;
-models.Sequelize = Sequelize;
 
 export default models;

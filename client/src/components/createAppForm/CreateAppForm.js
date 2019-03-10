@@ -38,8 +38,8 @@ const getDefaultState = () => {
         formTags: { value: '', validationState: null },
         formDescription: { value: '', validationState: null },
         formIsOfficialResource: { value: null, validationState: null },
-        formImage: { value: 'testimg.jpg', validationState: null },
-        images: null
+        formIcon: { value: null, validationState: null },
+        icon: null
     };
 };
 
@@ -56,11 +56,12 @@ class CreateAppForm extends Component {
     }
 
     onDrop(pictureFiles, pictureDataURLs) {
+        console.log(pictureFiles)
         let state = this.state;
         if (pictureFiles.files === undefined)
-            state.images = pictureFiles;
+            state.icon = pictureFiles[0];
         else {
-            state.images = pictureFiles.files[0];
+            state.icon = pictureFiles.files[0];
             state.screenshots = pictureFiles.files.splice(1, pictureFiles.length - 1);
         }
         this.setState(state);
@@ -85,8 +86,13 @@ class CreateAppForm extends Component {
             let args = {};
             let state = this.state;
             for (let key in state) {
-                args[key.substr(4).toLowerCase()] = state[key].value;
+                let argKey = key.substr(4, 1).toLowerCase() + key.substr(5);
+                args[argKey] = state[key].value;
             }
+
+            args.icon = state.icon;
+            console.log("ARGS");
+            console.log(args);
             this.props.createApp(args);
         }
     }
@@ -110,8 +116,8 @@ class CreateAppForm extends Component {
                         state[key].validationState = null;
                     break;
                 }
-                case 'formImage': {
-                    if (!this.state.images) {
+                case 'formIcon': {
+                    if (!this.state.icon) {
                         state[key].validationState = 'error';
                         isValid = false;
                     }
@@ -127,13 +133,13 @@ class CreateAppForm extends Component {
 
   render() {
       let {formIsOwner, formName, formUrl, formAuthor, formGenre,
-         formTags, formDescription, formIsOfficialResource, formImage} = this.state;
+         formTags, formDescription, formIsOfficialResource, formIcon} = this.state;
 
     return (
         <div className="page-template">
             <h1>Request An App (Create App in DB)</h1>
 
-            <form onSubmit={this.handleSubmit}>
+            <form encType="multipart/form-data" onSubmit={this.handleSubmit}>
                 <FieldGroup 
                     id="formName" 
                     label="App Name" 
@@ -223,7 +229,7 @@ class CreateAppForm extends Component {
                 </FormGroup>
 
                 <br/>
-                <FormGroup controlId="formImage" validationState={formImage.validationState}>
+                <FormGroup controlId="formIcon" validationState={formIcon.validationState}>
                 <ControlLabel>Upload Images</ControlLabel>
                 <FormControl.Static> Your first image will be used as a thumbnail</FormControl.Static>
               </FormGroup>                    
