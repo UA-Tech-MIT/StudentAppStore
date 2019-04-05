@@ -13,7 +13,7 @@ class AboutPage extends React.Component{
     };
   }
 
-
+//TODO Update to pictures of the developers before adding public route
 render() {
   return (
     <div className="page-template">
