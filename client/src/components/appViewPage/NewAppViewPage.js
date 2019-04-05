@@ -3,7 +3,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import * as helperFuncs from "../../utils/helperFunctions";
 import { ReviewList } from "../common/ReviewList";
-import { allApps, fetchAppByID } from "../../actions/AsyncActionCreators";
+import {
+  allApps,
+  getAppByID,
+  likeApp,
+  viewApp
+} from "../../actions/AsyncActionCreators";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Slider from "../Slider/Slider";
@@ -29,11 +34,22 @@ import NewLabel from "./NewLabel";
 class AppViewPage extends React.Component {
   constructor(props, context) {
     super(props, context);
+    // TODO add state objects for edits
     this.state = {
       app: dummyData.data.allApps[0],
       showTextBox: false,
-      enableEdit: false
+      enableEdit: false,
+      liked: false
     };
+  }
+  componentWillMount() {
+    const x = this;
+    this.props.getAppByID(4).then(response => {
+      x.setState({
+        app: { ...response.data.searchApps[0], tags: ["tag1", "tag2"] }
+      });
+    });
+    this.props.viewApp(4);
   }
 
   render() {
@@ -46,7 +62,17 @@ class AppViewPage extends React.Component {
             <Image src={require("../../public/stellar.png")} floated="left" />
             {this.state.enableEdit ? (
               <div>
-                <Input defaultValue={this.state.app.name} size="large" />
+                <Input
+                  defaultValue={this.state.app.name}
+                  size="large"
+                  onChange={(event, data) =>
+                    this.setState({
+                      tempValues: Object.assign({}, this.state.tempValues, {
+                        name: data.value
+                      })
+                    })
+                  }
+                />
                 <Button
                   basic
                   color="teal"
@@ -91,7 +117,17 @@ class AppViewPage extends React.Component {
               </Header>
               {this.state.enableEdit ? (
                 <div>
-                  <Input defaultValue={this.state.app.genre} size="mini" />
+                  <Input
+                    defaultValue={this.state.app.genre}
+                    size="mini"
+                    onChange={(event, data) =>
+                      this.setState({
+                        tempValues: Object.assign({}, this.state.tempValues, {
+                          genre: data.value
+                        })
+                      })
+                    }
+                  />
                   <br />
                 </div>
               ) : (
@@ -109,8 +145,7 @@ class AppViewPage extends React.Component {
                 {appTag}
               </Label>
             ))}
-            <NewLabel />
-            <Divider dividing />
+            <Divider />
             <Header size="small" color="teal">
               Description:
             </Header>
@@ -119,17 +154,25 @@ class AppViewPage extends React.Component {
                 <TextArea
                   autoHeight
                   defaultValue={this.state.app.description}
+                  onChange={(event, data) =>
+                    this.setState({
+                      tempValues: Object.assign({}, this.state.tempValues, {
+                        description: data.value
+                      })
+                    })
+                  }
                 />
               </Form>
             ) : (
               this.state.app.description
             )}
-            <Divider dividing />
+            <Divider />
             <Button
               basic
               color="purple"
-              content="Like"
-              icon="heart"
+              content={"Like" + (this.state.liked ? "d" : "")}
+              icon={"heart" + (this.state.liked ? "" : " outline")}
+              onClick={this.likedApp}
               label={{
                 basic: false,
                 color: "purple",
@@ -164,7 +207,7 @@ class AppViewPage extends React.Component {
                 content="Save changes"
                 icon="save"
                 floated="right"
-                onClick={this.disableEdit}
+                onClick={this.submitChanges}
               />
             ) : (
               <div />
@@ -179,8 +222,24 @@ class AppViewPage extends React.Component {
     this.setState({ showTextBox: true });
   };
 
+  likedApp = () => {
+    this.setState({
+      app: Object.assign({}, this.state.app, {
+        likes: this.state.app.likes + 1
+      }),
+      liked: !this.state.liked
+    });
+    this.props.likeApp(this.state.app.id);
+  };
+
+  submitChanges = () => {
+    this.disableEdit();
+  };
   enableEdit = () => {
-    this.setState({ enableEdit: true });
+    this.setState({
+      enableEdit: true,
+      tempValues: {}
+    });
   };
   disableEdit = () => {
     this.setState({ enableEdit: false });
@@ -192,9 +251,11 @@ class AppViewPage extends React.Component {
 }
 
 AppViewPage.propTypes = {
-  fetchAppByID: PropTypes.func, // we may use this wit ha startup component here
+  getAppByID: PropTypes.func, // we may use this wit ha startup component here
   app: PropTypes.object,
-  allApps: PropTypes.func.isRequired
+  allApps: PropTypes.func.isRequired,
+  likeApp: PropTypes.func,
+  viewApp: PropTypes.func
 };
 
 const mapStateToProps = (state, ownProps = {}) => {
@@ -222,7 +283,9 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       allApps: allApps,
-      fetchAppByID: fetchAppByID
+      getAppByID: getAppByID,
+      likeApp: likeApp,
+      viewApp: viewApp
     },
     dispatch
   );
