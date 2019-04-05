@@ -35,3 +35,6 @@ Thumbs.db
 
 # Webstorm files
 .idea
+
+client/package-lock.json
+server/package-lock.json
