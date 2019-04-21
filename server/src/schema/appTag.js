@@ -1,10 +1,8 @@
 export const typeDef = `
 
   type AppTag {
-    id: Int!
-    tag_id: Int
-    taggable: String
-    taggable_id: Int!
+    tagId: Int!
+    appAppHash: String
     createdAt: String!
     updatedAt: String!
   }

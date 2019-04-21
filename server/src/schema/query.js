@@ -35,5 +35,9 @@ export const typeDef = `
         getTeam: Team!
         
         allFiles(id: Int, url: String, filetype: String): [File!]
+
+
+        #Testing Queries
+        getAllTags: [Tag]!
     }
 `;

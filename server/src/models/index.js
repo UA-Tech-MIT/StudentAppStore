@@ -8,7 +8,9 @@ const onlineSql = new Sequelize(
     'sod54miy',
     {
         dialect: 'mysql',
-        host: 'sql.mit.edu'
+        host: 'sql.mit.edu',
+        operatorsAliases: false
+
     }
 );
 
@@ -19,13 +21,28 @@ const offlineSql = new Sequelize(
     {
         dialect: 'postgres',
         host: 'localhost',
-        port: 9876
+        port: 9876,
+        operatorsAliases: false
+
+    }
+);
+
+const UATechServer = new Sequelize(
+    'yaatehr+UATech',
+    'yaatehr',
+    'EmbraceTheTech',
+    {
+        dialect: 'postgres',
+        host: '18.102.211.149',
+        port: 5432,
+        operatorsAliases: false
+
     }
 );
 
 
 //tertiary assignment. varname = booleanExpression ? Assigned if true : assigned if false;
-const Conn = offlineMode === true ? offlineSql : onlineSql;
+const Conn = offlineMode === true ? offlineSql : UATechServer;
 
 
 const models = {

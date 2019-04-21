@@ -9,6 +9,8 @@
     "start": "pm2 start server.config.js",
     "stop": "pm2 stop server.config.js",
     "restart": "pm2 restart server.config.js",
+    "logging": "pm2 log --lines 100 > dump.txt",
+    "clear": "rm dump.txt",
     "build": "babel src -d dist"
   },
   "author": "Yaateh Richardson",
@@ -34,17 +36,17 @@
     "sequelize": "4.38.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "6.25.0",
+    "babel-cli": "^7.0.0",
+    "babel-core": "^7.0.0",
     "babel-eslint": "7.2.3",
-    "babel-jest": "20.0.3",
+    "babel-jest": "^24.7.1",
     "babel-loader": "7.1.1",
     "babel-polyfill": "6.23.0",
     "babel-preset-env": "1.7.0",
     "babel-preset-stage-1": "6.24.1",
     "concurrently": "3.5.0",
     "eslint": "4.2.0",
-    "eslint-watch": "3.1.2",
+    "eslint-watch": "^5.0.1",
     "faker": "4.1.0"
   },
   "babel": {

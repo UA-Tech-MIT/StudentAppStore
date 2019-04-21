@@ -11,6 +11,7 @@ export const typeDef = `
     createdAt: String!
     updatedAt: String!
     tags: [Tag!]
+    # TODO, change to User Tag
   }
 
   type RegisterResponse {

@@ -89,11 +89,8 @@ export default (Conn, Sequelize) => {
             through: {
                 model: models.UserTag,
                 unique: false,
-                scope: {
-                    taggable: 'user'
-                }
+                foreignKey: 'userHash',
             },
-            foreignKey: 'taggable_id',
             constraints: false
         });
     };
