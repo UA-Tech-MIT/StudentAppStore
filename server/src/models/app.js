@@ -18,7 +18,7 @@ export default (Conn, Sequelize) => {
             allowNull: false
         },
         medium: {// ^do we need both of these?
-            type: Sequelize.TEXT("tiny"),
+            type: Sequelize.TEXT,
             allowNull: false
         },
         image: {
@@ -105,13 +105,15 @@ export default (Conn, Sequelize) => {
         App.belongsToMany(models.Tag, {
             through: {
                 model: models.AppTag,
-                unique: false,
-                scope: {
-                    taggable: 'app'
-                }
+                foreignKey: 'appHash',
+                unique: 'false',
+                // unique: false,
+                // scope: {
+                //     taggable: 'app'
+                // }
             },
-            foreignKey: 'taggable_id',
-            constraints: false
+            // foreignKey: 'taggable_id',
+            // constraints: false
         });
     };
 
