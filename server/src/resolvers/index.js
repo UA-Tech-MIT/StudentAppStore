@@ -13,6 +13,23 @@ const formatErrors = (e, models) => {
   return [{ path: "name", message: "something went wrong" }];
 };
 
+<<<<<<< HEAD
+=======
+// TODO find a way to create a hash remotely
+// async function testHashes(modelType, maxTries=-1) {
+
+//     while( maxTries == -1 || maxTries > 0) {
+//         let appHash = Faker.random.uuid();
+//         // find
+//         modelType.count({where: { appHash } }).then((res) => {
+
+//         })
+//         maxTries--;
+//     }
+// }
+
+
+>>>>>>> master
 export default {
   Query: {
     //APP QUERIES
@@ -192,12 +209,30 @@ export default {
               where: { id: id },
               order: [["likes", "DESC"]]
             }
+<<<<<<< HEAD
           ]
         });
       } catch (err) {
         console.log(err);
         return false;
       }
+=======
+        },
+        allFiles: async (parent, args) => {
+            return models.FileUpload.findAll();
+        },
+        // Testing Queries
+        getAllTags: async ( parents, args) => {
+            return models.AppTag.findAll()
+                .then((res) => {
+                    console.log(res);
+                    return res
+                })
+                .catch((err) => {
+                    return [null];
+                });
+        },
+>>>>>>> master
     },
     allFiles: async (parent, args) => {
       return models.FileUpload.findAll();

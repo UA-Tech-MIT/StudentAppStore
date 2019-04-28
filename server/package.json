@@ -5,10 +5,12 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon --exec babel-node -- ./src/index",
+    "server": "nodemon ./src/index --exec babel-node ./src/index",
     "start": "pm2 start server.config.js",
     "stop": "pm2 stop server.config.js",
     "restart": "pm2 restart server.config.js",
+    "logging": "pm2 log --lines 100 > dump.txt",
+    "clear": "rm dump.txt",
     "build": "babel src -d dist"
   },
   "author": "Yaateh Richardson",
@@ -26,39 +28,35 @@
     "lodash": "^4.17.10",
     "mysql": "2.15.0",
     "mysql2": "1.5.3",
-    "nodemon": "^1.18.3",
     "papaparse": "^4.6.0",
     "pg": "7.4.3",
     "pg-hstore": "2.3.2",
-    "pm2": "^3.1.3",
+    "pm2": "^3.2.9",
     "sequelize": "4.38.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "6.25.0",
-    "babel-eslint": "7.2.3",
-    "babel-jest": "20.0.3",
-    "babel-loader": "7.1.1",
-    "babel-polyfill": "6.23.0",
-    "babel-preset-env": "1.7.0",
-    "babel-preset-stage-1": "6.24.1",
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
     "concurrently": "3.5.0",
     "eslint": "4.2.0",
-    "eslint-watch": "3.1.2",
-    "faker": "4.1.0"
+    "eslint-watch": "^5.0.1",
+    "faker": "4.1.0",
+    "nodemon": "^1.18.11"
   },
   "babel": {
     "env": {
       "development": {
         "presets": [
-          "env",
-          "stage-1"
+          "@babel/preset-env"
         ]
       },
       "production": {
         "presets": [
           [
-            "env",
+            "@babel/preset-env",
             {
               "es2015": {
                 "modules": false
@@ -68,14 +66,12 @@
                 "uglify": true
               }
             }
-          ],
-          "stage-1"
+          ]
         ]
       },
       "test": {
         "presets": [
-          "env",
-          "stage-1"
+          "@babel/preset-env"
         ]
       }
     }
