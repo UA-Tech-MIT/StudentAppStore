@@ -158,6 +158,11 @@ export const LIKE_APP = id => `
         incrementAppLikes(id: ${id})
     }
 `;
+export const UNLIKE_APP = id => `
+    mutation likeApp{
+        decrementAppLikes(id: ${id})
+    }
+`;
 
 export const VIEW_APP = id => `
     mutation viewApp{

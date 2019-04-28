@@ -18,6 +18,8 @@ export const typeDef = `
 
         incrementAppLikes(id: Int!): Boolean!
         incrementAppViews(id: Int!): Boolean!
+        decrementAppLikes(id: Int!): Boolean!
+        addRating(id: Int!): Int!
 
         #USER MUTATIONS
 
@@ -46,5 +48,3 @@ export const typeDef = `
 
     }
 `;
-
-

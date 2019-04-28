@@ -7,20 +7,17 @@ import {
   allApps,
   getAppByID,
   likeApp,
-  viewApp
+  viewApp,
+  unlikeApp
 } from "../../actions/AsyncActionCreators";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Slider from "../Slider/Slider";
 import {
   Container,
-  Card,
   Image,
-  Modal,
-  Popup,
   Rating,
   Divider,
-  Segment,
   Header,
   Button,
   Form,
@@ -212,7 +209,6 @@ class AppViewPage extends React.Component {
             ) : (
               <div />
             )}
-            <Slider />
           </Container>
         </div>
       </div>
@@ -225,11 +221,13 @@ class AppViewPage extends React.Component {
   likedApp = () => {
     this.setState({
       app: Object.assign({}, this.state.app, {
-        likes: this.state.app.likes + 1
+        likes: this.state.app.likes + (this.state.liked ? -1 : 1)
       }),
       liked: !this.state.liked
     });
-    this.props.likeApp(this.state.app.id);
+    this.state.liked
+      ? this.props.unlikeApp(this.state.app.id)
+      : this.props.likeApp(this.state.app.id);
   };
 
   submitChanges = () => {
@@ -255,7 +253,8 @@ AppViewPage.propTypes = {
   app: PropTypes.object,
   allApps: PropTypes.func.isRequired,
   likeApp: PropTypes.func,
-  viewApp: PropTypes.func
+  viewApp: PropTypes.func,
+  unlikeApp: PropTypes.func
 };
 
 const mapStateToProps = (state, ownProps = {}) => {
@@ -285,7 +284,8 @@ const mapDispatchToProps = dispatch => {
       allApps: allApps,
       getAppByID: getAppByID,
       likeApp: likeApp,
-      viewApp: viewApp
+      viewApp: viewApp,
+      unlikeApp: unlikeApp
     },
     dispatch
   );

@@ -7,6 +7,7 @@ import {
   REGISTER_USER,
   LOGIN_USER,
   LIKE_APP,
+  UNLIKE_APP,
   VIEW_APP,
   GET_ALL_THUMBNAILS,
   GET_ALL_THUMBNAILS_BETA
@@ -127,6 +128,11 @@ export const searchApps = args => dispatch => {
 
 export const likeApp = args => dispatch => {
   return fetch(queryUri, createFetchConfig(LIKE_APP(args)))
+    .then(res => res.json())
+    .then(payload => payload);
+};
+export const unlikeApp = args => dispatch => {
+  return fetch(queryUri, createFetchConfig(UNLIKE_APP(args)))
     .then(res => res.json())
     .then(payload => payload);
 };
